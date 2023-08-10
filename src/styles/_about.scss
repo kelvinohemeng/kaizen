@@ -1,0 +1,83 @@
+@import "./globals";
+section {
+  margin: 50px 0;
+}
+.intro {
+  height: 100vh;
+  padding-top: 200px;
+  display: flex;
+  align-items: center;
+  h1 {
+    font-family: $century-gothic;
+    font-size: 120px;
+    letter-spacing: -9.6px;
+  }
+}
+.ab-context {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  h2 {
+    font-size: $large;
+    max-width: 80%;
+  }
+  p {
+    font-size: $text;
+    font-weight: 400;
+  }
+  @media screen and (max-width: 450px) {
+    padding: 10px;
+    h2 {
+      font-size: $headings;
+      max-width: 80%;
+    }
+  }
+}
+.video-section {
+  .ab-img {
+    // margin: 10px 0;
+    max-width: 1272px;
+    height: 600px;
+    aspect-ratio: 2/1 !important;
+    border-radius: 50px;
+    background-color: $kaizen-white;
+    border: 2px solid $kaizen-blue;
+    @media screen and (max-width: 450px) {
+      aspect-ratio: 1 !important;
+    }
+  }
+}
+
+.ab-count {
+  @include flexCenter(center, center, row);
+  padding: 100px;
+
+  gap: 40px;
+  .c-p {
+    flex: 1;
+    @include flexCenter(center, center, column);
+    padding: 30px 50px;
+    background-color: $kaizen-white;
+    border-radius: 30px;
+    span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 {
+      font-size: $large;
+      font-weight: 700;
+    }
+    p {
+      font-family: $century-gothic;
+      font-size: $text;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    padding: 10px;
+    text-align: center;
+    @include flexCenter(center, center, column);
+  }
+}

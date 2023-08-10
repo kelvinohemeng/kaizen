@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap");
+@font-face {
+  font-family: "Century Gothic";
+  src: local("Century Gothic"), local("CenturyGothic"), url("./assets/font/CenturyGothic.woff2") format("woff2"), url("./assets/font/CenturyGothic.woff") format("woff");
+}
+.container {
+  max-width: 1272px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}/*# sourceMappingURL=variables.css.map */
