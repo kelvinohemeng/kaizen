@@ -1,9 +1,9 @@
 // cloudinaryConfig.js
 
 const cloudinaryConfig = {
-  cloudName: "base-data",
-  apiKey: "455494137531413",
-  apiSecret: "-cua48OPgtwah1mK4xoJklfgIdE",
+  cloudName: import.meta.env.VITE_APP_CLOUDINARY_CLOUD_NAME,
+  apiKey: import.meta.env.VITE_APP_CLOUDINARY_API_KEY,
+  apiSecret: import.meta.env.VITE_APP_CLOUDINARY_API_SECRET,
 };
 
 export default cloudinaryConfig;
