@@ -23,6 +23,7 @@ const Countdown = ({ targetNumber }) => {
         trigger: element,
         start: "top 80%", // Animation will start when the top of the element is 80% inside the viewport
         end: "center center", // Animation will end when the element is at the center of the viewport
+        toggleActions: "play none none reset",
         // scrub: true, // Smoothly animates the element as you scroll
         // markers: true,
       },

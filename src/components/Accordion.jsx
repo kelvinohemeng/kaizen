@@ -43,6 +43,7 @@ export const Accordion = () => {
     <div>
       {accordionData.map((item, index) => (
         <AccordionCard
+          readMore
           key={index}
           index={index}
           title={item.title}

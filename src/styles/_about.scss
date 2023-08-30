@@ -1,17 +1,20 @@
 @import "./globals";
-section {
-  margin: 50px 0;
+// section {
+//   margin: 50px 0;
+// }
+.service {
+  padding-bottom: 20vh;
+}
+.outro {
+  display: flex;
+  justify-content: center;
+  padding-block: 10vh;
 }
 .intro {
   height: 100vh;
   padding-top: 200px;
   display: flex;
   align-items: center;
-  h1 {
-    font-family: $century-gothic;
-    font-size: 120px;
-    letter-spacing: -9.6px;
-  }
 }
 .ab-context {
   padding: 100px;
@@ -32,20 +35,6 @@ section {
     h2 {
       font-size: $headings;
       max-width: 80%;
-    }
-  }
-}
-.video-section {
-  .ab-img {
-    // margin: 10px 0;
-    max-width: 1272px;
-    height: 600px;
-    aspect-ratio: 2/1 !important;
-    border-radius: 50px;
-    background-color: $kaizen-white;
-    border: 2px solid $kaizen-blue;
-    @media screen and (max-width: 450px) {
-      aspect-ratio: 1 !important;
     }
   }
 }

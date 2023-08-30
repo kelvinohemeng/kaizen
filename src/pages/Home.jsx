@@ -1,25 +1,55 @@
 import { useState } from "react";
 import { Image, Video } from "cloudinary-react";
 import { Reveal, Tween } from "react-gsap";
+import { Link } from "react-router-dom";
 // import "./App.scss";
 import { DefaultButton } from "../components/Components";
-import { GsapReveal, GsapScale } from "../components/Gsaps";
+import { GsapReveal, GsapScale, GsapScaleCus } from "../components/Gsaps";
 import { Accordion } from "../components/Accordion";
 import { Faq } from "../components/Faq";
 import { ApproachCard } from "../components/ApproachCard";
 import { Footer } from "../components/Footer";
+import { DisplaySomething } from "../components/DispaySomething";
 
-export const Home = ({ themeState }) => {
+const approachData = [
+  {
+    id: 1,
+    title: "Empathise",
+    context:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+  },
+  {
+    id: 2,
+    title: "Ideate",
+    context:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+  },
+  {
+    id: 3,
+    title: "Prototype",
+    context:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+  },
+  {
+    id: 4,
+    title: "Execute",
+    context:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+  },
+];
+export const Home = ({}) => {
+  const [display, setDisplay] = useState(false);
+  function toggleDisplay() {
+    setDisplay(!display);
+  }
   return (
     <>
-      <main className={themeState ? `darkmode` : ""}>
+      <main>
         <section className="hero-section">
           <div className="container">
-            <div className="hero-left">
+            <div>
               {/* <GsapReveal> */}
-              <h1 className="biggest">
-                From Ideating <br /> to production
-              </h1>
+              <h1 className="biggest">Bring your vision to life</h1>
               {/* <GsapReveal> */}
               <Reveal repeat>
                 <Tween from={{ opacity: 0, y: 100 }} duration={1}>
@@ -36,36 +66,28 @@ export const Home = ({ themeState }) => {
                 <DefaultButton>Book Service</DefaultButton>
               </div>
             </div>
-            {/* <div className="hero-btn">
-              <DefaultButton>Book Service</DefaultButton>
-            </div> */}
           </div>
         </section>
-        <section className="video-section ">
-          {/* <a href="#">
-            <h3>Watch video</h3>
-          </a> */}
-          <GsapScale value="1.3">
+        <section className="video-section og ">
+          <GsapScaleCus value="1.5">
             <Video
               controls
               autoPlay
-              paused={true}
+              paused
+              muted={true}
               className="the-video"
               publicId="https://res.cloudinary.com/base-data/video/upload/v1691548246/kaizen-test/Forbes/forbes_djwrkl.mp4"
-              quality="50"
-              poster="https://res.cloudinary.com/base-data/image/upload/v1691547177/kaizen-test/Forbes/00.jpg"
+              quality="30"
+              poster="https://res.cloudinary.com/kaizen-img/image/upload/v1691547177/kaizen-test/Forbes/00.jpg"
             />
-            {/* <div className="the-video"></div> */}
-            {/* <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/F3-lK_-PQr0"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe> */}
-          </GsapScale>
+          </GsapScaleCus>
+          {/* <div>
+            <h3 className="headings">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse,
+              voluptatum ratione ut dolor quasi optio laborum repellat eos.
+              Pariatur.
+            </h3>
+          </div> */}
         </section>
 
         <section className="read-more-abt-us container">
@@ -124,7 +146,7 @@ export const Home = ({ themeState }) => {
             <div className="abt-img ">
               <div className="abt-btn">
                 <Tween from={{ opacity: 0, y: 100 }} duration={1}>
-                  <DefaultButton>Read more about us</DefaultButton>
+                  <DefaultButton linkTo="/about">More about us</DefaultButton>
                 </Tween>
               </div>
               <div className="rmau">
@@ -162,61 +184,92 @@ export const Home = ({ themeState }) => {
               <h2 className="headings">Our Approach</h2>
             </GsapReveal>
             <div className="the-approaches">
-              <ApproachCard
-                title={"Emphatize"}
-                content={
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime facilis, quibusdam delectus exercitationem cum accusantium"
-                }
-              />
-              <ApproachCard
-                title={"Ideate"}
-                content={
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime facilis, quibusdam delectus exercitationem cum accusantium"
-                }
-              />
-              <ApproachCard
-                title={"Execute"}
-                content={
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime facilis, quibusdam delectus exercitationem cum accusantium"
-                }
-              />
-              <ApproachCard
-                title={"Prototype"}
-                content={
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime facilis, quibusdam delectus exercitationem cum accusantium"
-                }
-              />
+              {approachData.map((approach, index) => (
+                <>
+                  <ApproachCard
+                    identifyer={index}
+                    // display={display}
+                    approachData={approach}
+                    // current={currentId}
+                    // toggleDisplay={toggleDisplay}
+                  />
+                  {/* {!display ? (
+                    <DisplaySomething
+                      reverse={toggleDisplay}
+                      text={approachData.title}
+                      current={newIdentifyer}
+                      extras={approachData}
+                    />
+                  ) : (
+                    ""
+                  )} */}
+                </>
+              ))}
             </div>
           </div>
         </section>
 
         <section className="break container">
           <GsapScale value="5">
-            <h1 className="biggest">We speak loud yet subtile</h1>
+            <div className="the-video">
+              <h1 className="biggest">We speak loud yet subtile</h1>
+            </div>
           </GsapScale>
         </section>
 
         <section className="recents ">
           <div className="container">
             <div>
-              <h2 className="headings">Our Most recent Works</h2>
+              <h2 className="headings">See for your self</h2>
             </div>
             <div className="r-works">
-              <div className="ww">
-                <h3>Project name</h3>
-              </div>
-              <div className="ww">
-                <h3>Project name</h3>
-              </div>
-              <div className="ww">
-                <h3>Project name</h3>
-              </div>
-              <div className="ww">
-                <h3>Project name</h3>
-              </div>
+              <Reveal repeat>
+                <Tween from={{ scale: 0, opacity: 1 }}>
+                  <Link to="/projects/8" className="ww">
+                    <Image publicId="kaizen/projects/9_lessons_and_carols/00.jpg" />
+                    <div>
+                      <h3>Project name</h3>
+                      {/* <p>Category</p> */}
+                    </div>
+                  </Link>
+                </Tween>
+              </Reveal>
+              <Reveal repeat>
+                <Tween from={{ scale: 0, opacity: 1 }}>
+                  <Link to="/projects/8" className="ww">
+                    <Image publicId="kaizen/projects/9_lessons_and_carols/00.jpg" />
+                    <div>
+                      <h3>Project name</h3>
+                      {/* <p>Category</p> */}
+                    </div>
+                  </Link>
+                </Tween>
+              </Reveal>
+              <Reveal repeat>
+                <Tween from={{ scale: 0, opacity: 1 }}>
+                  <Link to="/projects/8" className="ww">
+                    <Image publicId="kaizen/projects/9_lessons_and_carols/00.jpg" />
+                    <div>
+                      <h3>Project name</h3>
+                      {/* <p>Category</p> */}
+                    </div>
+                  </Link>
+                </Tween>
+              </Reveal>
+              <Reveal repeat>
+                <Tween from={{ scale: 0, opacity: 1 }}>
+                  <Link to="/projects/8" className="ww">
+                    <Image publicId="kaizen/projects/9_lessons_and_carols/00.jpg" />
+                    <div>
+                      <h3>Project name</h3>
+                      {/* <p>Category</p> */}
+                    </div>
+                  </Link>
+                </Tween>
+              </Reveal>
             </div>
             <div className="cta-all-projects">
-              <DefaultButton>See all projects</DefaultButton>
+              <DefaultButton linkTo="/projects">See all projects</DefaultButton>
             </div>
           </div>
         </section>
@@ -228,14 +281,14 @@ export const Home = ({ themeState }) => {
           <div className="faq-container">
             <Faq />
           </div>
-          <div className="cta-contact">
-            <h2>Still got questions ?</h2>
+          <div className="outro">
+            <Link to="/projects">
+              <h2 className="biggest">Still got questions ?</h2>
+            </Link>
             <DefaultButton>Contact</DefaultButton>
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

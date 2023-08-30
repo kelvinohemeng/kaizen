@@ -3,6 +3,48 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+export const GsapScaleCus = ({ value, endValue, children }) => {
+  const ref = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // gsap
+    const element = ref.current;
+    const containerElement = containerRef.current;
+
+    // gsap.set(element, { scale: 0 });
+    gsap.fromTo(
+      element,
+
+      { scale: 0.3, y: -1000, x: 700, rotate: 40 },
+      {
+        scale: 1,
+        y: 0,
+        x: 0,
+        rotate: 0,
+        scrollTrigger: {
+          trigger: containerElement,
+          pin: true,
+          anticipatePin: 1,
+          scrub: 4,
+          // markers: true,
+          start: "20% bottom",
+          end: "top bottom",
+        },
+      }
+      // opacity: 0,
+    );
+  }, []);
+  return (
+    <div ref={containerRef} className="trigger-container container">
+      {/* <div className=" scale"> */}
+      <div ref={ref} className="scale-container">
+        {children}
+      </div>
+      {/* </div> */}
+    </div>
+  );
+};
 export const GsapScale = ({ value, endValue, children }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);
@@ -36,15 +78,15 @@ export const GsapScale = ({ value, endValue, children }) => {
         anticipatePin: 1,
         scrub: 2,
         // markers: true,
-        start: "30% center",
-        end: "top top",
+        start: "20% bottom",
+        end: "top bottom",
       },
       scale: value,
       // opacity: 0,
     });
   }, []);
   return (
-    <div ref={containerRef} className="trigger-container container">
+    <div ref={containerRef} className=" container">
       {/* <div className=" scale"> */}
       <div ref={ref} className="scale-container">
         {children}

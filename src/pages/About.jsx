@@ -7,14 +7,14 @@ import { Tween, SplitWords, Reveal } from "react-gsap";
 
 export const About = ({ themeState }) => {
   return (
-    <main className={themeState ? `darkmode` : ""}>
+    <main>
       <div className="container">
         <div className=" intro">
           <h1 className="biggest">Who are we?</h1>
         </div>
-        <section className="video-section ">
+        <section className="video-section cont-reset">
           <GsapScale value="1.5">
-            <div className="ab-img"></div>
+            <div className="the-video"></div>
           </GsapScale>
         </section>
         <section className="ab-context">
@@ -40,22 +40,27 @@ export const About = ({ themeState }) => {
               </SplitWords>
             </Tween>
           </Reveal>
-          <p>
-            Built on a unique model of relentless dedication to detail and
-            service, our team is on the front-lines of developing and redefining
-            integrated systems delivery in Ghana. Over years, we have worked
-            with many clients across several industries and on several projects
-            in the Digital Audio Visuals and corporate staging industry here in
-            Ghana. <br />
-            <br /> Our unique business culture and highly adaptable perspective
-            has made us the agency of choice for true outstanding delivery. We
-            provide not only the most feature-rich services but are intuitive in
-            our operations. From our pioneering position as the nationʼs first
-            campus digital signage service provider and having engaged thousands
-            of audiences through our tailored webcast services, we have the
-            experience and light- heartedness to make your next project truly
-            outstanding.
-          </p>
+          <Reveal repeat trigger={<div style={{ overflow: "hidden" }} />}>
+            <Tween from={{ y: "200px", opacity: "0" }}>
+              <p>
+                Built on a unique model of relentless dedication to detail and
+                service, our team is on the front-lines of developing and
+                redefining integrated systems delivery in Ghana. Over years, we
+                have worked with many clients across several industries and on
+                several projects in the Digital Audio Visuals and corporate
+                staging industry here in Ghana. <br />
+                <br /> Our unique business culture and highly adaptable
+                perspective has made us the agency of choice for true
+                outstanding delivery. We provide not only the most feature-rich
+                services but are intuitive in our operations. From our
+                pioneering position as the nationʼs first campus digital signage
+                service provider and having engaged thousands of audiences
+                through our tailored webcast services, we have the experience
+                and light- heartedness to make your next project truly
+                outstanding.
+              </p>
+            </Tween>
+          </Reveal>
           <DefaultButton>Book a service</DefaultButton>
         </section>
         <section className="ab-count">

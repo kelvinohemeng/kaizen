@@ -12,11 +12,11 @@
 ////VARIABLES/////
 ////VARIABLES/////
 ////VARIABLES/////
-
 //container
-// Sass variables
 $container-max-width: 1272px;
-$container-padding: 10px;
+$container-padding: 40px;
+$container-padding-mobile: 20px;
+// Sass variables
 
 // Container class
 .container {
@@ -33,10 +33,11 @@ $kaizen-blue: #000796;
 $kaizen-blue-highlight: #3c4090;
 $kaizen-white: #f2edf4;
 $kaizen-text: #131313;
+$pure-white: #ffffff;
 
 //typography
 //sizes
-$the-biggest: clamp(3.75rem, 1.6971rem + 7.2993vw, 7.5rem);
+$the-biggest: 8vw;
 $text: 1.25rem;
 $text-small: 1.125rem;
 $btn-text: 1.5625rem;
@@ -48,8 +49,72 @@ $footer-big: clamp(18rem, 20.5537rem + -11.6742vw, 1.875rem);
 $roboto: "Roboto", sans-serif;
 $century-gothic: "Century Gothic";
 
+::selection {
+  background: $kaizen-blue-highlight;
+  color: $kaizen-white;
+}
+
 .darkmode {
   background: $kaizen-black;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  p {
+    color: $kaizen-white;
+  }
+}
+
+// Define common styles for both light and dark modes
+.common-styles {
+  // ... your common styles here
+  h3 {
+    color: $kaizen-blue;
+  }
+  .services {
+    p {
+      color: $kaizen-text;
+    }
+  }
+}
+
+// Conditionally apply styles for dark mode
+@if (selector-nest(".darkmode")) {
+  .darkmode {
+    @extend .common-styles;
+    .darkmode {
+      background: $kaizen-black;
+      color: $kaizen-white;
+      nav {
+        .logo {
+          span {
+            color: $kaizen-white !important;
+          }
+          svg {
+            path {
+              fill: $kaizen-white !important;
+            }
+          }
+        }
+      }
+      .btn {
+        span {
+          color: $kaizen-black;
+        }
+      }
+    }
+    // ... other styles specific to dark mode
+  }
+} @else {
+  // Styles for non-dark mode (light mode)
+  // You can choose to set default styles here
+  // body {
+  //   background: $kaizen-white;
+  //   color: $kaizen-black;
+  // }
 }
 //generals
 // .gsap-unset {
@@ -101,12 +166,27 @@ span {
 }
 
 body {
-  width: 100vw;
+  background: $pure-white !important;
+  width: 100%;
   scroll-behavior: smooth;
-  margin-bottom: 100vh;
+  // main {
+  //   position: relative;
+  // }
+  @media screen and (max-width: 450px) {
+    .container {
+      max-width: $container-max-width;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: $container-padding-mobile !important;
+      padding-right: $container-padding-mobile !important;
+    }
+  }
 }
 main {
-  background: white;
+  position: relative;
+  z-index: 100;
+  background: $pure-white;
+  margin-bottom: 100vh;
 }
 .section {
   margin: 270px 0;
@@ -149,8 +229,9 @@ main {
   }
 }
 .btn {
+  color: $kaizen-white;
   // position: relative;
-  width: 100%;
+  max-width: fit-content;
   height: 2.5rem;
   overflow: hidden;
   cursor: pointer;
@@ -166,7 +247,7 @@ main {
     max-width: 100%;
     &:hover {
       .btn-container {
-        transform: translateY(-80%);
+        transform: translateY(0);
         svg {
           transform: rotate(-35deg);
         }
@@ -175,7 +256,7 @@ main {
   }
 }
 .btn-container {
-  max-width: 500px;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -186,12 +267,14 @@ main {
 }
 .btn-content {
   gap: 30px;
-  @include flexCenter(center, space-between, row);
-  font-family: $century-gothic;
-  font-size: $btn-text;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -1px;
+  @include flexCenter(center, start, row);
+  span {
+    font-family: $century-gothic;
+    font-size: $btn-text;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
   svg {
     fill: $kaizen-blue;
   }
@@ -200,15 +283,20 @@ main {
   }
 }
 
+.hide-nav {
+  opacity: 0;
+  transform: translateY(-100%);
+}
 nav {
   z-index: 999999;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 15vh;
+  width: 100vw;
+  height: 5vh;
   padding-top: 15px;
   pointer-events: none;
+  transition: 200ms ease-out;
   // background: $kaizen-white;
   // mix-blend-mode: difference;
   .route-show {
@@ -235,6 +323,7 @@ nav {
     height: 100vh;
     background-color: #000000a6;
     pointer-events: all;
+    backdrop-filter: blur(10px);
   }
   .nav-container {
     display: flex;
@@ -242,17 +331,19 @@ nav {
     position: relative;
   }
   .row {
+    z-index: 999;
     position: fixed;
     height: 50vh;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     background-color: $kaizen-white;
-    border-radius: 25px;
+    border-radius: 8px;
     position: relative;
     pointer-events: all;
     @media screen and (max-width: 450px) {
       @include flexCenter(start, stretch, column);
-      width: 100%;
+      // width: 100%;
     }
     // z-index: -1;
   }
@@ -272,7 +363,9 @@ nav {
     cursor: pointer;
     @include transition();
     .btn {
+      color: black !important;
       // position: absolute !important;
+
       min-width: 250px;
       .btn-container {
         max-width: 100%;
@@ -324,19 +417,24 @@ nav {
     position: relative;
     // margin: 0 auto;
     padding-inline: 20px;
-
-    width: 100%;
+    overflow: hidden;
+    width: 90%;
     inset: 0;
-    left: 0;
-    right: 0;
+    margin: 0 auto;
     top: 45px;
-    // padding: 0 15px;
+    padding: 15px;
     align-items: center;
     display: flex;
     justify-content: space-between;
     pointer-events: all;
 
-    // background-color: green;
+    background-color: #9497d53d;
+    backdrop-filter: blur(15px);
+    border-radius: 8px;
+    span {
+      font-weight: 600;
+      letter-spacing: -0.9px;
+    }
     .logo {
       cursor: pointer;
     }
@@ -370,7 +468,6 @@ nav {
   @media screen and (max-width: 450px) {
     .row {
       height: 80vh;
-      width: 100%;
       // display: flex;
       flex-direction: column;
       // background-color: $kaizen-white;
@@ -434,41 +531,74 @@ nav {
 // footer //
 // footer //
 footer {
-  position: absolute;
-  // z-index: -1;
+  position: fixed;
+  inset: 0;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
+  padding-top: 10vh;
   overflow: hidden;
   // border-radius: 90px 90px 0 0;
-  background: #000220;
+  background: $kaizen-black;
+  z-index: 1;
   color: $kaizen-white;
+  .abs-- {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.1;
+    &:nth-child(1) {
+      transform: translate(-500px, -200px) !important;
+    }
+    &:nth-child(2) {
+      transform: translate(500px, 200px) !important;
+    }
+    svg {
+      fill: linear-gradient(180deg, #a480ff 0%, #000796 100%);
+      filter: blur(50px);
+      animation: infinite-rotate 30s linear infinite;
+    }
+    @keyframes infinite-rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+  }
   .container {
+    z-index: 10;
+    position: relative;
     @include flexCenter(center, flex-start, column);
     margin-top: 50px;
-    height: 100vh;
+    height: 100%;
     gap: 50px;
+    width: 100%;
   }
   .btn {
-    // min-width: 500px;
-    color: $kaizen-white !important;
+    // max-width: 200px;
+    span {
+      color: $kaizen-white !important;
+    }
     svg {
       fill: $kaizen-white !important;
     }
   }
   .layer-up {
     width: 100%;
+    height: fit-content;
     position: relative;
+
     @include flexCenter(center, space-between, row);
+
     .biggest-cta {
+      flex: 1;
       max-width: 100%;
-      flex: 2;
       h1 {
         font-size: $large;
         color: $kaizen-white !important;
         line-height: 102%;
       }
       .btn {
-        min-width: 200px;
         color: $kaizen-white !important;
         svg {
           fill: $kaizen-white !important;
@@ -477,18 +607,41 @@ footer {
     }
     .social-ctas {
       flex: 1;
-      // background: #000220;
+      width: 100%;
+      @include flexCenter(center, end, row);
+      gap: 20px;
+      a {
+        color: $kaizen-white;
+        font-size: $btn-text;
+      }
+    }
+    @media screen and (max-width: 450px) {
+      @include flexCenter(center, center, column);
+      gap: 50px !important;
+      .social-ctas {
+        flex: 1;
+        width: 100%;
+        @include flexCenter(center, end, column);
+        gap: 20px;
+        a {
+          color: $kaizen-white;
+          font-size: $btn-text;
+        }
+      }
     }
   }
   .links {
+    padding-block: 20px;
     width: 100%;
     @include flexCenter(flex-start, space-between, direction);
+    border-top: solid 1px $kaizen-white;
+    opacity: 0.5;
     h3 {
       padding-block: 15px;
     }
     p {
+      color: $kaizen-white;
       max-width: 400px;
-      opacity: 0.5;
     }
     ul {
       list-style: none;
@@ -504,55 +657,68 @@ footer {
       }
     }
     .linkss {
-      @include flexCenter(flex-end, justify, direction);
-      gap: 180px;
+      ul {
+        @include flexCenter(flex-end, justify, direction);
+        gap: 8px;
+      }
     }
     @media screen and (max-width: 450px) {
-      @include flexCenter(flex-start, space-between, column);
+      // padding-block: 10px !important;
+      // flex: 1;
+      @include flexCenter(center, center, column);
       gap: 50px;
       .linkss {
-        // @include flexCenter(flex-end, justify, direction);
-        gap: 80px;
+        @include flexCenter(flex-end, justify, column);
+        gap: 8px;
       }
     }
   }
   .kaizen-slide-infinite {
     pointer-events: none;
     position: absolute;
+    z-index: 9999;
+    left: 0;
     bottom: 0;
     display: flex;
     gap: 30px;
     animation: slide 30s infinite linear;
     h1 {
       font-size: 20vw;
-      opacity: 0.01;
+      opacity: 0.8;
       font-family: Century Gothic;
     }
   }
   @media screen and (max-width: 450px) {
     // height: 200vh;
-    padding: 10px;
+    // padding: 10px;
     .layer-up {
-      flex: 1;
-      @include flexCenter(flex-start, space-between, column);
-      gap: 50px;
+      @include flexCenter(center, center, column);
+      flex-direction: column !important;
+      gap: 5px;
       .social-ctas {
-        flex: 2;
         width: 100%;
       }
     }
-    .kaizen-slide-infinite {
-      position: relative;
-      display: flex;
-      gap: 30px;
-      animation: slide 130s infinite linear;
-      h1 {
-        font-size: 20vw;
-        opacity: 0.1;
-        font-family: Century Gothic;
-      }
-    }
+    // .kaizen-slide-infinite {
+    //   position: relative;
+    //   display: flex;
+    //   gap: 30px;
+    //   animation: slide 130s infinite linear;
+    //   h1 {
+    //     font-size: 40vw !important;
+    //     opacity: 0.1;
+    //     font-family: Century Gothic;
+    //   }
+    // }
   }
+}
+.display-container {
+  z-index: 99999999;
+  position: fixed;
+  inset: 0;
+  background: #1a1a1a79;
+  backdrop-filter: blur(20px);
+  color: white;
 }
 
 @keyframes slide {

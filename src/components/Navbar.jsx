@@ -3,14 +3,11 @@ import { DefaultButton } from "./Components";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 
-export const Navbar = ({ toggleDarkMode }) => {
+export const Navbar = ({ toggleDarkMode, themeState }) => {
   const animateElementRef = useRef(null);
   const location = useLocation();
   const [navState, setNavState] = useState(false);
 
-  const resetScroll = () => {
-    window.scrollTo(0, 0);
-  };
   const animateElement = () => {
     const element = animateElementRef.current.querySelectorAll(".btn");
 
@@ -30,27 +27,46 @@ export const Navbar = ({ toggleDarkMode }) => {
       ); // Example animation
     }
   };
+  const [hideNav, setHideNav] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY > lastScrollY) {
+        setHideNav(true);
+      } else {
+        setHideNav(false);
+      }
+
+      setLastScrollY(scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
   const toggleNav = () => {
     setNavState(!navState);
-    animateElement();
-    // resetScroll();
+    // animateElement();
   };
   const deactivateNav = () => {
-    setTimeout(() => {
-      resetScroll();
-    }, 500);
     navState ? setNavState(!navState) : setNavState(navState);
   };
-
+  const navClasses = ` ${hideNav ? `hide-nav` : ""}`;
   // useEffect(() => {}, []);
   return (
-    <nav>
+    <nav ref={ref} className={navClasses}>
       <div
         className="nav-bg"
         style={navState ? { display: "block" } : { display: "none" }}
         onClick={deactivateNav}
       ></div>
-      <div className="nav-contianer container">
+      <div className="nav-contianer ">
         <div className="nav-nav ">
           <Link to="/" onClick={deactivateNav} className="route-show">
             <div className="logo">
@@ -70,10 +86,10 @@ export const Navbar = ({ toggleDarkMode }) => {
               </svg>
             </div>
             <div>
-              <h3>
+              <span>
                 <em>Home</em>
                 {location.pathname}
-              </h3>
+              </span>
             </div>
           </Link>
           <div className="nav-side">
@@ -116,14 +132,18 @@ export const Navbar = ({ toggleDarkMode }) => {
               <DefaultButton>Project</DefaultButton>
             </div>
           </Link>
-          <Link to="/" className="nav-btn-container" onClick={deactivateNav}>
+          <Link
+            to="/services"
+            className="nav-btn-container"
+            onClick={deactivateNav}
+          >
             <div>
               <DefaultButton>Service</DefaultButton>
             </div>
           </Link>
           <Link to="/" className="nav-btn-container" onClick={deactivateNav}>
             <div>
-              <DefaultButton>FAQs</DefaultButton>
+              <DefaultButton>Contact</DefaultButton>
             </div>
           </Link>
         </div>
