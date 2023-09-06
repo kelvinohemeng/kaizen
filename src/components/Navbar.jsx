@@ -66,14 +66,14 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
         style={navState ? { display: "block" } : { display: "none" }}
         onClick={deactivateNav}
       ></div>
-      <div className="nav-contianer ">
+      <div className="nav-contianer space-y-5">
         <div className="nav-nav ">
           <Link to="/" onClick={deactivateNav} className="route-show">
             <div className="logo">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="31"
-                height="24"
+                width="27"
+                height="20"
                 viewBox="0 0 31 24"
                 fill="none"
               >
@@ -87,13 +87,19 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
             </div>
             <div>
               <span>
-                <em>Home</em>
+                <em>kaizen</em>
                 {location.pathname}
               </span>
             </div>
           </Link>
-          <div className="nav-side">
-            <div className="mode" onClick={toggleDarkMode}>
+          <div className="desk-links hidden md:flex">
+            <Link to="/about">About us</Link>
+            <Link to="/services">Service</Link>
+            <Link to="/projects">Works</Link>
+            <Link to="/">Book us</Link>
+          </div>
+          <div className="flex md:hidden">
+            {/* <div className="mode " onClick={toggleDarkMode}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
@@ -103,9 +109,9 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
               >
                 <path d="M235.54,150.21a104.84,104.84,0,0,1-37,52.91A104,104,0,0,1,32,120,103.09,103.09,0,0,1,52.88,57.48a104.84,104.84,0,0,1,52.91-37,8,8,0,0,1,10,10,88.08,88.08,0,0,0,109.8,109.8,8,8,0,0,1,10,10Z"></path>
               </svg>
-            </div>
+            </div> */}
             <div
-              className={navState ? `nav-toggler-off` : `nav-toggler`}
+              className={navState ? `nav-toggler-off ` : `nav-toggler `}
               onClick={toggleNav}
             >
               <span></span>
@@ -113,38 +119,56 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
             </div>
           </div>
         </div>
-        <div className={navState ? `row` : `row-off`} ref={animateElementRef}>
+        <div
+          className={navState ? `row mt-10` : `hidden`}
+          ref={animateElementRef}
+        >
           <Link
             to="/about"
             className="nav-btn-container"
             onClick={deactivateNav}
           >
-            <div>
-              <DefaultButton>About</DefaultButton>
-            </div>
+            <DefaultButton
+              notShow
+              outlined
+              bColor="transparent"
+              linkTo="/about"
+            >
+              about
+            </DefaultButton>
+          </Link>
+          <Link
+            to="/service"
+            className="nav-btn-container"
+            onClick={deactivateNav}
+          >
+            <DefaultButton
+              notShow
+              outlined
+              bColor="transparent"
+              linkTo="/services"
+            >
+              Service
+            </DefaultButton>
           </Link>
           <Link
             to="/projects"
             className="nav-btn-container"
             onClick={deactivateNav}
           >
-            <div>
-              <DefaultButton>Project</DefaultButton>
-            </div>
-          </Link>
-          <Link
-            to="/services"
-            className="nav-btn-container"
-            onClick={deactivateNav}
-          >
-            <div>
-              <DefaultButton>Service</DefaultButton>
-            </div>
+            <DefaultButton
+              notShow
+              outlined
+              bColor="transparent"
+              linkTo="/projects"
+            >
+              Works
+            </DefaultButton>
           </Link>
           <Link to="/" className="nav-btn-container" onClick={deactivateNav}>
-            <div>
-              <DefaultButton>Contact</DefaultButton>
-            </div>
+            <DefaultButton notShow outlined bColor="transparent" linkTo="/">
+              Book us
+            </DefaultButton>
           </Link>
         </div>
       </div>

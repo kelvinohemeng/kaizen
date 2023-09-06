@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 // import { Cloudinary } from "@cloudinary/url-gen";
 import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./cloudinaryConfig";
 import "./App.scss";
-import { Routes, Route } from "react-router-dom";
-import projectsData from "./projectsData";
+// import projectsData from "./projectsData";
 
 // import { DefaultButton } from "./components/Components";
 import { Navbar } from "./components/Navbar";
@@ -13,41 +12,42 @@ import { Navbar } from "./components/Navbar";
 // import { Faq } from "./components/Faq";
 // import { ApproachCard } from "./components/ApproachCard";
 import { Footer } from "./components/Footer";
-import { Home } from "./pages/Home";
-import { About } from "./pages/About";
-import ProjectList from "./components/ProjectList";
-import ProjectDetails from "./pages/ProjectDetails";
-import { ProjectPage } from "./pages/ProjectPage";
-import data from "./projectsData";
-import { Service } from "./pages/Service";
+import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
 function App() {
-  const projectData = projectsData;
+  const [projectData, setProjectData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+  const fetchData = () => {
+    fetch("https://kelvinohemeng.github.io/kaizen-api-port/projectsData.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setProjectData(data.projectData);
+        // setTimeout(() => {
+        //   setIsLoading(false);
+        // }, 5000);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        // setTimeout(() => {
+        //   setIsLoading(false);
+        // }, 5000);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
       <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
         <Navbar toggleDarkMode={toggleDarkMode} themeState={darkMode} />
         <main className={darkMode ? `darkmode` : ""}>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Service />} />
-            <Route
-              path="/projects"
-              element={<ProjectPage projects={projectData} />}
-            />
-            <Route
-              path="/projects/:projectId"
-              element={<ProjectDetails projects={projectData} />}
-            />
-          </Routes>
-          <Footer />
+          <AnimatedRoutes project={projectData} />
         </main>
+        <Footer />
       </CloudinaryContext>
     </>
   );

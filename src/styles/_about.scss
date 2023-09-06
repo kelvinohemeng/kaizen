@@ -2,25 +2,27 @@
 // section {
 //   margin: 50px 0;
 // }
-.service {
-  padding-bottom: 20vh;
-}
+//
 .outro {
   display: flex;
   justify-content: center;
   padding-block: 10vh;
+  text-align: center;
 }
 .intro {
   height: 100vh;
   padding-top: 200px;
   display: flex;
+  gap: 50px;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 .ab-context {
   padding: 100px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 
   h2 {
     font-size: $large;
@@ -69,4 +71,9 @@
     text-align: center;
     @include flexCenter(center, center, column);
   }
+}
+
+.serv-c {
+  @include flexCenter(center, center, column);
+  gap: 50px;
 }

@@ -16,8 +16,10 @@
 $container-max-width: 1272px;
 $container-padding: 40px;
 $container-padding-mobile: 20px;
-// Sass variables
 
+$standard-border: 15px;
+$letter-spaceing: -0.5px;
+// Sass variables
 // Container class
 .container {
   max-width: $container-max-width;
@@ -25,6 +27,10 @@ $container-padding-mobile: 20px;
   margin-right: auto;
   padding-left: $container-padding;
   padding-right: $container-padding;
+  @media screen and (max-width: 450px) {
+    padding-left: $container-padding-mobile !important;
+    padding-right: $container-padding-mobile !important;
+  }
 }
 
 // color
@@ -37,7 +43,7 @@ $pure-white: #ffffff;
 
 //typography
 //sizes
-$the-biggest: 8vw;
+$the-biggest: clamp(3rem, 3.9758rem + -3.4696vw, 1.25rem);
 $text: 1.25rem;
 $text-small: 1.125rem;
 $btn-text: 1.5625rem;
@@ -50,7 +56,7 @@ $roboto: "Roboto", sans-serif;
 $century-gothic: "Century Gothic";
 
 ::selection {
-  background: $kaizen-blue-highlight;
+  background: $kaizen-black;
   color: $kaizen-white;
 }
 
@@ -71,14 +77,14 @@ $century-gothic: "Century Gothic";
 // Define common styles for both light and dark modes
 .common-styles {
   // ... your common styles here
-  h3 {
-    color: $kaizen-blue;
-  }
-  .services {
-    p {
-      color: $kaizen-text;
-    }
-  }
+  // h3 {
+  //   color: $kaizen-blue;
+  // }
+  // .services {
+  //   p {
+  //     color: $kaizen-text;
+  //   }
+  // }
 }
 
 // Conditionally apply styles for dark mode
@@ -91,6 +97,7 @@ $century-gothic: "Century Gothic";
       nav {
         .logo {
           span {
+            font-size: $btn-text;
             color: $kaizen-white !important;
           }
           svg {
@@ -142,10 +149,12 @@ h4,
 h5,
 h6 {
   font-family: $century-gothic;
-  letter-spacing: -0.9px;
   font-weight: 900 !important;
   font-weight: bolder;
   line-height: 102%;
+  letter-spacing: normal;
+  @media screen and (max-width: 450px) {
+  }
 }
 @media screen and (max-width: 450px) {
   h1 {
@@ -172,20 +181,12 @@ body {
   // main {
   //   position: relative;
   // }
-  @media screen and (max-width: 450px) {
-    .container {
-      max-width: $container-max-width;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: $container-padding-mobile !important;
-      padding-right: $container-padding-mobile !important;
-    }
-  }
 }
 main {
   position: relative;
   z-index: 100;
   background: $pure-white;
+  padding-block: 20vh;
   margin-bottom: 100vh;
 }
 .section {
@@ -218,26 +219,35 @@ main {
 }
 
 ///btn
-.btn-alt {
-  svg {
-    transform: rotate(-180deg);
-  }
-  &:hover {
-    svg {
-      transform: rotate(-160deg) !important;
-    }
-  }
+// .btn-alt {
+//   svg {
+//     transform: rotate(-180deg);
+//   }
+//   &:hover {
+//     svg {
+//       transform: rotate(-160deg) !important;
+//     }
+//   }
+// }
+.outlined {
+  background-color: transparent !important;
+  border: 0.5px solid #3c4090;
 }
 .btn {
-  color: $kaizen-white;
   // position: relative;
+  padding: 5px 20px;
+  background-color: $kaizen-blue-highlight;
   max-width: fit-content;
-  height: 2.5rem;
+  @include flexCenter(center, stretch, row);
+  gap: 8px;
   overflow: hidden;
+  border-radius: 5px;
   cursor: pointer;
+  transition: 300ms ease-out;
   &:hover {
-    .btn-container {
-      transform: translateY(-58%);
+    box-shadow: 0px 0px 25px #00079623, 5px 5px 25px #13131319;
+    .btn-content {
+      transform: translateY(-50%);
       svg {
         transform: rotate(-35deg);
       }
@@ -254,32 +264,91 @@ main {
       }
     }
   }
-}
-.btn-container {
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  inset: 0;
-  padding: 5px 0px;
-  @include transition(500ms);
-}
-.btn-content {
-  gap: 30px;
-  @include flexCenter(center, start, row);
-  span {
-    font-family: $century-gothic;
-    font-size: $btn-text;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: -1px;
+  .btn-container {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    height: 2.5rem;
+    overflow: hidden;
+
+    .btn-content {
+      transition: 300ms ease-out;
+      gap: 0px;
+      @include flexCenter(center, flex-start, column);
+      font-size: 1.125rem;
+      span {
+        font-family: $roboto;
+        font-size: $btn-text;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: -0.51px;
+      }
+    }
   }
+  // .btn-content {
+  //   @media screen and (max-width: 450px) {
+  //     font-size: 1.2rem;
+  //   }
+  // }
   svg {
-    fill: $kaizen-blue;
+  }
+}
+.btn-alt-alt {
+  // position: relative;
+  padding: 5px 20px;
+  background-color: $kaizen-blue-highlight;
+  max-width: fit-content;
+  @include flexCenter(flex-start, stretch, row);
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    .btn-content {
+      transform: translateY(-50%);
+      svg {
+        transform: rotate(-35deg);
+      }
+    }
   }
   @media screen and (max-width: 450px) {
-    font-size: 1.2rem;
+    max-width: 100%;
+    &:hover {
+      .btn-container {
+        transform: translateY(0);
+        svg {
+          transform: rotate(-35deg);
+        }
+      }
+    }
+  }
+  .btn-container {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    height: 2.5rem;
+    overflow: hidden;
+
+    .btn-content {
+      transition: 300ms ease-out;
+      gap: 9px;
+      @include flexCenter(center, flex-start, column);
+      font-size: 1.125rem;
+      span {
+        font-family: $roboto;
+        font-size: $btn-text;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: -0.51px;
+      }
+    }
+  }
+  // .btn-content {
+  //   @media screen and (max-width: 450px) {
+  //     font-size: 1.2rem;
+  //   }
+  // }
+  svg {
+    fill: $kaizen-white;
   }
 }
 
@@ -294,7 +363,6 @@ nav {
   left: 0;
   width: 100vw;
   height: 5vh;
-  padding-top: 15px;
   pointer-events: none;
   transition: 200ms ease-out;
   // background: $kaizen-white;
@@ -330,6 +398,71 @@ nav {
     justify-content: center;
     position: relative;
   }
+
+  .nav-nav {
+    z-index: 9999;
+    position: relative;
+    // margin: 0 auto;
+    overflow: hidden;
+    width: 90%;
+    inset: 0;
+    margin: 0 auto;
+    padding: 15px;
+    padding-top: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: all;
+
+    background-color: white;
+    backdrop-filter: blur(15px);
+    border: solid 0.5px #13131357;
+    border-top: none;
+    border-radius: $standard-border;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    span {
+      font-weight: 600;
+      letter-spacing: -0.9px;
+    }
+    .logo {
+      cursor: pointer;
+    }
+    .nav-toggler {
+      @include transition();
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 10px;
+      span {
+        width: 50px;
+        height: 2px;
+        background-color: $kaizen-black;
+      }
+    }
+    .nav-toggler-off {
+      @include transition();
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 0px;
+      span {
+        width: 50px;
+        height: 2px;
+        background-color: $kaizen-black;
+      }
+    }
+    .desk-links {
+      gap: 20px;
+      a {
+        font-weight: 600;
+        font-family: $century-gothic !important;
+        letter-spacing: $letter-spaceing;
+      }
+    }
+  }
   .row {
     z-index: 999;
     position: fixed;
@@ -338,18 +471,16 @@ nav {
     margin: 0 auto;
     display: flex;
     background-color: $kaizen-white;
-    border-radius: 8px;
+    border-radius: $standard-border;
     position: relative;
     pointer-events: all;
     @media screen and (max-width: 450px) {
-      @include flexCenter(start, stretch, column);
+      @include flexCenter(flex-start, stretch, column);
       // width: 100%;
     }
     // z-index: -1;
   }
-  .row-off {
-    display: none;
-  }
+
   .nav-btn-container {
     flex: 1;
     overflow: hidden;
@@ -357,7 +488,7 @@ nav {
     border-right: 1px solid rgba(0, 0, 0, 0.307);
     padding: 36px 30px;
     width: 100%;
-    @include flexCenter(end, stretch row);
+    @include flexCenter(flex-end, stretch, row);
     // background-color: rgba(255, 0, 0, 0.303);
     height: 100%;
     cursor: pointer;
@@ -412,66 +543,14 @@ nav {
       border-bottom: 1px solid rgba(0, 0, 0, 0.307);
     }
   }
-  .nav-nav {
-    z-index: 9999;
-    position: relative;
-    // margin: 0 auto;
-    padding-inline: 20px;
-    overflow: hidden;
-    width: 90%;
-    inset: 0;
-    margin: 0 auto;
-    top: 45px;
-    padding: 15px;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    pointer-events: all;
 
-    background-color: #9497d53d;
-    backdrop-filter: blur(15px);
-    border-radius: 8px;
-    span {
-      font-weight: 600;
-      letter-spacing: -0.9px;
-    }
-    .logo {
-      cursor: pointer;
-    }
-    .nav-toggler {
-      @include transition();
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 10px;
-      span {
-        width: 50px;
-        height: 2px;
-        background-color: $kaizen-black;
-      }
-    }
-    .nav-toggler-off {
-      @include transition();
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 0px;
-      span {
-        width: 50px;
-        height: 2px;
-        background-color: $kaizen-black;
-      }
-    }
-  }
   @media screen and (max-width: 450px) {
     .row {
       height: 80vh;
       // display: flex;
       flex-direction: column;
       // background-color: $kaizen-white;
-      // border-radius: 25px;
+      // border-radius: $standard-borderx;
       // position: relative;
       // pointer-events: all;
 
@@ -517,9 +596,12 @@ nav {
 }
 
 .headings {
+  padding-bottom: 30px;
   font-family: $century-gothic;
   font-size: $large;
   color: var(--kaizen-blue, #000796);
+  @media screen and (max-width: 450px) {
+  }
 }
 .headings-md {
   font-family: $century-gothic;
@@ -537,7 +619,7 @@ footer {
   height: 100vh;
   padding-top: 10vh;
   overflow: hidden;
-  // border-radius: 90px 90px 0 0;
+  // border-radius: $standard-borderx 90px 0 0;
   background: $kaizen-black;
   z-index: 1;
   color: $kaizen-white;
@@ -574,15 +656,6 @@ footer {
     gap: 50px;
     width: 100%;
   }
-  .btn {
-    // max-width: 200px;
-    span {
-      color: $kaizen-white !important;
-    }
-    svg {
-      fill: $kaizen-white !important;
-    }
-  }
   .layer-up {
     width: 100%;
     height: fit-content;
@@ -598,17 +671,11 @@ footer {
         color: $kaizen-white !important;
         line-height: 102%;
       }
-      .btn {
-        color: $kaizen-white !important;
-        svg {
-          fill: $kaizen-white !important;
-        }
-      }
     }
     .social-ctas {
       flex: 1;
       width: 100%;
-      @include flexCenter(center, end, row);
+      @include flexCenter(center, flex-end, row);
       gap: 20px;
       a {
         color: $kaizen-white;
@@ -618,10 +685,13 @@ footer {
     @media screen and (max-width: 450px) {
       @include flexCenter(center, center, column);
       gap: 50px !important;
+      .biggest-cta {
+        @include flexCenter(center, space-between, column);
+      }
       .social-ctas {
         flex: 1;
         width: 100%;
-        @include flexCenter(center, end, column);
+        @include flexCenter(center, flex-end, column);
         gap: 20px;
         a {
           color: $kaizen-white;

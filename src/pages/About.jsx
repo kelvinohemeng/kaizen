@@ -4,17 +4,29 @@ import { Accordion } from "../components/Accordion";
 import Countdown from "../components/Countdown";
 import { GsapReveal, GsapScale } from "../components/Gsaps";
 import { Tween, SplitWords, Reveal } from "react-gsap";
+import { Video } from "cloudinary-react";
 
-export const About = ({ themeState }) => {
+const About = ({ themeState }) => {
   return (
-    <main>
+    <>
       <div className="container">
         <div className=" intro">
           <h1 className="biggest">Who are we?</h1>
+          <DefaultButton notShow outlined>
+            find out
+          </DefaultButton>
         </div>
         <section className="video-section cont-reset">
           <GsapScale value="1.5">
-            <div className="the-video"></div>
+            <Video
+              controls
+              autoPlay
+              paused
+              muted
+              className="the-video"
+              publicId="https://res.cloudinary.com/kaizen-img/video/upload/v1693789196/about.mp4"
+              quality="30"
+            />
           </GsapScale>
         </section>
         <section className="ab-context">
@@ -61,9 +73,11 @@ export const About = ({ themeState }) => {
               </p>
             </Tween>
           </Reveal>
-          <DefaultButton>Book a service</DefaultButton>
+          <DefaultButton outlined>Book a service</DefaultButton>
         </section>
-        <section className="ab-count">
+
+        {/* counter section not going to be used */}
+        {/* <section className="ab-count">
           <div className="c-p">
             <span>
               <Countdown targetNumber={400} />
@@ -85,19 +99,10 @@ export const About = ({ themeState }) => {
             </span>
             <p>Years of Experience</p>
           </div>
-        </section>
-        <section className="services" id="service">
-          <div className="container">
-            <div className="left">
-              <h2 className="headings">Service</h2>
-              <DefaultButton>Book a service</DefaultButton>
-            </div>
-            <div className="right">
-              <Accordion />
-            </div>
-          </div>
-        </section>
+        </section> */}
       </div>
-    </main>
+    </>
   );
 };
+
+export default About;

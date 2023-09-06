@@ -6,18 +6,18 @@ import { GsapReveal, GsapScale } from "../components/Gsaps";
 import { Tween, SplitWords, Reveal } from "react-gsap";
 import { Link } from "react-router-dom";
 
-export const Service = ({ themeState }) => {
+const Service = ({ themeState }) => {
   return (
-    <main className="service">
-      <div className="container">
-        <div className=" intro">
-          <h1 className="biggest">What we offer you</h1>
-        </div>
-        <section className="video-section cont-reset">
-          <GsapScale value="1.3">
-            <div className="the-video"></div>
-          </GsapScale>
-        </section>
+    <div className="container">
+      <div className=" intro">
+        <h1 className="biggest">What we offer you</h1>
+      </div>
+      <section className="video-section cont-reset">
+        <GsapScale value="1.3">
+          <div className="the-video"></div>
+        </GsapScale>
+      </section>
+      <div className="serv-c">
         <section className="ab-context">
           <Reveal
             repeat
@@ -45,25 +45,17 @@ export const Service = ({ themeState }) => {
           <Reveal repeat trigger={<div style={{ overflow: "hidden" }} />}>
             <Tween from={{ y: "200px", opacity: "0" }}>
               <p>
-                Built on a unique model of relentless dedication to detail and
-                service, our team is on the front-lines of developing and
-                redefining integrated systems delivery in Ghana. Over years, we
-                have worked with many clients across several industries and on
-                several projects in the Digital Audio Visuals and corporate
-                staging industry here in Ghana. <br />
-                <br /> Our unique business culture and highly adaptable
-                perspective has made us the agency of choice for true
-                outstanding delivery. We provide not only the most feature-rich
-                services but are intuitive in our operations. From our
-                pioneering position as the nationʼs first campus digital signage
-                service provider and having engaged thousands of audiences
-                through our tailored webcast services, we have the experience
-                and light- heartedness to make your next project truly
-                outstanding.
+                Being intuitive in our concepts; minimalist in our design;
+                ergonomic in our form; zen in our philosophy; ︎360º in our
+                approach and process-oriented in our execution; our systems and
+                solutions are always designed with your particular project in
+                mind.
               </p>
             </Tween>
           </Reveal>
-          <DefaultButton linkTo="/booking">Book a service</DefaultButton>
+          <DefaultButton color="white" linkTo="/booking">
+            Book a service
+          </DefaultButton>
         </section>
         <section className="ab-context">
           <Reveal
@@ -90,25 +82,17 @@ export const Service = ({ themeState }) => {
           <Reveal repeat trigger={<div style={{ overflow: "hidden" }} />}>
             <Tween from={{ y: "200px", opacity: "0" }}>
               <p>
-                Built on a unique model of relentless dedication to detail and
-                service, our team is on the front-lines of developing and
-                redefining integrated systems delivery in Ghana. Over years, we
-                have worked with many clients across several industries and on
-                several projects in the Digital Audio Visuals and corporate
-                staging industry here in Ghana. <br />
-                <br /> Our unique business culture and highly adaptable
-                perspective has made us the agency of choice for true
-                outstanding delivery. We provide not only the most feature-rich
-                services but are intuitive in our operations. From our
-                pioneering position as the nationʼs first campus digital signage
-                service provider and having engaged thousands of audiences
-                through our tailored webcast services, we have the experience
-                and light- heartedness to make your next project truly
-                outstanding.
+                With both the technology and support staff's capacity to handle
+                anything from one (1) to over ten thousand (10,000) guests we
+                stay in step with the ever changing dynamics of your event and
+                the relevant technologies. In most cases, proactively
+                pre-empting possible bottlenecks and incidents.
               </p>
             </Tween>
           </Reveal>
-          <DefaultButton linkTo="/booking">Book a service</DefaultButton>
+          <DefaultButton color="white" linkTo="/booking">
+            Book a service
+          </DefaultButton>
         </section>
         <section className="ab-context">
           <Reveal
@@ -137,25 +121,17 @@ export const Service = ({ themeState }) => {
           <Reveal repeat trigger={<div style={{ overflow: "hidden" }} />}>
             <Tween from={{ y: "200px", opacity: "0" }}>
               <p>
-                Built on a unique model of relentless dedication to detail and
-                service, our team is on the front-lines of developing and
-                redefining integrated systems delivery in Ghana. Over years, we
-                have worked with many clients across several industries and on
-                several projects in the Digital Audio Visuals and corporate
-                staging industry here in Ghana. <br />
-                <br /> Our unique business culture and highly adaptable
-                perspective has made us the agency of choice for true
-                outstanding delivery. We provide not only the most feature-rich
-                services but are intuitive in our operations. From our
-                pioneering position as the nationʼs first campus digital signage
-                service provider and having engaged thousands of audiences
-                through our tailored webcast services, we have the experience
-                and light- heartedness to make your next project truly
-                outstanding.
+                Being intuitive in our concepts; minimalist in our design;
+                ergonomic in our form; zen in our philosophy; ︎360º in our
+                approach and process-oriented in our execution; our systems and
+                solutions are always designed with your particular project in
+                mind.
               </p>
             </Tween>
           </Reveal>
-          <DefaultButton linkTo="/booking">Book a service</DefaultButton>
+          <DefaultButton color="white" linkTo="/booking">
+            Book a service
+          </DefaultButton>
         </section>
         <section className="ab-context">
           <Reveal
@@ -184,32 +160,26 @@ export const Service = ({ themeState }) => {
           <Reveal repeat trigger={<div style={{ overflow: "hidden" }} />}>
             <Tween from={{ y: "200px", opacity: "0" }}>
               <p>
-                Built on a unique model of relentless dedication to detail and
-                service, our team is on the front-lines of developing and
-                redefining integrated systems delivery in Ghana. Over years, we
-                have worked with many clients across several industries and on
-                several projects in the Digital Audio Visuals and corporate
-                staging industry here in Ghana. <br />
-                <br /> Our unique business culture and highly adaptable
-                perspective has made us the agency of choice for true
-                outstanding delivery. We provide not only the most feature-rich
-                services but are intuitive in our operations. From our
-                pioneering position as the nationʼs first campus digital signage
-                service provider and having engaged thousands of audiences
-                through our tailored webcast services, we have the experience
-                and light- heartedness to make your next project truly
-                outstanding.
+                We are a Systems Integration company with a primary focus on
+                Audio-Visuals and Display Technology. Our areas of execution are
+                in Conferencing (On-site & Telepresence), Collaboration and
+                Meeting Spaces; Live Broadcast, Abstract AV Installations,
+                Interactive Design and People Engagement.
               </p>
             </Tween>
           </Reveal>
-          <DefaultButton linkTo="/booking">Book a service</DefaultButton>
+          <DefaultButton color="white" linkTo="/booking">
+            Book a service
+          </DefaultButton>
         </section>
-        <div className="outro">
-          <Link to="/projects">
-            <h2 className="biggest">See for your self !</h2>
-          </Link>
-        </div>
       </div>
-    </main>
+      <div className="outro">
+        <Link to="/projects">
+          <h2 className="biggest">See for your self !</h2>
+        </Link>
+      </div>
+    </div>
   );
 };
+
+export default Service;

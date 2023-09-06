@@ -33,10 +33,10 @@ export const AccordionCard = ({
       <div className="content">
         <p>{content}</p>
         {readMore ? (
-          <Link to="/services">
+          <Link to="/projects">
             <span>
-              <span>Read more</span>
-              <span>Read more</span>
+              <span>see projects</span>
+              <span>see projects</span>
             </span>
           </Link>
         ) : (

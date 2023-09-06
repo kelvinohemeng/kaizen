@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "./styles/globals";
 @import "./styles/about";
 
@@ -6,23 +10,19 @@
 //hero section//
 //hero section//
 .biggest {
-  font-size: $the-biggest;
+  font-size: $large;
   color: $kaizen-black;
   font-family: "Century Gothic";
   font-weight: bold;
   font-style: normal;
-  letter-spacing: -4.6px !important;
   line-height: 100%;
   @media screen and (max-width: 400px) {
-    font-size: 15vw;
-    letter-spacing: -0.6px !important;
     line-height: 100%;
+    letter-spacing: 0px !important;
   }
 }
 .hero-section {
-  height: 120vh;
-  margin: 0 !important;
-  padding: 20vh 0 !important;
+  height: 70vh;
   @include flexCenter(center, flex-start, row);
 
   .container {
@@ -63,6 +63,8 @@
     }
   }
   @media screen and (max-width: 450px) {
+    height: 100vh;
+
     .container {
       & > div {
         max-width: 100%;
@@ -165,7 +167,7 @@
     position: absolute;
     z-index: 1;
     transform: translateX(-500px) !important;
-    opacity: 0.5;
+    opacity: 0.8;
     svg {
       fill: linear-gradient(180deg, #a480ff 0%, #000796 100%);
       filter: blur(50px);
@@ -181,7 +183,7 @@
     }
   }
   .r-img {
-    padding: 30px;
+    // padding: 30px;
     position: relative;
     z-index: 10;
     width: 100%;
@@ -197,7 +199,7 @@
     border-radius: 20px;
     // padding: 0 50px;
     border: 2px solid var(--kaizen-black, #111214);
-    background-attachment: fixed;
+    background-attachment: scroll;
     @include centerBackground();
     @media screen and (max-width: 450px) {
       // height: 500px;
@@ -212,30 +214,21 @@
         color: $kaizen-white;
       }
       h2 {
-        font-family: Century Gothic;
         color: $kaizen-white;
-        font-size: $headings;
         text-align: right;
-      }
-      .rmau {
-        // flex: 2;
+        padding: 10px;
       }
       .abt-btn {
+        padding: 30px;
         position: relative;
         width: 100%;
         align-self: flex-end;
         // flex: 1;
-        .btn-content {
-          color: $kaizen-white;
-        }
-        svg {
-          fill: $kaizen-white;
-        }
       }
       @media screen and (max-width: 450px) {
         h2 {
           // text-align: center;
-          font-size: 10vw;
+          text-align: center;
         }
         @include flexCenter(center, space-between, column-reverse);
       }
@@ -260,17 +253,13 @@
     gap: 10px;
   }
   .left {
-    padding-block: 30px;
+    padding-block: 0px;
     position: sticky;
     top: 50px;
     height: 100%;
     flex: 1;
-    .btn {
-      background: transparent;
-      max-width: 300px;
-      .btn-conteainer {
-        padding: 5px 30px;
-      }
+    h2 {
+      padding-bottom: 30px;
     }
     @media screen and (max-width: 450px) {
       position: relative;
@@ -285,6 +274,16 @@
   @media screen and (max-width: 450px) {
     .left {
       width: 100%;
+      &:where(.outlined),
+      .outlined {
+        border-color: $kaizen-black !important;
+        span {
+          color: $kaizen-black !important;
+        }
+        svg {
+          fill: $kaizen-black !important;
+        }
+      }
     }
     .container {
       gap: 100px;
@@ -437,7 +436,7 @@
       }
     }
     .app-content {
-      @include flexCenter(end, center, row);
+      @include flexCenter(flex-end, center, row);
       z-index: 10;
       width: 100%;
       position: absolute;
@@ -521,6 +520,8 @@
   .ww {
     max-width: 600px;
     aspect-ratio: 1;
+    background: $kaizen-white;
+    padding: 15px;
     // display: flex;
     // align-items: center;
     // justify-content: center;
@@ -533,10 +534,12 @@
       }
     }
     img {
-      border-radius: 20px;
+      border-radius: $standard-border;
       background: $kaizen-white;
       width: 100%;
       // aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center;
       height: 100%;
     }
     &:nth-child(1) {
@@ -622,33 +625,77 @@
 ///projects section test //
 ///
 ///
-.projects {
+.project {
   padding-block: 30vh;
-  h1 {
-    font-size: 8vw;
-    text-align: center;
+  .hr {
+    width: 100%;
+    height: 1px;
+    background: #000;
+    margin-block: 4rem;
+  }
+  .projects {
+    @include flexCenter(align-items, justify-content, row);
+  }
+  h3 {
+    color: $kaizen-black;
+    font-size: 1.4rem;
+  }
+  button.active {
+    background-color: $kaizen-blue;
+    color: white;
   }
   .filter {
+    min-width: 250px;
     top: 60px;
     z-index: 99;
     position: sticky;
-    padding-block: 80px;
-    @include flexCenter(center, center, direction);
+    @include flexCenter(flex-start, center, column);
     gap: 20px;
-    button {
-      padding: 10px 30px;
-      background: $kaizen-blue;
-      color: white;
-      cursor: pointer;
-      font-size: $text;
-      border: none;
-      border-radius: 30px;
+    .filter-icon {
+      @include flexCenter(center, justify-content, row);
+      gap: 20px;
+    }
+    & div:has(button) {
+      @include flexCenter(center, justify-content, column);
+      gap: 10px;
+      button {
+        text-align: left !important;
+        width: 100%;
+        padding: 10px 20px;
+        // background: $kaizen-blue;
+        // color: $kaizen-blue-highlight;
+        cursor: pointer;
+        font-size: 1rem;
+        border: 0.5px solid $kaizen-blue;
+        border-radius: $standard-border;
+      }
+    }
+  }
+  @media screen and (max-width: 450px) {
+    padding-block: 0vh;
+    .hr {
+      margin-block: 2rem;
+    }
+    .projects {
+      @include flexCenter(align-items, justify-content, column);
+    }
+    .filter {
+      & div:has(button) {
+        @include flexCenter(center, justify-content, row);
+        flex-wrap: wrap;
+        button {
+          width: fit-content;
+        }
+      }
     }
   }
 }
 .all-projects {
   @include gridAutofit(300px, 1fr);
   gap: 20px;
+  @media screen and (max-width: 450px) {
+    padding-top: 50px;
+  }
 }
 
 .temp-proj {
@@ -657,7 +704,7 @@
   width: minmax(300px, 500px);
   height: minmax(300px, 500px);
   height: 100%; // aspect-ratio: 1;
-  @include flexCenter(start, center, column);
+  @include flexCenter(flex-start, center, column);
   gap: 20px;
   padding: 20px;
   background: $kaizen-white;
@@ -690,16 +737,18 @@
   // margin-top: 300vh;
 }
 .project-details-page {
-  padding-bottom: 30vh;
-  @include flexCenter(start, start, column);
+  @include flexCenter(flex-start, flex-start, column);
   // gap: 30px;
   .intro {
     padding-block: 6vh;
     width: 100%;
-    height: 100vh;
-    @include flexCenter(start, end, column);
+    height: 80vh;
+    @include flexCenter(flex-start, flex-end, column);
     gap: 10px;
     margin-bottom: 20vh;
+    @media screen and (max-width: 450px) {
+      height: 60vh;
+    }
     h2 {
       width: fit-content;
       // background: #000;
@@ -717,6 +766,7 @@
   .inline-details {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     p {
       font-size: $text;
@@ -764,7 +814,7 @@
     // padding: 10px 0;
   }
   .description {
-    @include flexCenter(end, start, column);
+    @include flexCenter(flex-end, flex-start, column);
     gap: 30px;
     p {
       max-width: 50%;
@@ -789,7 +839,7 @@
     .inline-testimonial {
       width: 100%;
       height: 100%;
-      @include flexCenter(start, stretch, column);
+      @include flexCenter(flex-start stretch, column);
       gap: 50px;
     }
   }
@@ -799,7 +849,7 @@
     width: 100%;
     // @include gridAutofit(300px, 1fr);
     align-content: space-between;
-    @include flexCenter(center, center, row);
+    @include flexCenter(center, space-between, row);
     gap: 50px;
     @media screen and (max-width: 450px) {
       @include flexCenter(center, center, column);

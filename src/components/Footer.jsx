@@ -108,8 +108,10 @@ export const Footer = () => {
       <div className="container">
         <div className="layer-up">
           <div className="biggest-cta">
-            <h1 className="biggest">Let's Chat</h1>
-            <DefaultButton>hop on a call with us.</DefaultButton>
+            <h1 className="headings">Let's Chat</h1>
+            <DefaultButton outlined color="white" bColor="white">
+              hop on a call with us.
+            </DefaultButton>
           </div>
           <div className="social-ctas">
             <Link to="">LinkedIn</Link>
