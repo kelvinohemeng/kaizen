@@ -114,7 +114,7 @@ export const Footer = ({ themeState }) => {
       <div className="container">
         <div className="layer-up">
           <div className=" space-y-8">
-            <h1 className="">Let's Chat</h1>
+            <h1 className=" text-center md:text-left">Let's Chat</h1>
             <div>
               <DefaultButton
                 outlined
@@ -155,7 +155,7 @@ export const Footer = ({ themeState }) => {
           </div>
         </div>
         <div
-          className={` py-[20px] w-full flex flex-col md:flex-row justify-between items-start border-t-[1px] ${
+          className={` py-[20px] w-full flex flex-col items-center md:flex-row justify-between md:items-start border-t-[1px] ${
             themeState
               ? "border-kaizen-black text-kaizen-black"
               : "border-kaizen-white text-kaizen-white"

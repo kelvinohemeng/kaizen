@@ -36,6 +36,10 @@
     font-size: $text;
   }
   @media screen and (max-width: 450px) {
+    .container {
+      @include flexCenter(center, center, column);
+      min-height: 80vh;
+    }
     h1 {
       text-align: center;
     }
@@ -142,7 +146,6 @@
     transform: translateX(-500px) !important;
     opacity: 0.8;
     svg {
-      fill: linear-gradient(180deg, #a480ff 0%, #000796 100%);
       filter: blur(50px);
       animation: infinite-rotate 30s linear infinite;
       @media screen and (max-width: 450px) {
@@ -163,23 +166,25 @@
     position: relative;
     z-index: 10;
     width: 100%;
-    height: 80vh;
-    background: linear-gradient(
-        139deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 7, 150, 0.27) 60.42%,
-        rgba(0, 7, 150, 0.8) 100%
-      ),
-      url("https://res.cloudinary.com/base-data/image/upload/v1691350931/kaizen-test/abt_doh2xe.jpg"),
+    aspect-ratio: 2/1;
+    background: url("https://res.cloudinary.com/base-data/image/upload/v1691350931/kaizen-test/abt_doh2xe.jpg"),
       no-repeat;
     border-radius: 20px;
+    overflow: hidden;
+    @media screen and (max-width: 450px) {
+      aspect-ratio: 1/2 !important;
+    }
     // padding: 0 50px;
     // border: 2px solid var(--kaizen-black, #111214);
-    // background-attachment: scroll;
-    @include centerBackground();
-    @media screen and (max-width: 450px) {
-      // height: 500px;
+    // background-attachment: scroll;s
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #00079686;
     }
+    @include centerBackground();
+
     .abt-img {
       overflow: hidden;
       height: 100%;
@@ -319,8 +324,14 @@
   }
 }
 .acc-container-active {
+  @include flexCenter(flex-start, flex-start, column);
   background: var(--kaizen-white, #f2f2f2);
-  height: 420px;
+  height: 320px;
+
+  .content {
+    margin-top: auto;
+    height: 100%;
+  }
   &:hover {
     .content {
       a {
@@ -336,7 +347,7 @@
   }
   @media screen and (max-width: 450px) {
     // height: 500px;
-    height: 350px !important;
+    height: 300px !important;
   }
   h3 {
     font-family: Century Gothic;
@@ -444,7 +455,6 @@
 // break //
 
 .break {
-  display: flex;
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -538,9 +548,9 @@
   // padding-bottom: 100px;
   .acc-container-active {
     background: var(--kaizen-white, #f2f2f2);
-    height: 350px;
+    height: 280px;
     @media screen and (max-width: 450px) {
-      height: 250px;
+      height: 250px !important;
     }
   }
   .acc-container {
@@ -574,7 +584,7 @@
 ///
 ///
 .project {
-  padding-block: 30vh;
+  // padding-block: 30vh;
   .hr {
     width: 100%;
     height: 1px;
@@ -693,9 +703,8 @@
     @media screen and (max-width: 450px) {
       height: 60vh;
     }
-    h2 {
+    h3 {
       width: fit-content;
-      // background: #000;
     }
     p {
       font-size: $btn-text;

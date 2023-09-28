@@ -9,7 +9,7 @@ import { Video } from "cloudinary-react";
 const About = ({ themeState, footer }) => {
   return (
     <>
-      <main>
+      <main className=" overflow-hidden">
         <div className="container">
           <div className=" intro my-[10vh]">
             <h1>Who are we?</h1>

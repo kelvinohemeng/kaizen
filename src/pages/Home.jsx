@@ -42,14 +42,16 @@ const Home = ({ projects, themeState, footer }) => {
   }
   return (
     <>
-      <main>
+      <main className=" overflow-hidden">
         <section className="hero-section">
           <div className="container">
             {/* <GsapReveal> */}
-            <h1 className="hidden md:block">
+            <h1 className="hidden md:block ">
               Bring your vision <br /> to life
             </h1>
-            <h1 className="block md:hidden">Bring your vision to life</h1>
+            <h1 className="block md:hidden text-center">
+              Bring your vision to life
+            </h1>
             {/* <GsapReveal> */}
             <div className=" space-y-2">
               <Reveal repeat>
@@ -69,7 +71,7 @@ const Home = ({ projects, themeState, footer }) => {
             </div>
           </div>
         </section>
-        <section className="video-section og ">
+        <section className="video-section og hidden md:block">
           <GsapScaleCus value="1.5">
             <div className="w-full p-2 relative">
               <Video
@@ -94,6 +96,39 @@ const Home = ({ projects, themeState, footer }) => {
               ></div>
             </div>
           </GsapScaleCus>
+          {/* <div>
+            <h3 className="headings">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse,
+              voluptatum ratione ut dolor quasi optio laborum repellat eos.
+              Pariatur.
+            </h3>
+          </div> */}
+        </section>
+        <section className="video-section og container block md:hidden">
+          <div className="w-full">
+            <div className="relative p-2">
+              <Video
+                // controls
+                autoPlay
+                paused
+                muted
+                className="the-video"
+                publicId="https://res.cloudinary.com/kaizen-img/video/upload/v1693790285/Adinkra_Overlay.mp4"
+                quality="30"
+                poster="https://res.cloudinary.com/kaizen-img/image/upload/v1691547177/kaizen-test/Forbes/00.jpg"
+              />
+              <div
+                className={`absolute inset-0 ${
+                  themeState ? "bg-white" : "bg-kaizen-blue"
+                } z-[-2] rounded-[20px] bg-opacity-50`}
+              ></div>
+              <div
+                className={`absolute inset-0 ${
+                  themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
+                } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
+              ></div>
+            </div>
+          </div>
           {/* <div>
             <h3 className="headings">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse,
@@ -231,19 +266,24 @@ const Home = ({ projects, themeState, footer }) => {
           </div>
         </section> */}
 
-        <section className="break container">
+        <section className="break overflow-hidden hidden md:flex">
           <GsapScale value="8">
             <div className="the-video">
               <h1>Be heard loud and clear</h1>
             </div>
           </GsapScale>
         </section>
+        <section className=" h-[80vh] overflow-hidden flex items-center md:hidden">
+          <div className=" text-center px-4">
+            <h1>Be heard loud and clear</h1>
+          </div>
+        </section>
 
         <section className="recents " id="projects">
           <div className="container">
             <div className=" flex flex-col items-center">
               <h2 className="headings">See for your self</h2>
-              <p className=" max-w-[40rem] text-center">
+              <p className=" max-w-[20rem] md:max-w-[40rem] text-center">
                 See for your self some projects we've worked on over the past
                 recent years, and what client say about us.
               </p>
@@ -267,7 +307,9 @@ const Home = ({ projects, themeState, footer }) => {
                         <p>{projects[30].category}</p>
                       </div>
                       <div className=" flex items-center gap-x-4">
-                        <span className="  font-bold">explore</span>
+                        <span className="  font-bold hidden md:block">
+                          explore
+                        </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="14"
@@ -299,7 +341,9 @@ const Home = ({ projects, themeState, footer }) => {
                         <p>{projects[10].title}</p>
                       </div>
                       <div className=" flex items-center gap-x-4">
-                        <span className="  font-bold">explore</span>
+                        <span className="  font-bold hidden md:block">
+                          explore
+                        </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="14"
@@ -332,7 +376,9 @@ const Home = ({ projects, themeState, footer }) => {
                         <p>{projects[1].category}</p>
                       </div>
                       <div className=" flex items-center gap-x-4">
-                        <span className="  font-bold">explore</span>
+                        <span className="  font-bold hidden md:block">
+                          explore
+                        </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="14"
@@ -365,7 +411,9 @@ const Home = ({ projects, themeState, footer }) => {
                         <p>{projects[50].title}</p>
                       </div>
                       <div className=" flex items-center gap-x-4">
-                        <span className="  font-bold">explore</span>
+                        <span className="  font-bold hidden md:block">
+                          explore
+                        </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="14"

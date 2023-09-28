@@ -68,7 +68,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   // useEffect(() => {}, []);
   return (
     <div
-      className="absolute md:top-[-15vh] 
+      className="absolute top-[-10vh] md:top-[-15vh] 
     2xl:top-[-5vh] h-[110%] w-full pt-[10rem] pointer-events-none"
     >
       {" "}
@@ -81,8 +81,8 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
         <div className="container mx-auto">
           <div className="nav-nav  flex flex-col items-center space-y-5 ">
             <div
-              className={`rounded-lg w-full py-2 animate-bounce  ${
-                themeState ? " bg-kaizen-accent" : "bg-kaizen-black"
+              className={`rounded-lg w-full py-2  duration-300  ${
+                themeState ? " bg-kaizen-accent" : "bg-kaizen-accent"
               } `}
             >
               <a
@@ -92,16 +92,16 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                 <em className="font-normal not-italic text-kaizen-white ">
                   Checkout our most recent projects
                 </em>
-                <em className="font-normal not-italic text-kaizen-white ">
+                <em className="font-normal not-italic text-kaizen-white hidden md:block ">
                   beta-release
                 </em>
               </a>
             </div>
-            <div className=" flex justify-between items-center w-full bg-white p-[15px] rounded-lg">
+            <div className=" flex justify-between items-center w-full bg-white p-[5px] md:p-[10px] py-0 rounded-lg">
               <Link
                 to="/"
                 onClick={deactivateNav}
-                className=" flex items-center gap-3 flex-1"
+                className=" flex items-center gap-3 flex-1 pl-2"
               >
                 <div className="">
                   <svg

@@ -16,7 +16,7 @@ const ProjectPage = ({ projects, themeState, footer }) => {
   return (
     <>
       <main>
-        <div className=" project container">
+        <div className=" project container mt-[30vh]">
           <Reveal repeat trigger={<h1 />}>
             <Tween
               from={{ y: "200px", opacity: "0" }}

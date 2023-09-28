@@ -33,7 +33,7 @@ export const AnimatedRoutes = ({ project, themeState, footer }) => {
           />
           <Route
             path="/services"
-            element={<Service themeState={themeState} />}
+            element={<Service themeState={themeState} footer={footer} />}
           />
           <Route
             path="/projects"
