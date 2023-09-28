@@ -5,24 +5,59 @@ const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
 const ProjectPage = lazy(() => import("../pages/ProjectPage"));
 const ProjectDetails = lazy(() => import("../pages/ProjectDetails"));
+import ScrollToTop from "./ScrollToTop";
 const Service = lazy(() => import("../pages/Service"));
 import Preloader from "../components/Fallback";
+import { Booking } from "../pages/Booking";
 
-export const AnimatedRoutes = ({ project }) => {
+export const AnimatedRoutes = ({ project, themeState, footer }) => {
   return (
     <>
       <Suspense fallback={<Preloader />}>
+        <ScrollToTop />
         <Routes>
-          <Route exact path="/" element={<Home projects={project} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Service />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <Home
+                projects={project}
+                themeState={themeState}
+                footer={footer}
+              />
+            }
+          />
+          <Route
+            path="/about"
+            element={<About themeState={themeState} footer={footer} />}
+          />
+          <Route
+            path="/services"
+            element={<Service themeState={themeState} />}
+          />
           <Route
             path="/projects"
-            element={<ProjectPage projects={project} />}
+            element={
+              <ProjectPage
+                projects={project}
+                themeState={themeState}
+                footer={footer}
+              />
+            }
           />
           <Route
             path="/projects/:projectId"
-            element={<ProjectDetails projects={project} />}
+            element={
+              <ProjectDetails
+                projects={project}
+                themeState={themeState}
+                footer={footer}
+              />
+            }
+          />
+          <Route
+            path="/booking"
+            element={<Booking themeState={themeState} footer={footer} />}
           />
         </Routes>
       </Suspense>

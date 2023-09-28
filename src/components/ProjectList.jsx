@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { Reveal, Tween } from "react-gsap";
 
-const ProjectList = ({ projects, selectedCategory }) => {
+const ProjectList = ({ projects, selectedCategory, themeState }) => {
   const filteredProjects =
     selectedCategory === "all"
       ? projects
@@ -27,9 +27,9 @@ const ProjectList = ({ projects, selectedCategory }) => {
           className="project-link"
           key={project.id}
         >
-          <Reveal repeat trigger={<div />}>
-            <Tween from={{ scale: 0, opacity: 0 }} stagger={0.5}>
-              <div className="temp-proj">
+          <Reveal trigger={<div />}>
+            <Tween from={{ opacity: 0, duration: 1 }} stagger={0.5}>
+              <div className="temp-proj bg-kaizen-white rounded-lg bg-opacity-25">
                 <div
                   className="img-container"
                   style={{
@@ -55,10 +55,16 @@ const ProjectList = ({ projects, selectedCategory }) => {
                       gap: "10px",
                     }}
                   >
-                    <h2>{project.title}</h2>
-                    <h3>{project.category}</h3>
+                    <h4>{project.title}</h4>
+                    <p
+                      className={`${
+                        themeState ? "text-white" : "text-kaizen-accent"
+                      }`}
+                    >
+                      {project.category}
+                    </p>
                   </div>
-                  <span>explore</span>
+                  {/* <span>explore</span> */}
                 </div>
               </div>
             </Tween>

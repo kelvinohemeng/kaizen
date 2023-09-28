@@ -33,10 +33,17 @@ export const AccordionCard = ({
       <div className="content">
         <p>{content}</p>
         {readMore ? (
-          <Link to="/projects">
-            <span>
-              <span>see projects</span>
-              <span>see projects</span>
+          <Link
+            to="/projects"
+            className=" border-b-[0.3px] border-opacity-40 pb-2 border-black"
+          >
+            <span className="">
+              <span className=" font-bold text-kaizen-accent">
+                see projects
+              </span>
+              <span className=" font-bold text-kaizen-accent">
+                see projects
+              </span>
             </span>
           </Link>
         ) : (

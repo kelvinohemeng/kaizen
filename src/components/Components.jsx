@@ -18,6 +18,7 @@ export const DefaultButton = ({
         className={`${primary} ${outline}`}
         style={{
           borderColor: `${bColor}`,
+          background: `${background}`,
         }}
       >
         <div className="btn-container">

@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { DefaultButton } from "./Components";
 
-export const Footer = () => {
+export const Footer = ({ themeState }) => {
   return (
-    <footer>
+    <footer
+      className={`no-print ${
+        themeState
+          ? "bg-kaizen-white text-kaizen-black"
+          : "bg-kaizen-black text-kaizen-white"
+      }`}
+    >
       <div className="abs--">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -107,30 +113,89 @@ export const Footer = () => {
       </div>
       <div className="container">
         <div className="layer-up">
-          <div className="biggest-cta">
-            <h1 className="headings">Let's Chat</h1>
-            <DefaultButton outlined color="white" bColor="white">
-              hop on a call with us.
-            </DefaultButton>
+          <div className=" space-y-8">
+            <h1 className="">Let's Chat</h1>
+            <div>
+              <DefaultButton
+                outlined
+                // color="white"
+                // bColor="white"
+                color={themeState ? "#131313" : "#f2edf4"}
+                bColor={themeState ? "#131313" : "#f2edf4"}
+              >
+                hop on a call with us.
+              </DefaultButton>
+            </div>
           </div>
           <div className="social-ctas">
-            <Link to="">LinkedIn</Link>
-            <Link to="">Twitter</Link>
-            <Link to="">Behance</Link>
+            <Link
+              className={` flex gap-2${
+                themeState ? " text-kaizen-black" : " text-kaizen-white"
+              }`}
+              to=""
+            >
+              LinkedIn
+            </Link>
+            <Link
+              className={` flex gap-2${
+                themeState ? " text-kaizen-black" : " text-kaizen-white"
+              }`}
+              to=""
+            >
+              Twitter
+            </Link>
+            <Link
+              className={` flex gap-2${
+                themeState ? " text-kaizen-black" : " text-kaizen-white"
+              }`}
+              to=""
+            >
+              Instagram
+            </Link>
           </div>
         </div>
-        <div className="links">
-          <p>©️2023 All rights reserved kaizen</p>
-          <div className="linkss">
-            <ul>
+        <div
+          className={` py-[20px] w-full flex flex-col md:flex-row justify-between items-start border-t-[1px] ${
+            themeState
+              ? "border-kaizen-black text-kaizen-black"
+              : "border-kaizen-white text-kaizen-white"
+          }`}
+        >
+          <p
+            className={` flex gap-2${
+              themeState ? " text-kaizen-black" : " text-kaizen-white"
+            }`}
+          >
+            ©️2023 All rights reserved kaizen
+          </p>
+          <div>
+            <ul className={` flex gap-2`}>
               <Link to="/about">
-                <li>Privacy Policy</li>
+                <li
+                  className={` flex gap-2${
+                    themeState ? " text-kaizen-black" : " text-kaizen-white"
+                  }`}
+                >
+                  Privacy Policy
+                </li>
               </Link>
               <Link to="/">
-                <li>Terms of Service</li>
+                <li
+                  className={` flex gap-2${
+                    themeState ? " text-kaizen-black" : " text-kaizen-white"
+                  }`}
+                >
+                  Terms of Service
+                </li>
               </Link>
               <a href="#">
-                <li>Back to top</li>
+                <li
+                  className={` flex gap-2${
+                    themeState ? " text-kaizen-black" : " text-kaizen-white"
+                  }`}
+                >
+                  Back to top
+                </li>
               </a>
             </ul>
           </div>

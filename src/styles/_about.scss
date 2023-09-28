@@ -6,26 +6,20 @@
 .outro {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   padding-block: 10vh;
   text-align: center;
 }
 .intro {
-  height: 100vh;
-  padding-top: 200px;
+  height: 60vh;
   display: flex;
-  gap: 50px;
   align-items: center;
   text-align: center;
-  flex-direction: column;
+  justify-content: center;
 }
 .ab-context {
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-
   h2 {
-    font-size: $large;
+    // font-size: $large;
     max-width: 80%;
   }
   p {
@@ -77,3 +71,13 @@
   @include flexCenter(center, center, column);
   gap: 50px;
 }
+
+// .chars-wrapper {
+//   grid-template-columns: repeat(auto-fit, minmax(145px, fit-content));
+//   @media screen and (max-width: 450px) {
+//     grid-template-columns: repeat(
+//       auto-fit,
+//       minmax(15px, fit-content)
+//     ) !important;
+//   }
+// }

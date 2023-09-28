@@ -43,11 +43,19 @@ function App() {
   return (
     <>
       <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
-        <Navbar toggleDarkMode={toggleDarkMode} themeState={darkMode} />
-        <main className={darkMode ? `darkmode` : ""}>
-          <AnimatedRoutes project={projectData} />
-        </main>
-        <Footer />
+        <div
+          className={`min-h-screen relative bg-white w-full ${
+            darkMode ? `darkmode` : ""
+          } `}
+        >
+          <Navbar toggleDarkMode={toggleDarkMode} themeState={darkMode} />
+
+          <AnimatedRoutes
+            project={projectData}
+            themeState={darkMode}
+            footer={<Footer themeState={darkMode} />}
+          />
+        </div>
       </CloudinaryContext>
     </>
   );
