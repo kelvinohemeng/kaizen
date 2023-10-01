@@ -20,7 +20,7 @@ const ProjectList = ({ projects, selectedCategory, themeState }) => {
   }, [selectedCategory]);
 
   return (
-    <div className="container all-projects">
+    <div className="container mx-auto px-4 all-projects py-[10vh]">
       {filteredProjects.map((project) => (
         <Link
           to={`/projects/${project.id}`}

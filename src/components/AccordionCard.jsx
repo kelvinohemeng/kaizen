@@ -38,10 +38,10 @@ export const AccordionCard = ({
             className=" border-b-[0.3px] border-opacity-40 pb-2 border-black"
           >
             <span className="">
-              <span className=" font-bold text-kaizen-accent">
+              <span className=" font-medium text-kaizen-accent">
                 see projects
               </span>
-              <span className=" font-bold text-kaizen-accent">
+              <span className=" font-medium text-kaizen-accent">
                 see projects
               </span>
             </span>

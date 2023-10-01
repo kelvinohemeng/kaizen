@@ -43,8 +43,8 @@ function App() {
   return (
     <>
       <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
-        <div
-          className={`min-h-screen relative bg-white w-full ${
+        <main
+          className={`h-full relative bg-white w-full ${
             darkMode ? `darkmode` : ""
           } `}
         >
@@ -55,7 +55,8 @@ function App() {
             themeState={darkMode}
             footer={<Footer themeState={darkMode} />}
           />
-        </div>
+        </main>
+        <Footer />
       </CloudinaryContext>
     </>
   );

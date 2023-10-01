@@ -78,7 +78,6 @@
   }
 }
 .video-section {
-  // background-color: $kaizen-black;
   z-index: 1;
   position: relative;
   height: 100%;
@@ -140,48 +139,20 @@
 .read-more-abt-us {
   // padding: 10px;
   margin-top: 10vh;
-  .abs-- {
-    position: absolute;
-    z-index: 1;
-    transform: translateX(-500px) !important;
-    opacity: 0.8;
-    svg {
-      filter: blur(50px);
-      animation: infinite-rotate 30s linear infinite;
-      @media screen and (max-width: 450px) {
-        transform: scale(0.6) !important;
-      }
-    }
-    @keyframes infinite-rotate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(-360deg);
-      }
-    }
-  }
   .r-img {
-    // padding: 30px;
     position: relative;
     z-index: 10;
     width: 100%;
     aspect-ratio: 2/1;
-    background: url("https://res.cloudinary.com/base-data/image/upload/v1691350931/kaizen-test/abt_doh2xe.jpg"),
-      no-repeat;
     border-radius: 20px;
     overflow: hidden;
     @media screen and (max-width: 450px) {
       aspect-ratio: 1/2 !important;
     }
-    // padding: 0 50px;
-    // border: 2px solid var(--kaizen-black, #111214);
-    // background-attachment: scroll;s
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: #00079686;
     }
     @include centerBackground();
 
@@ -326,7 +297,7 @@
 .acc-container-active {
   @include flexCenter(flex-start, flex-start, column);
   background: var(--kaizen-white, #f2f2f2);
-  height: 320px;
+  height: 400px;
 
   .content {
     margin-top: auto;
@@ -347,7 +318,7 @@
   }
   @media screen and (max-width: 450px) {
     // height: 500px;
-    height: 300px !important;
+    height: 350px !important;
   }
   h3 {
     font-family: Century Gothic;
@@ -548,9 +519,9 @@
   // padding-bottom: 100px;
   .acc-container-active {
     background: var(--kaizen-white, #f2f2f2);
-    height: 280px;
+    height: 300px;
     @media screen and (max-width: 450px) {
-      height: 250px !important;
+      height: 280px !important;
     }
   }
   .acc-container {
@@ -577,7 +548,8 @@
   }
 }
 
-///projects section test //
+///
+///  section test //
 ///projects section test //
 ///projects section test //
 ///projects section test //
@@ -630,22 +602,28 @@
       }
     }
   }
-  @media screen and (max-width: 450px) {
+  .mobile-btn {
+    // @include flexCenter(center, justify-content, column);
+    gap: 10px;
+    button {
+      text-align: left !important;
+      width: 100%;
+      padding: 10px 20px;
+      // background: $kaizen-blue;
+      // color: $kaizen-blue-highlight;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border: 0.5px solid $kaizen-blue;
+      border-radius: 12px;
+    }
+  }
+  @media screen and (max-width: 750px) {
     padding-block: 0vh;
     .hr {
-      margin-block: 2rem;
+      margin-block: 1rem;
     }
     .projects {
       @include flexCenter(align-items, justify-content, column);
-    }
-    .filter {
-      & div:has(button) {
-        @include flexCenter(center, justify-content, row);
-        flex-wrap: wrap;
-        button {
-          width: fit-content;
-        }
-      }
     }
   }
 }
@@ -661,8 +639,9 @@
   position: relative;
   // width: 300px;
   width: minmax(300px, 500px);
-  height: minmax(300px, 500px);
-  height: 100%; // aspect-ratio: 1;
+  // height: minmax(300px, 500px);
+  height: max-content;
+  // aspect-ratio: 1;
   @include flexCenter(flex-start, center, column);
   gap: 20px;
   padding: 10px;
@@ -678,7 +657,7 @@
   }
   img {
     @include transition(300ms);
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     aspect-ratio: 1;
     object-fit: cover;
@@ -696,18 +675,19 @@
   .intro {
     padding-block: 6vh;
     width: 100%;
-    height: 80vh;
+    // height: 80vh;
     @include flexCenter(flex-start, flex-end, column);
     gap: 10px;
     margin-bottom: 20vh;
     @media screen and (max-width: 450px) {
-      height: 60vh;
+      margin-bottom: 0;
+      // height: 60vh;
     }
-    h3 {
+    h2 {
       width: fit-content;
     }
     p {
-      font-size: $btn-text;
+      // font-size: $btn-text;
       opacity: 0.8;
     }
   }
@@ -722,8 +702,8 @@
     align-items: flex-start;
     gap: 5px;
     span {
-      font-size: $text;
-      font-weight: 400;
+      // font-size: $text;
+      // font-weight: 400;
     }
   }
   h2 {

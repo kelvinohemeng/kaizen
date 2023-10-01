@@ -69,17 +69,17 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   return (
     <div
       className="absolute top-[-10vh] md:top-[-15vh] 
-    2xl:top-[-5vh] h-[110%] w-full pt-[10rem] pointer-events-none"
+    2xl:top-[-5vh] h-[100%] w-full pt-[10rem] pointer-events-none"
     >
       {" "}
-      <nav className={`${navClasses} no-print`}>
+      <nav className={`${navClasses} no-print `}>
         <div
           className="nav-bg"
           style={navState ? { display: "block" } : { display: "none" }}
           onClick={deactivateNav}
         ></div>
         <div className="container mx-auto">
-          <div className="nav-nav  flex flex-col items-center space-y-5 ">
+          <div className="nav-nav   flex flex-col items-center space-y-5 ">
             <div
               className={`rounded-lg w-full py-2  duration-300  ${
                 themeState ? " bg-kaizen-accent" : "bg-kaizen-accent"
@@ -97,7 +97,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                 </em>
               </a>
             </div>
-            <div className=" flex justify-between items-center w-full bg-white p-[5px] md:p-[10px] py-0 rounded-lg">
+            <div className=" flex justify-between items-center w-full bg-kaizen-white ite p-[15px] md:p-[10px] rounded-lg">
               <Link
                 to="/"
                 onClick={deactivateNav}
@@ -154,7 +154,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                     Book a service
                   </DefaultButton>
                 </div>
-                <div
+                {/* <div
                   onClick={handleThemeChange}
                   className={` w-[50px] relative aspect-square 
                 ${
@@ -185,7 +185,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                       <path d="M235.54,150.21a104.84,104.84,0,0,1-37,52.91A104,104,0,0,1,32,120,103.09,103.09,0,0,1,52.88,57.48a104.84,104.84,0,0,1,52.91-37,8,8,0,0,1,10,10,88.08,88.08,0,0,0,109.8,109.8,8,8,0,0,1,10,10Z"></path>
                     </svg>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

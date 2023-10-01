@@ -10,12 +10,15 @@ import { Video } from "cloudinary-react";
 const Service = ({ themeState, footer }) => {
   return (
     <>
-      <main className=" overflow-hidden">
+      <main className=" overflow-hidden py-[10vh]">
         <div className="container ">
-          <div className=" intro my-[10vh]">
+          <div className="  mt-[50vh] text-center py-[5vh] block md:hidden">
             <h1>What we offer you</h1>
           </div>
-          <section className="video-section cont-reset">
+          <div className=" intro my-[20vh] text-center hidden md:flex">
+            <h1>What we offer you</h1>
+          </div>
+          <section className="video-section cont-reset hidden md:block">
             <GsapScale value="1.5">
               <div className="w-full p-2 relative">
                 <Video
@@ -32,11 +35,25 @@ const Service = ({ themeState, footer }) => {
               </div>
             </GsapScale>
           </section>
+          <section className="block md:hidden video-section mb-[10vh] md:mb-[0]">
+            <div className="w-full p-2 relative">
+              <Video
+                controls
+                autoPlay
+                paused
+                muted
+                className="the-video"
+                publicId="https://res.cloudinary.com/kaizen-img/video/upload/v1693789196/about.mp4"
+                quality="30"
+              />
+              <div className="absolute inset-0 bg-[#000796] z-[-2] rounded-[20px] bg-opacity-50"></div>
+              <div className="absolute inset-0 bg-[#000796] z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]"></div>
+            </div>
+          </section>
           <div className="serv-c">
-            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[6rem]">
+            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[2rem] md:gap-[6rem]">
               <div className=" h-full space-y-8 flex-1">
                 <Reveal
-                  repeat
                   trigger={
                     <div
                       className="chars-wrapper w-fit "
@@ -58,7 +75,6 @@ const Service = ({ themeState, footer }) => {
                   </Tween>
                 </Reveal>
                 <Reveal
-                  repeat
                   trigger={
                     <div style={{ overflow: "hidden", paddingBlock: "20px" }} />
                   }
@@ -78,7 +94,7 @@ const Service = ({ themeState, footer }) => {
                 </DefaultButton>
               </div>
               <div
-                className="flex-1 bg-gray-900 min-h-[500px] order-first md:order-last rounded-lg"
+                className="flex-1 bg-gray-900 min-h-[300px] md:min-h-[500px] order-first md:order-last rounded-lg"
                 style={{
                   backgroundImage:
                     'url("https://iamadinkra.com/assets/img/projects/explo/05.jpg")',
@@ -87,10 +103,9 @@ const Service = ({ themeState, footer }) => {
                 }}
               ></div>
             </section>
-            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[6rem]">
+            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[2rem] md:gap-[6rem]">
               <div className=" h-full space-y-8 flex-1">
                 <Reveal
-                  repeat
                   trigger={
                     <div
                       className="chars-wrapper w-fit "
@@ -110,7 +125,6 @@ const Service = ({ themeState, footer }) => {
                   </Tween>
                 </Reveal>
                 <Reveal
-                  repeat
                   trigger={
                     <div style={{ overflow: "hidden", paddingBlock: "20px" }} />
                   }
@@ -131,7 +145,7 @@ const Service = ({ themeState, footer }) => {
                 </DefaultButton>
               </div>
               <div
-                className="flex-1 bg-gray-900 min-h-[500px] order-first md:order-last rounded-lg"
+                className="flex-1 bg-gray-900 min-h-[300px] md:min-h-[500px] order-first md:order-last rounded-lg"
                 style={{
                   backgroundImage:
                     'url("https://iamadinkra.com/assets/img/conferences_header/conferences_page_.jpg")',
@@ -140,10 +154,9 @@ const Service = ({ themeState, footer }) => {
                 }}
               ></div>
             </section>
-            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[6rem]">
+            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[2rem] md:gap-[6rem]">
               <div className=" h-full space-y-8 flex-1">
                 <Reveal
-                  repeat
                   trigger={
                     <div
                       className="chars-wrapper w-fit "
@@ -163,7 +176,6 @@ const Service = ({ themeState, footer }) => {
                   </Tween>
                 </Reveal>
                 <Reveal
-                  repeat
                   trigger={
                     <div style={{ overflow: "hidden", paddingBlock: "20px" }} />
                   }
@@ -183,7 +195,7 @@ const Service = ({ themeState, footer }) => {
                 </DefaultButton>
               </div>
               <div
-                className="flex-1 bg-gray-900 min-h-[500px] order-first md:order-last rounded-lg"
+                className="flex-1 bg-gray-900 min-h-[300px] md:min-h-[500px] order-first md:order-last rounded-lg"
                 style={{
                   backgroundImage:
                     'url("https://iamadinkra.com/assets/img/projects/scb_review/01.jpg")',
@@ -192,10 +204,9 @@ const Service = ({ themeState, footer }) => {
                 }}
               ></div>
             </section>
-            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[6rem]">
+            <section className="ab-context md:px-[100px] py-[20vh] flex flex-col md:flex-row gap-[2rem] md:gap-[6rem]">
               <div className=" h-full space-y-8 flex-1">
                 <Reveal
-                  repeat
                   trigger={
                     <div
                       className="chars-wrapper w-fit "
@@ -217,7 +228,6 @@ const Service = ({ themeState, footer }) => {
                   </Tween>
                 </Reveal>
                 <Reveal
-                  repeat
                   trigger={
                     <div style={{ overflow: "hidden", paddingBlock: "20px" }} />
                   }
@@ -238,7 +248,7 @@ const Service = ({ themeState, footer }) => {
                 </DefaultButton>
               </div>
               <div
-                className="flex-1 bg-gray-900 min-h-[500px] order-first md:order-last rounded-lg"
+                className="flex-1 bg-gray-900 min-h-[300px] md:min-h-[500px] order-first md:order-last rounded-lg"
                 style={{
                   backgroundImage:
                     'url("https://iamadinkra.com/assets/img/projects/airport/03.jpg")',
@@ -253,14 +263,13 @@ const Service = ({ themeState, footer }) => {
               <div className="">
                 <h2>See for your self !</h2>
               </div>
-              <span className=" pt-[2rem]">
+              <p className=" pt-[2rem]">
                 visit our project section to see what we have done
-              </span>
+              </p>
             </div>
           </Link>
         </div>
       </main>
-      {footer}
     </>
   );
 };

@@ -74,7 +74,7 @@ export const GsapScale = ({ value, endValue, children }) => {
     gsap.from(element, {
       scrollTrigger: {
         trigger: containerElement,
-        pin: true,
+        pin: containerElement,
         anticipatePin: 1,
         scrub: 2,
         // markers: true,

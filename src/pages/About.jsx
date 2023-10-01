@@ -9,9 +9,12 @@ import { Video } from "cloudinary-react";
 const About = ({ themeState, footer }) => {
   return (
     <>
-      <main className=" overflow-hidden">
+      <main className=" overflow-hidden py-[10vh]">
         <div className="container">
-          <div className=" intro my-[10vh]">
+          <div className="  mt-[50vh] py-[5vh] block md:hidden">
+            <h1>Who are we?</h1>
+          </div>
+          <div className=" intro my-[20vh] hidden md:flex">
             <h1>Who are we?</h1>
           </div>
           <section className="video-section cont-reset">
@@ -41,7 +44,6 @@ const About = ({ themeState, footer }) => {
           </section>
           <section className="ab-context py-[20vh] md:px-[100px] space-y-11">
             <Reveal
-              repeat
               trigger={
                 <div
                   className="chars-wrapper"
@@ -63,7 +65,6 @@ const About = ({ themeState, footer }) => {
               </Tween>
             </Reveal>
             <Reveal
-              repeat
               trigger={
                 <div style={{ overflow: "hidden", paddingBlock: "40px" }} />
               }
@@ -98,7 +99,6 @@ const About = ({ themeState, footer }) => {
           </section>
         </div>
       </main>
-      {footer}
     </>
   );
 };
