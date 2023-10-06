@@ -40,15 +40,23 @@
       @include flexCenter(center, center, column);
       min-height: 80vh;
     }
-    h1 {
-      text-align: center;
-    }
     p {
       // color: $kaizen-white;
       text-align: center;
       max-width: 100% !important;
       font-size: $text;
     }
+  }
+}
+.sliding-service {
+  animation: sliding linear 20s infinite;
+}
+@keyframes sliding {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
   }
 }
 .hero-btn {
@@ -426,11 +434,10 @@
 // break //
 
 .break {
-  height: 100vh;
   align-items: center;
   justify-content: center;
   font-size: $large;
-  margin-block: 50vh;
+  // margin-block: 50vh;
   h1 {
     text-align: center;
   }
@@ -473,6 +480,9 @@
     span {
       font-family: $century-gothic;
     }
+    p {
+      color: $kaizen-blue;
+    }
     div {
       padding-block: 10px;
       h3 {
@@ -489,14 +499,14 @@
       object-position: center;
       height: 100%;
     }
-    &:nth-child(1) {
-      max-width: 60%;
-    }
-    &:nth-child(4) {
-      // align-self: self-end;
-      justify-self: flex-end;
-      max-width: 80%;
-    }
+    // &:nth-child(1) {
+    //   max-width: 60%;
+    // }
+    // &:nth-child(4) {
+    //   // align-self: self-end;
+    //   justify-self: flex-end;
+    //   max-width: 80%;
+    // }
     @media screen and (max-width: 450px) {
       max-width: 500px;
     }

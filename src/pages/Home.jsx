@@ -42,26 +42,140 @@ const Home = ({ projects, themeState, footer }) => {
   }
   return (
     <>
-      <section className="hero-section pt-[20vh]">
-        <div className="container">
-          {/* <GsapReveal> */}
-          <h1 className="hidden md:block ">
-            Bring your vision <br /> to life
-          </h1>
-          <h1 className="block md:hidden text-center">
-            Bring your vision to life
-          </h1>
-          {/* <GsapReveal> */}
-          <div className=" space-y-2">
-            <p className="">
-              Take your event to the next level next level, watch as we build
-              your programme from our preparation to excution as we embark you
-              on something special
-            </p>
-            <div className="hero-btn-mobile">
-              <DefaultButton linkTo="/booking" notShow color="white">
-                Book a service
-              </DefaultButton>
+      <section className=" md:h-screen relative -z-0 w-full flex items-center pt-[30vh] md:pt-[20vh] pb-[10vh]">
+        <div className="container flex w-full bg-white gap-[8rem]">
+          <div className=" flex-1 space-y-12 md:space-y-8">
+            <h1 className="text-left">
+              Bring your vision <br /> to life
+            </h1>
+            <div className=" space-y-12 md:space-y-2">
+              <p className="">
+                Take your event to the next level next level, watch as we build
+                your programme from our preparation to excution as we embark you
+                on something special
+              </p>
+              <div className="block md:hidden flex-1 relative overflow-hidden">
+                <div className=" w-full h-full flex justify-start ">
+                  {" "}
+                  <div className=" space-y-8 top-0 ">
+                    <h2 className=" text-left font-bold underline italic">
+                      Audio visual
+                    </h2>
+                    <h2 className=" text-left font-bold underline italic">
+                      Conferencing
+                    </h2>
+                    <h2 className=" text-left font-bold underline italic">
+                      System Integration
+                    </h2>
+                    <h2 className=" text-left font-bold underline italic">
+                      Interractive Media
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div className="hero-btn-mobile">
+                <DefaultButton linkTo="/booking" notShow color="white">
+                  Get started
+                </DefaultButton>
+              </div>
+            </div>
+          </div>
+          <div className="hidden md:block flex-1 relative overflow-hidden">
+            <div className="absolute top-[-10%] z-[99999] pointer-events-none">
+              <svg
+                width="603"
+                height="131"
+                viewBox="0 0 603 131"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  width="603"
+                  height="131"
+                  transform="matrix(1 0 0 -1 0 131)"
+                  fill="url(#paint0_linear_4703_2300)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_4703_2300"
+                    x1="301.5"
+                    y1="0"
+                    x2="301.5"
+                    y2="123"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="white" stop-opacity="0" />
+                    <stop
+                      offset="0.427083"
+                      stop-color="white"
+                      stop-opacity="0.42"
+                    />
+                    <stop offset="0.786458" stop-color="white" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div className=" w-full h-full flex justify-center ">
+              {" "}
+              <div className=" space-y-8 absolute top-0 sliding-service ">
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Audio visual
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Conferencing
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  System Integration
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Interractive Media
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Audio visual
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Conferencing
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  System Integration
+                </h2>
+                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                  Interractive Media
+                </h2>
+              </div>
+            </div>
+            <div className="absolute bottom-[-10%] z-[99999] pointer-events-none">
+              <svg
+                width="603"
+                height="131"
+                viewBox="0 0 603 131"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  width="603"
+                  height="131"
+                  fill="url(#paint0_linear_4702_2121)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_4702_2121"
+                    x1="301.5"
+                    y1="0"
+                    x2="301.5"
+                    y2="123"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="white" stop-opacity="0" />
+                    <stop
+                      offset="0.427083"
+                      stop-color="white"
+                      stop-opacity="0.42"
+                    />
+                    <stop offset="0.786458" stop-color="white" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </div>
         </div>
@@ -184,7 +298,7 @@ const Home = ({ projects, themeState, footer }) => {
         </div>
       </section>
 
-      <section className="break overflow-hidden hidden md:flex">
+      <section className="break overflow-hidden hidden md:flex py-[20vh]">
         <GsapScale value="8">
           <div className="the-video">
             <h1>Be heard loud and clear</h1>
@@ -212,7 +326,7 @@ const Home = ({ projects, themeState, footer }) => {
             </div>
           </div>
           <div className="r-works">
-            <Reveal repeat>
+            <Reveal>
               <Tween from={{ scale: 0, opacity: 1 }}>
                 <Link
                   to={`/projects/${projects[30].id}`}
@@ -246,7 +360,7 @@ const Home = ({ projects, themeState, footer }) => {
                 </Link>
               </Tween>
             </Reveal>
-            <Reveal repeat>
+            <Reveal>
               <Tween from={{ scale: 0, opacity: 1 }}>
                 <Link
                   to={`/projects/${projects[10].id}`}
@@ -281,7 +395,7 @@ const Home = ({ projects, themeState, footer }) => {
                 </Link>
               </Tween>
             </Reveal>
-            <Reveal repeat>
+            <Reveal>
               <Tween from={{ scale: 0, opacity: 1 }}>
                 <Link
                   to={`/projects/${projects[1].id}`}
@@ -316,7 +430,7 @@ const Home = ({ projects, themeState, footer }) => {
                 </Link>
               </Tween>
             </Reveal>
-            <Reveal repeat>
+            <Reveal>
               <Tween from={{ scale: 0, opacity: 1 }}>
                 <Link
                   to={`/projects/${projects[50].id}`}

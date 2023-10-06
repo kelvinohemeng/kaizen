@@ -97,7 +97,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                 </em>
               </a>
             </div>
-            <div className=" flex justify-between items-center w-full bg-kaizen-white ite p-[15px] md:p-[10px] rounded-lg">
+            <div className=" flex justify-between items-center w-full bg-kaizen-white p-[15px] md:p-[10px] rounded-lg">
               <Link
                 to="/"
                 onClick={deactivateNav}
@@ -120,7 +120,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                   </svg>
                 </div>
                 <div>
-                  <span className=" text-2xl font-normal text-kaizen-black not-italic hidden md:block">
+                  <span className=" text-2xl font-light text-kaizen-black not-italic hidden md:block">
                     <em className="text-kaizen-black not-italic">kaizen</em>
                     <em className="text-kaizen-black not-italic ">
                       {location.pathname}
@@ -128,7 +128,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                   </span>
                 </div>
               </Link>
-              <div className="desk-links flex-1 hidden md:flex gap-8 text-[1.2rem] items-center">
+              <div className="desk-links flex-1 hidden md:flex justify-center gap-8 text-[1.2rem] items-center">
                 <Link to="/about">About us</Link>
                 <Link to="/services">Service</Link>
                 <Link to="/projects">Portfolio</Link>
@@ -151,7 +151,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                     color="white"
                     background="#111214"
                   >
-                    Book a service
+                    Get started
                   </DefaultButton>
                 </div>
                 {/* <div
