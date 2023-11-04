@@ -68,11 +68,11 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   // useEffect(() => {}, []);
   return (
     <div
-      className="absolute top-[-10vh] md:top-[-15vh] 
+      className="absolute top-[-15vh] md:top-[-15vh] 
     2xl:top-[-5vh] h-[100%] w-full pt-[10rem] pointer-events-none"
     >
       {" "}
-      <nav className={`${navClasses} no-print `}>
+      <nav className={` fixed top-0 w-full ${navClasses} no-print `}>
         <div
           className="nav-bg"
           style={navState ? { display: "block" } : { display: "none" }}
@@ -80,7 +80,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
         ></div>
         <div className="container mx-auto">
           <div className="nav-nav   flex flex-col items-center space-y-5 ">
-            <div
+            {/* <div
               className={`rounded-lg w-full py-2  duration-300  ${
                 themeState ? " bg-kaizen-accent" : "bg-kaizen-accent"
               } `}
@@ -96,7 +96,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                   beta-release
                 </em>
               </a>
-            </div>
+            </div> */}
             <div className=" flex justify-between items-center w-full bg-kaizen-white p-[15px] md:p-[10px] rounded-lg">
               <Link
                 to="/"
@@ -120,21 +120,22 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                   </svg>
                 </div>
                 <div>
-                  <span className=" text-2xl font-light text-kaizen-black not-italic hidden md:block">
-                    <em className="text-kaizen-black not-italic">kaizen</em>
-                    <em className="text-kaizen-black not-italic ">
+                  <span className=" text-2xl text-kaizen-black not-italic hidden md:block">
+                    <span className="text-kaizen-black not-italic ">
+                      kaizen
+                    </span>
+                    <span className="text-kaizen-black not-italic ">
                       {location.pathname}
-                    </em>
+                    </span>
                   </span>
                 </div>
               </Link>
-              <div className="desk-links flex-1 hidden md:flex justify-center gap-8 text-[1.2rem] items-center">
-                <Link to="/about">About us</Link>
-                <Link to="/services">Service</Link>
-                <Link to="/projects">Portfolio</Link>
-                <a href="/#faq">FAQs</a>
-              </div>
-              <div className="flex items-center justify-end gap-2 flex-1">
+              <div className="flex items-center justify-end gap-6 flex-1">
+                <div className="desk-links hidden md:flex justify-center gap-8 text-[1.2rem] items-center">
+                  <Link to="/about">About us</Link>
+                  <Link to="/services">Service</Link>
+                  <Link to="/projects">Our Works</Link>
+                </div>
                 <div className="flex md:hidden">
                   <div
                     className={navState ? `nav-toggler-off ` : `nav-toggler `}
@@ -212,15 +213,8 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
               className="nav-btn-container"
               onClick={deactivateNav}
             >
-              Portfolio
+              Our Works
             </Link>
-            <a
-              href="#faq"
-              className="nav-btn-container"
-              onClick={deactivateNav}
-            >
-              FAQs
-            </a>
             <div className=" w-full p-3">
               <DefaultButton
                 // notShow
@@ -228,7 +222,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                 background="#111214"
                 onClick={deactivateNav}
               >
-                Book a service
+                Get started
               </DefaultButton>
             </div>
           </div>

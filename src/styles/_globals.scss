@@ -2,8 +2,8 @@
 @font-face {
   font-family: "Century Gothic";
   src: local("Century Gothic"), local("CenturyGothic"),
-    url("./assets/font/CenturyGothic.woff2") format("woff2"),
-    url("./assets/font/CenturyGothic.woff") format("woff");
+    url("/assets/font/CenturyGothic.woff2") format("woff2"),
+    url("/assets/font/CenturyGothic.woff") format("woff");
   font-display: swap;
 }
 ////VARIABLES/////
@@ -608,7 +608,7 @@ footer {
     height: fit-content;
     position: relative;
 
-    @include flexCenter(center, space-between, row);
+    // @include flexCenter(center, space-between, row);
 
     .biggest-cta {
       flex: 1;
@@ -640,18 +640,20 @@ footer {
   }
 
   .kaizen-slide-infinite {
-    pointer-events: none;
-    position: absolute;
-    z-index: 9999;
-    left: 0;
-    bottom: 0;
+    pointer-events: none !important;
     display: flex;
+    justify-content: center;
     gap: 30px;
-    animation: slide 30s infinite linear;
+    // animation: slide 30s infinite linear;
     h1 {
-      font-size: 20vw;
+      font-size: 28vw;
       opacity: 0.8;
       font-family: Century Gothic;
+      background-size: cover;
+      background: url(https://res.cloudinary.com/kaizen-img/image/upload/v1699057294/bg6.jpg);
+      background-attachment: fixed;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.511);
     }
   }
   @media screen and (max-width: 450px) {

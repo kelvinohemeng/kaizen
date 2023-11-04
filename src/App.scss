@@ -51,6 +51,17 @@
 .sliding-service {
   animation: sliding linear 20s infinite;
 }
+.animate-slide {
+  animation: slide-anim linear 20s infinite;
+}
+@keyframes slide-anim {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 @keyframes sliding {
   from {
     transform: translateY(0%);
@@ -773,7 +784,6 @@
     // @include flexCenter(center, justify-content, column);
     width: 100%;
     margin-top: 20vh;
-    padding-inline: 80px;
     cursor: pointer;
     .test-heading {
       padding-block: 30px;
@@ -833,6 +843,33 @@
         h3 {
           padding-block: 10px;
         }
+      }
+    }
+  }
+}
+.testimonial {
+  min-width: 100%;
+  border: 0.5px solid rgba(0, 0, 0, 0.335);
+  // background: $kaizen-white;
+  border-radius: 30px;
+  padding: 20px;
+  @include transition(300ms);
+
+  img {
+    border-radius: 100px;
+  }
+  &:hover {
+    transform: translate(-10px, -10px);
+    // box-shadow: ;
+    box-shadow: 5px 5px $kaizen-blue-highlight;
+  }
+  .inner {
+    @include flexCenter(flex-start, flex-start, row);
+    gap: 10px;
+    div {
+      p,
+      h3 {
+        padding-block: 10px;
       }
     }
   }

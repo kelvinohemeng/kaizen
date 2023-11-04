@@ -18,7 +18,7 @@ import {
   DefaultButton2Var,
   DefaultButtonVar,
 } from "../components/Components";
-import { Testimonial } from "../components/testimonial";
+import Testimonial from "../components/testimonial";
 import { Reveal, Tween, SplitWords, SplitChars } from "react-gsap";
 import { GsapScale } from "../components/Gsaps";
 // import { EffectCards } from "swiper/modules";
@@ -260,21 +260,15 @@ const ProjectDetail = ({ projects, themeState, footer }) => {
           )}
 
           {project.testimonialData ? (
-            <div className="testContainer">
-              <h3 className="test-heading">- What the client said about us</h3>
-              <div className="inline-testimonial">
+            <div className=" space-y-12 mt-[10vh]">
+              <h3 className="">- What the client said about us</h3>
+              <div className="">
                 {project.testimonialData.map((testimonial, index) => (
                   <Testimonial
                     key={testimonial.id}
                     testImg={testimonial.img}
                     person={testimonial.person}
-                    statement={() =>
-                      testimonial.statement
-                        .split("\n\n")
-                        .map((paragraph, paragraphIndex) => (
-                          <p key={paragraphIndex}>{paragraph}</p>
-                        ))
-                    }
+                    statement={() => <p>{testimonial.statement}</p>}
                   />
                 ))}
               </div>

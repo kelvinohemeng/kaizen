@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Image, Video } from "cloudinary-react";
 import { Reveal, Tween } from "react-gsap";
 import { Link } from "react-router-dom";
@@ -40,14 +40,39 @@ const Home = ({ projects, themeState, footer }) => {
   function toggleDisplay() {
     setDisplay(!display);
   }
+
+  // create a ref to the video element
+  const videoRef = useRef(null);
+  // create a state to store the video status
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // define a function to toggle the video play/pause
+  const toggleVideo = () => {
+    // check if the video is playing
+    if (isPlaying) {
+      // pause the video
+      videoRef.current.pause();
+      // update the state
+      setIsPlaying(false);
+    } else {
+      // play the video
+      videoRef.current.play();
+      // update the state
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <>
       <section className=" md:h-screen relative -z-0 w-full flex items-center pt-[30vh] md:pt-[20vh] pb-[10vh]">
         <div className="container flex w-full bg-white gap-[8rem]">
           <div className=" flex-1 space-y-12 md:space-y-8">
-            <h1 className="text-left">
+            <h1 className="block md:hidden text-left">
               Bring your vision <br /> to life
             </h1>
+            <h2 className="hidden md:block text-left">
+              Bring your vision <br /> to life
+            </h2>
             <div className=" space-y-12 md:space-y-2">
               <p className="">
                 Take your event to the next level next level, watch as we build
@@ -117,31 +142,31 @@ const Home = ({ projects, themeState, footer }) => {
             </div>
             <div className=" w-full h-full flex justify-center ">
               {" "}
-              <div className=" space-y-8 absolute top-0 sliding-service ">
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+              <div className=" space-y-10 absolute top-0 sliding-service ">
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Audio visual
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Conferencing
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   System Integration
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Interractive Media
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Audio visual
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Conferencing
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   System Integration
-                </h2>
-                <h2 className=" text-center font-light hover:font-bold hover:underline hover:italic duration-200">
+                </h3>
+                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
                   Interractive Media
-                </h2>
+                </h3>
               </div>
             </div>
             <div className="absolute bottom-[-10%] z-[99999] pointer-events-none">
@@ -184,14 +209,49 @@ const Home = ({ projects, themeState, footer }) => {
       <section className="video-section hidden md:block">
         <GsapScaleCus value="1.5">
           <div className="w-full p-2 relative">
-            <Video
-              publicId="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4"
-              controls
-              autoPlay
-              quality={30}
-              muted={true}
+            <video
+              ref={videoRef}
               className="the-video"
-            />
+              autoPlay={true}
+              // controls
+              muted={false}
+            >
+              <source src="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4" />
+            </video>
+            <div className=" absolute top-0 w-full h-full flex items-end justify-start p-10 z-[99999999] pointer-events-none">
+              <button
+                onClick={toggleVideo}
+                className=" text-white pointer-events-auto"
+              >
+                {isPlaying ? (
+                  <span className=" flex gap-4 items-center ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#ffffff"
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"></path>
+                    </svg>
+                    <span className=" text-white">Pause Video</span>
+                  </span>
+                ) : (
+                  <span className=" flex gap-4 items-center ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#ffffff"
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                    </svg>
+                    <span className=" text-white">Play Video</span>
+                  </span>
+                )}
+              </button>
+            </div>
             <div
               className={`absolute inset-0 ${
                 themeState ? "bg-white" : "bg-kaizen-blue"
@@ -208,15 +268,50 @@ const Home = ({ projects, themeState, footer }) => {
 
       <section className="video-section container block md:hidden">
         <div className="w-full">
-          <div className="relative p-2">
-            <Video
-              publicId="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4"
-              controls
-              autoPlay
-              quality={30}
-              muted={true}
+          <div className="w-full p-2 relative">
+            <video
+              ref={videoRef}
               className="the-video"
-            />
+              autoPlay={true}
+              controls
+              muted={false}
+            >
+              <source src="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4" />
+            </video>
+            <div className=" absolute top-0 w-full h-full flex items-start justify-start p-5 z-[99999999] pointer-events-none">
+              <button
+                onClick={toggleVideo}
+                className=" text-white pointer-events-auto"
+              >
+                {isPlaying ? (
+                  <span className=" flex gap-4 items-center ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#ffffff"
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"></path>
+                    </svg>
+                    <span className=" text-white">Pause Video</span>
+                  </span>
+                ) : (
+                  <span className=" flex gap-4 items-center ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#ffffff"
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                    </svg>
+                    <span className=" text-white">Play Video</span>
+                  </span>
+                )}
+              </button>
+            </div>
             <div
               className={`absolute inset-0 ${
                 themeState ? "bg-white" : "bg-kaizen-blue"
@@ -250,10 +345,10 @@ const Home = ({ projects, themeState, footer }) => {
               themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
             } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
           ></div>
-          <div className="r-img relative p-4 z-[99999]">
+          <div className="r-img relative p-4 z-[99999] bg-black">
             <Image
               publicId="kaizen/b-rrf.jpg"
-              className=" absolute inset-0 h-full object-cover w-full opacity-60  rounded-[20px]"
+              className=" absolute inset-0 h-full object-cover w-full opacity-50  rounded-[20px]"
             />
             <div className="abt-img ">
               <div className="abt-btn">
@@ -615,22 +710,23 @@ const Home = ({ projects, themeState, footer }) => {
         </div>
       </section>
 
-      <section className="faq container" id="faq">
+      {/* <section className="faq container" id="faq">
         <div>
           <h1 className="headings">FAQs</h1>
         </div>
         <div className="faq-container">
           <Faq />
         </div>
-        <div className="outro">
-          <Link to="/projects">
-            <h2 className="">Still got questions?</h2>
-          </Link>
-          <DefaultButton color="white" linkTo="/booking">
-            Contact
-          </DefaultButton>
-        </div>
-      </section>
+      </section> */}
+
+      <div className=" container flex flex-col items-center gap-6 h-[30vh]">
+        <Link to="/projects">
+          <h2 className="">Still got questions?</h2>
+        </Link>
+        <DefaultButton color="white" linkTo="/booking">
+          Contact
+        </DefaultButton>
+      </div>
       {/* {footer} */}
     </>
   );

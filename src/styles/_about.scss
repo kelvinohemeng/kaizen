@@ -37,25 +37,28 @@
 
 .ab-count {
   @include flexCenter(center, center, row);
-  padding: 100px;
+  // padding-inline: 100px;
 
   gap: 40px;
   .c-p {
     flex: 1;
     @include flexCenter(center, center, column);
     padding: 30px 50px;
-    background-color: $kaizen-white;
+    background-color: $kaizen-black;
     border-radius: 30px;
     span {
+      color: white;
       display: flex;
       align-items: center;
       gap: 10px;
     }
     h2 {
+      color: white;
       font-size: $large;
       font-weight: 700;
     }
     p {
+      color: white;
       font-family: $century-gothic;
       font-size: $text;
     }

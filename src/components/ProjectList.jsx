@@ -15,7 +15,7 @@ const ProjectList = ({ projects, selectedCategory, themeState }) => {
       opacity: 0,
       y: 20,
       duration: 0.5,
-      stagger: 0.1, // Stagger effect
+      stagger: 0.2, // Stagger effect
     });
   }, [selectedCategory]);
 

@@ -5,6 +5,7 @@ const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
 const ProjectPage = lazy(() => import("../pages/ProjectPage"));
 const ProjectDetails = lazy(() => import("../pages/ProjectDetails"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 import ScrollToTop from "./ScrollToTop";
 const Service = lazy(() => import("../pages/Service"));
 import Preloader from "../components/Fallback";
@@ -29,7 +30,13 @@ export const AnimatedRoutes = ({ project, themeState, footer }) => {
           />
           <Route
             path="/about"
-            element={<About themeState={themeState} footer={footer} />}
+            element={
+              <About
+                projects={project}
+                themeState={themeState}
+                footer={footer}
+              />
+            }
           />
           <Route
             path="/services"
@@ -58,6 +65,10 @@ export const AnimatedRoutes = ({ project, themeState, footer }) => {
           <Route
             path="/booking"
             element={<Booking themeState={themeState} footer={footer} />}
+          />
+          <Route
+            path="*"
+            element={<NotFound themeState={themeState} footer={footer} />}
           />
         </Routes>
       </Suspense>
