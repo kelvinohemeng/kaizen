@@ -5,47 +5,22 @@
 @import "./styles/globals";
 @import "./styles/about";
 
-//hero section//
-//hero section//
-//hero section//
-//hero section//
-.biggest {
-  font-size: $large;
-  color: $kaizen-black;
-  font-family: "Century Gothic";
-  font-weight: bold;
-  font-style: normal;
-  line-height: 100%;
-  @media screen and (max-width: 400px) {
-    line-height: 100%;
-    letter-spacing: 0px !important;
-  }
+.word-spacing::after {
+  content: "\00a0 "; /* Unicode non-breaking space */
+  margin-right: 4px; /* Adjust the value to set the desired spacing between words */
 }
-.hero-section {
-  height: 100%;
 
-  .container {
-    @include flexCenter(flex-start, center, column);
-    gap: 50px;
-    width: 100%;
-    min-height: 80vh;
-  }
-  p {
-    // color: $kaizen-white;
-    max-width: 50%;
-    font-size: $text;
-  }
-  @media screen and (max-width: 450px) {
-    .container {
-      @include flexCenter(center, center, column);
-      min-height: 80vh;
-    }
-    p {
-      // color: $kaizen-white;
-      text-align: center;
-      max-width: 100% !important;
-      font-size: $text;
-    }
+.kaizen-slide-infinite {
+  // animation: slide 30s infinite linear;
+  h1 {
+    font-size: 28vw;
+    opacity: 0.8;
+    font-family: Century Gothic;
+    background-size: cover;
+    background: url(https://res.cloudinary.com/kaizen-img/image/upload/v1699057294/bg6.jpg);
+    background-attachment: fixed;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.511);
   }
 }
 .sliding-service {
@@ -54,12 +29,124 @@
 .animate-slide {
   animation: slide-anim linear 20s infinite;
 }
+
+@mixin white-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.slider {
+  // box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  height: 100%;
+  // overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    @include white-gradient;
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  &::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+}
+.track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  gap: 20px;
+  width: calc(400px * 6);
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.slider-logos {
+  // background: red;
+  // box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  height: 100%;
+  // overflow: hidden;
+  position: relative;
+  width: 960px;
+
+  &::before,
+  &::after {
+    @include white-gradient;
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  &::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+}
+.track-logos {
+  animation: scrollLogos 60s linear infinite;
+  display: flex;
+  gap: 60px;
+  width: calc(80px * 24);
+  &:last-child {
+    animation: scrollLogos 50s linear reverse infinite;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-400px * 3));
+  }
+}
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-80px * 12));
+  }
+}
+.spin {
+  animation: spin linear 30s infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @keyframes slide-anim {
   from {
-    transform: translateX(0%);
+    transform: translateX(100%);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-200%);
   }
 }
 @keyframes sliding {
@@ -68,809 +155,5 @@
   }
   to {
     transform: translateY(-50%);
-  }
-}
-.hero-btn {
-  position: relative;
-  flex: 1;
-  .btn {
-    background: transparent;
-  }
-  .btn-content {
-    color: $kaizen-blue;
-  }
-  svg {
-    fill: $kaizen-blue;
-  }
-}
-
-//video section//
-//video section//
-//video section//
-
-.video-section.og {
-  z-index: -1;
-}
-.video-section.cont-reset {
-  .container {
-    all: unset;
-  }
-}
-.video-section {
-  z-index: 1;
-  position: relative;
-  height: 100%;
-  h3 {
-    text-align: center;
-    font-family: $century-gothic;
-    font-size: $mediums;
-    color: $kaizen-blue;
-    opacity: 0.5;
-    font-weight: 700;
-    letter-spacing: -1.95px;
-  }
-  .the-video {
-    width: 100%;
-    // height: 600px;
-    aspect-ratio: 2/1 !important;
-    object-fit: cover;
-    border-radius: 20px !important;
-    // border: 2px solid $kaizen-blue;
-    @media screen and (max-width: 450px) {
-      aspect-ratio: 3/2 !important;
-    }
-    @media screen and (max-width: 750px) {
-    }
-  }
-  .mySwiper2 {
-    width: 100% !important;
-    // height: 700px !important;
-    border-radius: 20px !important;
-    aspect-ratio: 2/1 !important;
-    // border: 2px solid $kaizen-blue;
-    @media screen and (max-width: 450px) {
-      aspect-ratio: 3/2 !important;
-    }
-    @media screen and (max-width: 750px) {
-    }
-  }
-  @media screen and (max-width: 450px) {
-    height: 100%;
-    // padding: 0 20px;
-  }
-}
-.scale-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-  // padding: 0 50px;
-  // @include flexCenter(center, stretch row);
-  @media screen and (max-width: 450px) {
-    // padding: 0 20px;
-  }
-}
-
-// Read mkore section //
-// Read mkore section //
-// Read mkore section //
-
-.read-more-abt-us {
-  // padding: 10px;
-  margin-top: 10vh;
-  .r-img {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    aspect-ratio: 2/1;
-    border-radius: 20px;
-    overflow: hidden;
-    @media screen and (max-width: 450px) {
-      aspect-ratio: 1/2 !important;
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-    }
-    @include centerBackground();
-
-    .abt-img {
-      overflow: hidden;
-      height: 100%;
-      align-items: center;
-      @include flexCenter(center, stretch, row);
-
-      span {
-        color: $kaizen-white;
-      }
-      h2 {
-        color: $kaizen-white;
-        text-align: right;
-        padding: 10px;
-      }
-      .abt-btn {
-        padding: 30px;
-        position: relative;
-        width: 100%;
-        align-self: flex-end;
-        // flex: 1;
-      }
-      @media screen and (max-width: 450px) {
-        h2 {
-          // text-align: center;
-          text-align: center;
-        }
-        @include flexCenter(center, space-between, column-reverse);
-      }
-    }
-  }
-}
-
-// service //
-// service //
-// service //
-// service //
-
-.services {
-  position: relative;
-  z-index: 10;
-  height: 100%;
-  .container {
-    position: relative;
-    height: 100%;
-    padding-block: 30vh;
-    @include flexCenter(flex-start, space-between, row);
-    gap: 10px;
-  }
-  .left {
-    padding-block: 0px;
-    // position: sticky;
-    top: 50px;
-    height: 100%;
-    flex: 1;
-    h1 {
-      padding-bottom: 30px;
-    }
-    @media screen and (max-width: 450px) {
-      position: relative;
-      // height: 500px;
-    }
-  }
-  .right {
-    flex: 1;
-    @include flexCenter(center, center, row);
-    height: 100%;
-  }
-  @media screen and (max-width: 450px) {
-    .left {
-      width: 100%;
-      text-align: center;
-      // &:where(.outlined),
-      // .outlined {
-      //   border-color: $kaizen-black !important;
-      //   span {
-      //     color: $kaizen-black !important;
-      //   }
-      //   svg {
-      //     fill: $kaizen-black !important;
-      //   }
-      // }
-    }
-    .container {
-      gap: 100px;
-      @include flexCenter(flex-start, space-between, column);
-      padding: 10vh;
-    }
-  }
-}
-.acc-general {
-  @include flexCenter(flex-start, space-between, column);
-  cursor: pointer;
-  max-width: 100%;
-  height: 100px;
-  overflow: hidden;
-  padding: 15px 20px;
-  border-radius: 25px;
-  border: 2px solid #00000046;
-  background: var(--kaizen-white, #ffffff);
-  gap: 57px;
-  color: $kaizen-blue;
-  transform: translateY(-35px);
-  transition: height 300ms ease-out;
-  .content {
-    @include flexCenter(align-items, flex-start, column);
-    height: 100%;
-    padding-bottom: 30px;
-    gap: 10px;
-    a {
-      width: fit-content;
-      max-height: 2rem;
-      overflow: hidden;
-      font-family: $century-gothic;
-      font-weight: bolder;
-      & > span {
-        position: relative;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        transition: 300ms ease-out;
-        font-size: $text;
-        span {
-          font-size: $text !important;
-          letter-spacing: -0.5px;
-        }
-      }
-    }
-  }
-}
-.acc-container {
-  h3 {
-    font-family: Century Gothic;
-    font-size: $mediums;
-  }
-  @media screen and (max-width: 450px) {
-    height: 70px;
-  }
-}
-.acc-container-active {
-  @include flexCenter(flex-start, flex-start, column);
-  background: var(--kaizen-white, #f2f2f2);
-  height: 400px;
-
-  .content {
-    margin-top: auto;
-    height: 100%;
-  }
-  &:hover {
-    .content {
-      a {
-        & > span {
-          transform: translateY(-50%);
-          span {
-            font-size: $btn-text;
-            letter-spacing: -0.5px;
-          }
-        }
-      }
-    }
-  }
-  @media screen and (max-width: 450px) {
-    // height: 500px;
-    height: 350px !important;
-  }
-  h3 {
-    font-family: Century Gothic;
-    font-size: $mediums;
-  }
-  @media screen and (max-width: 450px) {
-    height: 250px;
-  }
-}
-
-//approach section //
-
-.approach {
-  color: $kaizen-white;
-  padding: 100px 0;
-  h3 {
-    color: $kaizen-white;
-  }
-  .the-approaches {
-    @include flexCenter(center, stretch, direction);
-    flex-wrap: wrap;
-    padding-top: 100px;
-    gap: 10px;
-    @media screen and (max-width: 450px) {
-      justify-content: center;
-      // padding-inline: 30px;
-    }
-  }
-  .app-card-cont {
-    flex: 1;
-    cursor: pointer;
-    position: relative;
-    min-width: 300px;
-    // flex-basis: 33.3%;
-    min-height: 478px;
-    background: $kaizen-black;
-    padding: 30px;
-    border-radius: 15px;
-    @include flexCenter(flex-start, space-between, column);
-    overflow: hidden;
-    @include transition(500ms);
-    z-index: 10;
-
-    // &:nth-child(1) {
-    //   flex: 1;
-    // }
-    .abs-- {
-      position: absolute;
-      z-index: 1;
-      // opacity: 0.5;
-      &:nth-child(1) {
-        transform: translate(-500px, -200px) !important;
-      }
-      &:nth-child(2) {
-        transform: translate(500px, 200px) !important;
-      }
-      svg {
-        fill: linear-gradient(180deg, #a480ff 0%, #000796 100%);
-        filter: blur(50px);
-        animation: infinite-rotate 30s linear infinite;
-      }
-      @keyframes infinite-rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(-360deg);
-        }
-      }
-    }
-    .app-content {
-      @include flexCenter(flex-end, center, row);
-      z-index: 10;
-      width: 100%;
-      position: absolute;
-      inset: 0;
-      padding-top: 0 !important;
-      padding: 30px;
-      @include transition(500ms);
-      p {
-        all: unset !important;
-        @include transition(200ms);
-        padding-top: 30px;
-        color: $kaizen-white !important;
-        font-weight: 100;
-        font-family: $roboto;
-      }
-    }
-    &:hover {
-      flex: 2;
-      .app-content {
-        div:nth-child(2) {
-          align-self: flex-start;
-          display: block;
-        }
-      }
-    }
-    @media screen and (max-width: 450px) {
-    }
-  }
-}
-
-// break //
-// break //
-// break //
-
-.break {
-  align-items: center;
-  justify-content: center;
-  font-size: $large;
-  // margin-block: 50vh;
-  h1 {
-    text-align: center;
-  }
-  @media screen and (max-width: 450px) {
-    h1 {
-      max-width: 100%;
-    }
-  }
-}
-
-// recent //
-// recent //
-// recent //
-.recents {
-  margin-block: 300px;
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 134px;
-    h2 {
-      text-align: center;
-    }
-  }
-  .r-works {
-    @include gridAutofit(400px, 1fr);
-    gap: 30px;
-    @media screen and (max-width: 450px) {
-      @include gridAutofit(200px, 1fr);
-    }
-  }
-  .ww {
-    max-width: 600px;
-    aspect-ratio: 1;
-    // background: $kaizen-white;
-    padding: 15px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    span {
-      font-family: $century-gothic;
-    }
-    p {
-      color: $kaizen-blue;
-    }
-    div {
-      padding-block: 10px;
-      h3 {
-        font-family: Century Gothic;
-        color: $kaizen-black;
-      }
-    }
-    img {
-      border-radius: $standard-border;
-      background: $kaizen-white;
-      width: 100%;
-      // aspect-ratio: 1;
-      object-fit: cover;
-      object-position: center;
-      height: 100%;
-    }
-    // &:nth-child(1) {
-    //   max-width: 60%;
-    // }
-    // &:nth-child(4) {
-    //   // align-self: self-end;
-    //   justify-self: flex-end;
-    //   max-width: 80%;
-    // }
-    @media screen and (max-width: 450px) {
-      max-width: 500px;
-    }
-  }
-  .cta-all-projects {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    @media screen and (max-width: 450px) {
-    }
-  }
-}
-
-//faq//
-//faq//
-//faq//
-
-.faq {
-  padding: 100px;
-  // padding-bottom: 100px;
-  .acc-container-active {
-    background: var(--kaizen-white, #f2f2f2);
-    height: 300px;
-    @media screen and (max-width: 450px) {
-      height: 280px !important;
-    }
-  }
-  .acc-container {
-    max-width: 100%;
-  }
-  .faq-container {
-    padding: 50px 0;
-  }
-  .acc-container-active {
-    max-width: 100%;
-  }
-  .outro {
-    padding-bottom: 80px;
-    margin-top: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-  }
-  @media screen and (max-width: 450px) {
-    padding: 10px;
-    padding-bottom: 20px;
-  }
-}
-
-///
-///  section test //
-///projects section test //
-///projects section test //
-///projects section test //
-///
-///
-.project {
-  // padding-block: 30vh;
-  .hr {
-    width: 100%;
-    height: 1px;
-    background: #000;
-    margin-block: 4rem;
-  }
-  .projects {
-    @include flexCenter(align-items, justify-content, row);
-  }
-  h3 {
-    color: $kaizen-black;
-    font-size: 1.4rem;
-  }
-  button.active {
-    background-color: $kaizen-blue-highlight;
-    color: white;
-    border: none !important;
-  }
-  .filter {
-    min-width: 250px;
-    top: 160px;
-    z-index: 99;
-    position: sticky;
-    @include flexCenter(flex-start, center, column);
-    gap: 20px;
-    .filter-icon {
-      @include flexCenter(center, justify-content, row);
-      gap: 20px;
-    }
-    & div:has(button) {
-      @include flexCenter(center, justify-content, column);
-      gap: 10px;
-      button {
-        text-align: left !important;
-        width: 100%;
-        padding: 10px 20px;
-        // background: $kaizen-blue;
-        // color: $kaizen-blue-highlight;
-        cursor: pointer;
-        font-size: 1.5rem;
-        border: 0.5px solid $kaizen-blue;
-        border-radius: 12px;
-      }
-    }
-  }
-  .mobile-btn {
-    // @include flexCenter(center, justify-content, column);
-    gap: 10px;
-    button {
-      text-align: left !important;
-      width: 100%;
-      padding: 10px 20px;
-      // background: $kaizen-blue;
-      // color: $kaizen-blue-highlight;
-      cursor: pointer;
-      font-size: 1.5rem;
-      border: 0.5px solid $kaizen-blue;
-      border-radius: 12px;
-    }
-  }
-  @media screen and (max-width: 750px) {
-    padding-block: 0vh;
-    .hr {
-      margin-block: 1rem;
-    }
-    .projects {
-      @include flexCenter(align-items, justify-content, column);
-    }
-  }
-}
-.all-projects {
-  @include gridAutofit(300px, 1fr);
-  gap: 20px;
-  @media screen and (max-width: 450px) {
-    padding-top: 50px;
-  }
-}
-
-.temp-proj {
-  position: relative;
-  // width: 300px;
-  width: minmax(300px, 500px);
-  // height: minmax(300px, 500px);
-  height: max-content;
-  // aspect-ratio: 1;
-  @include flexCenter(flex-start, center, column);
-  gap: 20px;
-  padding: 10px;
-  overflow: hidden;
-  .img-container {
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  &:hover {
-    img {
-      transform: scale(1.1);
-    }
-  }
-  img {
-    @include transition(300ms);
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    object-position: center;
-  }
-}
-.images-container {
-  width: 100%;
-  height: 100%;
-  // margin-top: 300vh;
-}
-.project-details-page {
-  @include flexCenter(flex-start, flex-start, column);
-  // gap: 30px;
-  .intro {
-    padding-block: 6vh;
-    width: 100%;
-    // height: 80vh;
-    @include flexCenter(flex-start, flex-end, column);
-    gap: 10px;
-    margin-bottom: 20vh;
-    @media screen and (max-width: 450px) {
-      margin-bottom: 0;
-      // height: 60vh;
-    }
-    h2 {
-      width: fit-content;
-    }
-    p {
-      // font-size: $btn-text;
-      opacity: 0.8;
-    }
-  }
-  .thumbnails {
-    padding-block: 6vh;
-    width: 100%;
-    height: 100%;
-  }
-  .inline-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    span {
-      // font-size: $text;
-      // font-weight: 400;
-    }
-  }
-  h2 {
-    font-size: $large;
-  }
-
-  .swiper {
-    width: 100%;
-    // height: 700px;
-    // margin-left: auto;
-    // margin-right: auto;
-    @media screen and (max-width: 450px) {
-      height: 300px;
-    }
-  }
-  .mySwiper2 {
-    background: #000 !important;
-  }
-  .mySwiper {
-    height: 100px;
-  }
-  // .swiper-slide {
-  //   background-size: cover;
-  //   background-position: center;
-  // }
-  .swiper-slide video {
-    // display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .mySwiper {
-    height: 20%;
-    box-sizing: border-box;
-    // padding: 10px 0;
-  }
-  .description {
-    @include flexCenter(flex-end, flex-start, column);
-    gap: 30px;
-    p {
-      max-width: 50%;
-      font-size: $text;
-    }
-    @media screen and (max-width: 450px) {
-      p {
-        max-width: 100%;
-      }
-    }
-  }
-  .testContainer {
-    // @include flexCenter(center, justify-content, column);
-    width: 100%;
-    margin-top: 20vh;
-    cursor: pointer;
-    .test-heading {
-      padding-block: 30px;
-      font-size: $mediums;
-    }
-    .inline-testimonial {
-      width: 100%;
-      height: 100%;
-      @include flexCenter(flex-start stretch, column);
-      gap: 50px;
-    }
-  }
-  .btnss {
-    margin-top: 20vh;
-    padding: 80px 0;
-    width: 100%;
-    // @include gridAutofit(300px, 1fr);
-    align-content: space-between;
-    @media print {
-      display: none;
-    }
-    @include flexCenter(center, space-between, row);
-    gap: 50px;
-    @media screen and (max-width: 450px) {
-      @include flexCenter(center, center, column);
-    }
-    // background: $kaizen-blue;
-  }
-  .btn-d-p {
-    width: 100%;
-    @media print {
-      display: none;
-    }
-    @include flexCenter(center, center, row);
-  }
-  .testimonial {
-    max-width: 100%;
-    border: 0.5px solid rgba(0, 0, 0, 0.335);
-    // background: $kaizen-white;
-    border-radius: 30px;
-    padding: 20px;
-    @include transition(300ms);
-
-    img {
-      border-radius: 100px;
-    }
-    &:hover {
-      transform: translate(-10px, -10px);
-      // box-shadow: ;
-      box-shadow: 5px 5px $kaizen-blue-highlight;
-    }
-    .inner {
-      @include flexCenter(flex-start, flex-start, row);
-      gap: 10px;
-      div {
-        p,
-        h3 {
-          padding-block: 10px;
-        }
-      }
-    }
-  }
-}
-.testimonial {
-  min-width: 100%;
-  border: 0.5px solid rgba(0, 0, 0, 0.335);
-  // background: $kaizen-white;
-  border-radius: 30px;
-  padding: 20px;
-  @include transition(300ms);
-
-  img {
-    border-radius: 100px;
-  }
-  &:hover {
-    transform: translate(-10px, -10px);
-    // box-shadow: ;
-    box-shadow: 5px 5px $kaizen-blue-highlight;
-  }
-  .inner {
-    @include flexCenter(flex-start, flex-start, row);
-    gap: 10px;
-    div {
-      p,
-      h3 {
-        padding-block: 10px;
-      }
-    }
   }
 }

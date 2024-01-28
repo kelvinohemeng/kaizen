@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ProjectList from "../components/ProjectList";
 import { useLocation } from "react-router-dom";
 import { Tween, SplitWords, Reveal } from "react-gsap";
+import { Container } from "../utils/TailwindComps";
+import { SplitWordAnim } from "../components/Interactive";
 
 const ProjectPage = ({ projects, themeState, footer }) => {
   const location = useLocation();
@@ -17,82 +19,41 @@ const ProjectPage = ({ projects, themeState, footer }) => {
   const activateFilter = () => {
     setActivate(!activate);
   };
+
+  const categories = [
+    "all",
+    "av design",
+    "conferencing",
+    "interactive media",
+    "system integration",
+  ];
   return (
     <>
-      <main className=" pt-[50vh]">
-        <div className=" project container">
-          <Reveal repeat trigger={<h1 />}>
-            <Tween
-              from={{ y: "200px", opacity: "0" }}
-              stagger={0.1}
-              playState={animationTrigger}
-              wrapper={
-                <div
-                  style={{
-                    overflow: "hidden",
-                    paddingBlock: "15px",
-                  }}
-                />
-              }
-            >
-              <h1>{selectedCategory}</h1>
-            </Tween>
-          </Reveal>
-          <div className="hr"></div>
+      <main className=" pt-[5rem]">
+        <Container>
+          {selectedCategory && (
+            <SplitWordAnim
+              tag="h1"
+              text={selectedCategory}
+              key={selectedCategory}
+            />
+          )}
           <div className="projects">
             <div className=" hidden md:block">
-              <div className="filter" onClick={resetScroll}>
-                <div className="filter-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="25"
-                    height="25"
-                    viewBox="0 0 256 256"
-                  >
-                    <path d="M200,128a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H192A8,8,0,0,1,200,128Zm32-56H24a8,8,0,0,0,0,16H232a8,8,0,0,0,0-16Zm-80,96H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Z"></path>
-                  </svg>
-                  <h3 className={`${themeState ? "text-white" : "text-white"}`}>
-                    filter
-                  </h3>
-                </div>
-                <div>
+              <div className="space-x-2" onClick={resetScroll}>
+                {categories.map((category) => (
                   <button
-                    className={selectedCategory === "all" ? `active` : ""}
-                    onClick={() => setSelectedCategory("all")}
+                    key={category}
+                    className={`${
+                      selectedCategory === category
+                        ? "bg-kaizen-black text-white"
+                        : ""
+                    } px-4 py-1 border border-kaizen-black rounded-full`}
+                    onClick={() => setSelectedCategory(category)}
                   >
-                    all
+                    {category}
                   </button>
-                  <button
-                    className={selectedCategory === "av design" ? `active` : ""}
-                    onClick={() => setSelectedCategory("av design")}
-                  >
-                    av design
-                  </button>
-                  <button
-                    className={
-                      selectedCategory === "conferencing" ? `active` : ""
-                    }
-                    onClick={() => setSelectedCategory("conferencing")}
-                  >
-                    conferencing
-                  </button>
-                  <button
-                    className={
-                      selectedCategory === "interactive media" ? `active` : ""
-                    }
-                    onClick={() => setSelectedCategory("interactive media")}
-                  >
-                    interactive media
-                  </button>
-                  <button
-                    className={
-                      selectedCategory === "system intergration" ? `active` : ""
-                    }
-                    onClick={() => setSelectedCategory("system intergration")}
-                  >
-                    system intergration
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
             <div className="block md:hidden sticky top-20 z-30">
@@ -181,7 +142,7 @@ const ProjectPage = ({ projects, themeState, footer }) => {
               />
             </div>
           </div>
-        </div>
+        </Container>
       </main>
     </>
   );

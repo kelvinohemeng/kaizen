@@ -20,8 +20,10 @@ function App() {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-  const fetchData = () => {
-    fetch("https://kelvinohemeng.github.io/kaizen-api-port/projectsData.json")
+  const fetchData = async () => {
+    await fetch(
+      "https://kelvinohemeng.github.io/kaizen-api-port/projectsData.json"
+    )
       .then((response) => response.json())
       .then((data) => {
         setProjectData(data.projectData);
@@ -44,22 +46,13 @@ function App() {
     <>
       <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
         <main
-          className={`h-full relative bg-white w-full ${
-            darkMode ? `darkmode` : ""
-          } `}
+          className={`h-full relative bg-opacity-40 w-full  bg-kaizen-white`}
         >
-          <Navbar toggleDarkMode={toggleDarkMode} themeState={darkMode} />
-
-          <AnimatedRoutes
-            project={projectData}
-            themeState={darkMode}
-            footer={<Footer themeState={darkMode} />}
-          />
+          <Navbar />
+          <AnimatedRoutes project={projectData} footer={<Footer />} />
         </main>
-        <Footer />
       </CloudinaryContext>
     </>
   );
 }
-
 export default App;

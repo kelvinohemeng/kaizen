@@ -7,35 +7,107 @@ import { DefaultButton } from "../components/Components";
 import { GsapReveal, GsapScale, GsapScaleCus } from "../components/Gsaps";
 import { Accordion } from "../components/Accordion";
 import { Faq } from "../components/Faq";
+import { Container } from "../utils/TailwindComps";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { ReachOut } from "../sections/Contact";
 // import { ApproachCard } from "../components/ApproachCard";
 
-const approachData = [
+// or only core styles
+import "@splidejs/react-splide/css/core";
+import { Service } from "../sections/Service";
+import { Testimonial } from "../components/testimonial";
+import { SplitWordAnim } from "../components/Interactive";
+
+const testimonials = [
   {
-    id: 1,
-    title: "Empathise",
-    context:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
   },
   {
-    id: 2,
-    title: "Ideate",
-    context:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
   },
   {
-    id: 3,
-    title: "Prototype",
-    context:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
   },
   {
-    id: 4,
-    title: "Execute",
-    context:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
   },
 ];
-const Home = ({ projects, themeState, footer }) => {
+const testimonials2 = [
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+  {
+    dp: "",
+    name: "Joyce Amaveyo",
+    testimonial:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, ",
+    rating: 4.5,
+  },
+];
+
+const Home = ({ projects, footer }) => {
   const [display, setDisplay] = useState(false);
   function toggleDisplay() {
     setDisplay(!display);
@@ -64,670 +136,359 @@ const Home = ({ projects, themeState, footer }) => {
 
   return (
     <>
-      <section className=" md:h-screen relative -z-0 w-full flex items-center pt-[30vh] md:pt-[20vh] pb-[10vh]">
-        <div className="container flex w-full bg-white gap-[8rem]">
-          <div className=" flex-1 space-y-12 md:space-y-8">
-            <h1 className="block md:hidden text-left">
-              Bring your vision <br /> to life
-            </h1>
-            <h2 className="hidden md:block text-left">
-              Bring your vision <br /> to life
-            </h2>
-            <div className=" space-y-12 md:space-y-2">
-              <p className="">
-                Take your event to the next level next level, watch as we build
-                your programme from our preparation to excution as we embark you
-                on something special
+      <main className="">
+        {" "}
+        <section>
+          <Container outerDivColor="kaizen-black" className="">
+            <div className="flex items-center justify-center w-full md:min-h-[40rem] 2xl:min-h-[55rem]">
+              <SplitWordAnim
+                duration={2}
+                textColor={`text-white`}
+                tag={`h1`}
+                text={`Be heard loud and clear`}
+              />
+            </div>
+          </Container>
+        </section>
+        {/* intro 2 */}
+        <section className="grid grid-cols-2 bg-kaizen-black bg-opacity-75 gap-12">
+          <div className=" md:ml-[123px] 2xl:ml-[500px] flex items-center ">
+            <div className="left space-y-4 text-white">
+              <SplitWordAnim
+                tag={`h3`}
+                text={`Bring your vision to life with kaizen`}
+              />
+              <p className="text-white max-w-[500px]">
+                Experience the future of audio visual with kaizen AV Projects.
+                Book a service with us today and take your business to the next
+                level.
               </p>
-              <div className="block md:hidden flex-1 relative overflow-hidden">
-                <div className=" w-full h-full flex justify-start ">
-                  {" "}
-                  <div className=" space-y-8 top-0 ">
-                    <h2 className=" text-left font-bold underline italic">
-                      Audio visual
-                    </h2>
-                    <h2 className=" text-left font-bold underline italic">
-                      Conferencing
-                    </h2>
-                    <h2 className=" text-left font-bold underline italic">
-                      System Integration
-                    </h2>
-                    <h2 className=" text-left font-bold underline italic">
-                      Interractive Media
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="hero-btn-mobile">
-                <DefaultButton linkTo="/booking" notShow color="white">
-                  Get started
+              <div>
+                <DefaultButton blackBg notShow color={`white`}>
+                  Get started on your project
                 </DefaultButton>
               </div>
             </div>
           </div>
-          <div className="hidden md:block flex-1 relative overflow-hidden">
-            <div className="absolute top-[-10%] z-[99999] pointer-events-none">
-              <svg
-                width="603"
-                height="131"
-                viewBox="0 0 603 131"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="603"
-                  height="131"
-                  transform="matrix(1 0 0 -1 0 131)"
-                  fill="url(#paint0_linear_4703_2300)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_4703_2300"
-                    x1="301.5"
-                    y1="0"
-                    x2="301.5"
-                    y2="123"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stop-color="white" stop-opacity="0" />
-                    <stop
-                      offset="0.427083"
-                      stop-color="white"
-                      stop-opacity="0.42"
-                    />
-                    <stop offset="0.786458" stop-color="white" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div className=" w-full h-full flex justify-center ">
-              {" "}
-              <div className=" space-y-10 absolute top-0 sliding-service ">
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Audio visual
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Conferencing
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  System Integration
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Interractive Media
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Audio visual
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Conferencing
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  System Integration
-                </h3>
-                <h3 className=" tracking-tighter text-left font-light hover:font-bold hover:underline hover:italic duration-200">
-                  Interractive Media
-                </h3>
-              </div>
-            </div>
-            <div className="absolute bottom-[-10%] z-[99999] pointer-events-none">
-              <svg
-                width="603"
-                height="131"
-                viewBox="0 0 603 131"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="603"
-                  height="131"
-                  fill="url(#paint0_linear_4702_2121)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_4702_2121"
-                    x1="301.5"
-                    y1="0"
-                    x2="301.5"
-                    y2="123"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stop-color="white" stop-opacity="0" />
-                    <stop
-                      offset="0.427083"
-                      stop-color="white"
-                      stop-opacity="0.42"
-                    />
-                    <stop offset="0.786458" stop-color="white" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="video-section hidden md:block">
-        <GsapScaleCus value="1.5">
-          <div className="w-full p-2 relative">
-            <video
-              ref={videoRef}
-              className="the-video"
-              autoPlay={true}
-              // controls
-              muted={false}
-            >
-              <source src="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4" />
-            </video>
-            <div className=" absolute top-0 w-full h-full flex items-end justify-start p-10 z-[99999999] pointer-events-none">
-              <button
-                onClick={toggleVideo}
-                className=" text-white pointer-events-auto"
-              >
-                {isPlaying ? (
-                  <span className=" flex gap-4 items-center ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#ffffff"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"></path>
-                    </svg>
-                    <span className=" text-white">Pause Video</span>
-                  </span>
-                ) : (
-                  <span className=" flex gap-4 items-center ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#ffffff"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
-                    </svg>
-                    <span className=" text-white">Play Video</span>
-                  </span>
-                )}
-              </button>
-            </div>
-            <div
-              className={`absolute inset-0 ${
-                themeState ? "bg-white" : "bg-kaizen-blue"
-              } z-[-2] rounded-[20px] bg-opacity-50`}
-            ></div>
-            <div
-              className={`absolute inset-0 ${
-                themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
-              } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
-            ></div>
-          </div>
-        </GsapScaleCus>
-      </section>
-
-      <section className="video-section container block md:hidden">
-        <div className="w-full">
-          <div className="w-full p-2 relative">
-            <video
-              ref={videoRef}
-              className="the-video"
-              autoPlay={true}
-              controls
-              muted={false}
-            >
-              <source src="https://res.cloudinary.com/kaizen-img/video/upload/q_40/v1692457488/kaizen/show-reel.mp4" />
-            </video>
-            <div className=" absolute top-0 w-full h-full flex items-start justify-start p-5 z-[99999999] pointer-events-none">
-              <button
-                onClick={toggleVideo}
-                className=" text-white pointer-events-auto"
-              >
-                {isPlaying ? (
-                  <span className=" flex gap-4 items-center ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#ffffff"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"></path>
-                    </svg>
-                    <span className=" text-white">Pause Video</span>
-                  </span>
-                ) : (
-                  <span className=" flex gap-4 items-center ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#ffffff"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
-                    </svg>
-                    <span className=" text-white">Play Video</span>
-                  </span>
-                )}
-              </button>
-            </div>
-            <div
-              className={`absolute inset-0 ${
-                themeState ? "bg-white" : "bg-kaizen-blue"
-              } z-[-2] rounded-[20px] bg-opacity-50`}
-            ></div>
-            <div
-              className={`absolute inset-0 ${
-                themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
-              } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
-            ></div>
-          </div>
-        </div>
-        {/* <div>
-            <h3 className="headings">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse,
-              voluptatum ratione ut dolor quasi optio laborum repellat eos.
-              Pariatur.
-            </h3>
-          </div> */}
-      </section>
-
-      <section className="read-more-abt-us relative container">
-        <div className="relative w-full h-full p-2">
-          <div
-            className={`absolute inset-0 z-[10] ${
-              themeState ? "bg-white" : "bg-kaizen-blue"
-            } z-[-2] rounded-[20px] bg-opacity-50`}
-          ></div>
-          <div
-            className={`absolute inset-0 z-[10] ${
-              themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
-            } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
-          ></div>
-          <div className="r-img relative p-4 z-[99999] bg-black">
-            <Image
-              publicId="kaizen/b-rrf.jpg"
-              className=" absolute inset-0 h-full object-cover w-full opacity-50  rounded-[20px]"
+          <div className="right   h-[500px] bg-gray-400"></div>
+        </section>
+        {/* cta-read */}
+        <section className=" mb-[10rem]">
+          <Container className="py-[136px]">
+            <SplitWordAnim
+              tag={`h3`}
+              from={`bottom`}
+              text={`We are dedicated to making it work beyond and over your expectations, with kaizen nothing is impossible.`}
             />
-            <div className="abt-img ">
-              <div className="abt-btn">
-                <DefaultButton
-                  outlined
-                  linkTo="/about"
-                  bColor="white"
-                  color="white"
-                >
-                  More about us
+          </Container>
+        </section>
+        {/* cta-read-2 */}
+        <section className=" mb-[10rem]">
+          <Container className="flex flex-col gap-12">
+            <div className="top flex justify-between">
+              <div className="wck space-y-5">
+                <SplitWordAnim
+                  tag={`h3`}
+                  from={`bottom`}
+                  text={`Why choose kaizen...?`}
+                />
+                <div>
+                  <DefaultButton notShow color={`white`}>
+                    Get started
+                  </DefaultButton>
+                </div>
+              </div>
+              <div className=" max-w-[55%]">
+                <p>
+                  Experience the future of audio visual with kaizen AV Projects.
+                  Book a service with us today and take your business to the
+                  next level. <br />
+                  <br />
+                  Experience the future of audio visual with kaizen AV Projects.
+                  Book a service with us today and take your business to the
+                  next level.
+                </p>
+              </div>
+            </div>
+            <div className="w-full bg-gray-400 h-[25rem]"></div>
+          </Container>
+        </section>
+        <section className=" mb-[10rem] relative w-full bg-white py-[5rem]">
+          <Container
+            className={`relative flex flex-col items-center gap-[5rem]`}
+          >
+            <div>
+              <SplitWordAnim
+                tag={`h3`}
+                from={`bottom`}
+                text={`The trust we have built`}
+              />
+            </div>
+            <div className="slider-logos overflow-hidden  space-y-8">
+              <div className="track-logos">
+                <img
+                  src="/companies/i1.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i2.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i3.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i4.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i5.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i6.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i7.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i8.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i9.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i10.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i11.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i12.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+              </div>
+              <div className="track-logos ">
+                <img
+                  src="/companies/i12.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i13.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i14.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i15.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i16.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i17.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i18.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i19.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i20.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i21.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+                <img
+                  src="/companies/i22.png"
+                  alt="caompanies we have worked with"
+                  className="w-[80px] object-contain "
+                />
+              </div>
+            </div>
+          </Container>
+        </section>
+        <Service />
+        {/* testimonial */}
+        <section className="relative mb-[10rem] space-y-[8rem]  z-10">
+          <Container
+            className={` relative space-y-16 overflow-hidden py-[5rem]`}
+          >
+            <div className="space-y-8">
+              <SplitWordAnim
+                tag={`h3`}
+                from={`bottom`}
+                text={`What people say about kaizen`}
+              />
+              <p className="max-w-[60%]">
+                Experience the future of audio visual with kaizen AV Projects.
+                Book a service with us today and take your business to the next
+                level.
+              </p>
+            </div>
+            <div className="slider space-y-8">
+              <div className="track">
+                {testimonials.map((testimonial, index) => {
+                  return (
+                    <Testimonial
+                      key={`cc_${index}`}
+                      name={testimonial.name}
+                      rating={testimonial.rating}
+                      statement={testimonial.testimonial}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <div className="slider">
+              <div className="track">
+                {testimonials2.map((testimonial, index) => {
+                  return (
+                    <Testimonial
+                      key={`bc_${index}`}
+                      name={testimonial.name}
+                      rating={testimonial.rating}
+                      statement={testimonial.testimonial}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </Container>
+          {/* <div className="absolute -top-[44%] right-0 translate-x-[50%] -z-[1] rotate-45">
+            <img
+              src="/patt-blue.png"
+              className="w-[550px] scale-125 opacity-10"
+              alt=""
+            />
+          </div> */}
+        </section>
+        {/* project section */}
+        <section className=" mb-[10rem]">
+          <Container className={``}>
+            <div className="max-w-[60%] space-y-8">
+              <SplitWordAnim
+                tag={`h3`}
+                from={`bottom`}
+                text={`What we have done`}
+              />
+              <p>
+                Experience the future of audio visual with kaizen AV Projects.
+                Book a service with us today and take your business to the next
+                level.
+              </p>
+              <div>
+                <DefaultButton notShow color={`white`} linkTo="/projects">
+                  Explore all projects
                 </DefaultButton>
               </div>
-              <Reveal repeat trigger={<div className="rmau" />}>
-                <Tween from={{ opacity: 0, y: 100 }} duration={1}>
-                  <h2 className="headings-md">
-                    We are a creative audio visual agency that is dedicated to
-                    executing professional and reliable services
-                  </h2>
-                </Tween>
-              </Reveal>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="services" id="service">
-        <div className="container">
-          <div className="left">
-            <h1 className=" text-kaizen-blue ">Service</h1>
-            <DefaultButton
-              outlined
-              color={themeState ? "#f2edf4" : "#000796"}
-              bColor={themeState ? "#f2edf4" : "#000796"}
-              linkTo="/booking"
-            >
-              Book a service
-            </DefaultButton>
-          </div>
-          <div className="right">
-            <Accordion />
-          </div>
-        </div>
-      </section>
-
-      <section className="break overflow-hidden hidden md:flex py-[20vh]">
-        <GsapScale value="8">
-          <div className="the-video">
-            <h1>Be heard loud and clear</h1>
-          </div>
-        </GsapScale>
-      </section>
-      <section className=" h-[30vh] overflow-hidden flex items-center md:hidden">
-        <div className=" text-center px-4">
-          <h1>Be heard loud and clear</h1>
-        </div>
-      </section>
-
-      <section className="recents hidden md:block " id="projects">
-        <div className="container">
-          <div className=" flex flex-col items-center">
-            <h2 className="headings">See for your self</h2>
-            <p className=" max-w-[20rem] md:max-w-[40rem] text-center">
-              See for your self some projects we've worked on over the past
-              recent years, and what client say about us.
-            </p>
-            <div className="cta-all-projects">
-              <DefaultButton linkTo="/projects" color="white">
-                See all projects
-              </DefaultButton>
+            <div>
+              <Splide
+                tag="div"
+                className="w-screen"
+                hasTrack={false}
+                aria-label="our projects"
+                options={{
+                  width: "100%",
+                  arrows: true, // Display 2 slides per page
+                  perMove: 1, // Move 1 slide at a time
+                  gap: "1rem", // Adjust the gap between slides
+                  fixedWidth: "30%",
+                  omitEnd: true,
+                  drag: false,
+                }}
+              >
+                <div className="splide__arrows flex justify-end py-10 gap-8">
+                  <button className="splide__arrow splide__arrow--prev">
+                    <img src="./images/button-left.svg" alt="" />
+                  </button>
+                  <button className="splide__arrow splide__arrow--next">
+                    <img src="./images/button-right.svg" alt="" />
+                  </button>
+                </div>
+                <SplideTrack>
+                  {projects.slice(0, 6).map((proj, index) => (
+                    <SplideSlide className="w-fit">
+                      <Link to={`/projects/${proj.id}`}>
+                        <div
+                          key={`gg_${index}`}
+                          className=" max-w-[350px] group"
+                        >
+                          <div className="relative">
+                            <div className=" bg-kaizen-black absolute inset-0 bg-opacity-0 group-hover:bg-opacity-40  transition-all"></div>
+                            <div className="absolute border border-kaizen-white text-white rounded-full px-4 py-1 ml-4 -top-1/2 group-hover:top-5 duration-300 transition-all">
+                              eplore
+                            </div>
+                            <Image
+                              publicId={`${proj.images[0]}`}
+                              className="aspect-square object-cover "
+                              alt={proj.title}
+                            />
+                          </div>
+                          <div className="p-[20px] bg-kaizen-black space-y-2">
+                            <p className="text-2xl font-regular text-white">
+                              {proj.title}
+                            </p>
+                            <p className=" text-white text-xs line-clamp-2 font-regular text-opacity-50">
+                              {proj.descriptions}
+                            </p>
+                            <p className="text-white border border-white w-fit px-3 py-1 text-sm rounded-full">
+                              {proj.category}
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+                    </SplideSlide>
+                  ))}
+                </SplideTrack>
+              </Splide>
             </div>
-          </div>
-          <div className="r-works">
-            <Reveal>
-              <Tween from={{ scale: 0, opacity: 1 }}>
-                <Link
-                  to={`/projects/${projects[30].id}`}
-                  className="ww bg-opacity-50 "
-                >
-                  <Image publicId={projects[30].images[0]} />
-                  <div className="flex justify-between items-start">
-                    <div className=" space-y-2">
-                      <h4>{projects[30].title}</h4>
-                      <p>{projects[30].category}</p>
-                    </div>
-                    <div className=" flex items-center gap-x-4">
-                      <span className="  font-bold hidden md:block">
-                        explore
-                      </span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                      >
-                        <path
-                          d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                          fill={themeState ? "#ffff" : "#111214"}
-                          stroke={themeState ? "#ffff" : "#111214"}
-                          stroke-width="0.355092"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              </Tween>
-            </Reveal>
-            <Reveal>
-              <Tween from={{ scale: 0, opacity: 1 }}>
-                <Link
-                  to={`/projects/${projects[10].id}`}
-                  className="ww bg-opacity-50 "
-                >
-                  <Image publicId={projects[10].images[0]} />
-                  <div className="flex justify-between items-start">
-                    <div className=" space-y-2">
-                      <h4>{projects[10].title}</h4>
-                      <p>{projects[10].title}</p>
-                    </div>
-                    <div className=" flex items-center gap-x-4">
-                      <span className="  font-bold hidden md:block">
-                        explore
-                      </span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                      >
-                        <path
-                          d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                          fill={themeState ? "#ffff" : "#111214"}
-                          stroke={themeState ? "#ffff" : "#111214"}
-                          stroke-width="0.355092"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              </Tween>
-            </Reveal>
-            <Reveal>
-              <Tween from={{ scale: 0, opacity: 1 }}>
-                <Link
-                  to={`/projects/${projects[1].id}`}
-                  className="ww bg-opacity-50 "
-                >
-                  <Image publicId={projects[1].images[0]} />
-                  <div className="flex justify-between items-start">
-                    <div className=" space-y-2">
-                      <h4>{projects[1].title}</h4>
-                      <p>{projects[1].category}</p>
-                    </div>
-                    <div className=" flex items-center gap-x-4">
-                      <span className="  font-bold hidden md:block">
-                        explore
-                      </span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                      >
-                        <path
-                          d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                          fill={themeState ? "#ffff" : "#111214"}
-                          stroke={themeState ? "#ffff" : "#111214"}
-                          stroke-width="0.355092"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              </Tween>
-            </Reveal>
-            <Reveal>
-              <Tween from={{ scale: 0, opacity: 1 }}>
-                <Link
-                  to={`/projects/${projects[50].id}`}
-                  className="ww bg-opacity-50 "
-                >
-                  <Image publicId={projects[50].images[0]} />
-                  <div className="flex justify-between items-start">
-                    <div className=" space-y-2">
-                      <h4>{projects[50].title}</h4>
-                      <p>{projects[50].title}</p>
-                    </div>
-                    <div className=" flex items-center gap-x-4">
-                      <span className="  font-bold hidden md:block">
-                        explore
-                      </span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                      >
-                        <path
-                          d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                          fill={themeState ? "#ffff" : "#111214"}
-                          stroke={themeState ? "#ffff" : "#111214"}
-                          stroke-width="0.355092"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              </Tween>
-            </Reveal>
-          </div>
-          {/* <div className="cta-all-projects">
-            <DefaultButton linkTo="/projects" color="white">
-              See all projects
-            </DefaultButton>
-          </div> */}
-        </div>
-      </section>
-      <section className="recents block md:hidden " id="projects">
-        <div className="container">
-          <div className=" flex flex-col items-center">
-            <h2 className="headings">See for your self</h2>
-            <p className=" max-w-[20rem] md:max-w-[40rem] text-center">
-              See for your self some projects we've worked on over the past
-              recent years, and what client say about us.
-            </p>
-            <div className="cta-all-projects">
-              <DefaultButton linkTo="/projects" color="white">
-                See all projects
-              </DefaultButton>
-            </div>
-          </div>
-          <div className="r-works">
-            <Link
-              to={`/projects/${projects[30].id}`}
-              className="ww bg-opacity-50 "
-            >
-              <Image publicId={projects[30].images[0]} />
-              <div className="flex justify-between items-start">
-                <div className=" space-y-2">
-                  <h4>{projects[30].title}</h4>
-                  <p>{projects[30].category}</p>
-                </div>
-                <div className=" flex items-center gap-x-4">
-                  <span className="  font-bold hidden md:block">explore</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                  >
-                    <path
-                      d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                      fill={themeState ? "#ffff" : "#111214"}
-                      stroke={themeState ? "#ffff" : "#111214"}
-                      stroke-width="0.355092"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to={`/projects/${projects[10].id}`}
-              className="ww bg-opacity-50 "
-            >
-              <Image publicId={projects[10].images[0]} />
-              <div className="flex justify-between items-start">
-                <div className=" space-y-2">
-                  <h4>{projects[10].title}</h4>
-                  <p>{projects[10].title}</p>
-                </div>
-                <div className=" flex items-center gap-x-4">
-                  <span className="  font-bold hidden md:block">explore</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                  >
-                    <path
-                      d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                      fill={themeState ? "#ffff" : "#111214"}
-                      stroke={themeState ? "#ffff" : "#111214"}
-                      stroke-width="0.355092"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to={`/projects/${projects[1].id}`}
-              className="ww bg-opacity-50 "
-            >
-              <Image publicId={projects[1].images[0]} />
-              <div className="flex justify-between items-start">
-                <div className=" space-y-2">
-                  <h4>{projects[1].title}</h4>
-                  <p>{projects[1].category}</p>
-                </div>
-                <div className=" flex items-center gap-x-4">
-                  <span className="  font-bold hidden md:block">explore</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                  >
-                    <path
-                      d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                      fill={themeState ? "#ffff" : "#111214"}
-                      stroke={themeState ? "#ffff" : "#111214"}
-                      stroke-width="0.355092"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to={`/projects/${projects[50].id}`}
-              className="ww bg-opacity-50 "
-            >
-              <Image publicId={projects[50].images[0]} />
-              <div className="flex justify-between items-start">
-                <div className=" space-y-2">
-                  <h4>{projects[50].title}</h4>
-                  <p>{projects[50].title}</p>
-                </div>
-                <div className=" flex items-center gap-x-4">
-                  <span className="  font-bold hidden md:block">explore</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                  >
-                    <path
-                      d="M1.60175 13.1944L1.60182 13.1944L1.60625 13.19L11.7571 3.03918V10.5575C11.7571 10.7459 11.8319 10.9265 11.9651 11.0597C12.0983 11.1929 12.2789 11.2677 12.4673 11.2677C12.6556 11.2677 12.8362 11.1929 12.9694 11.0597C13.1026 10.9265 13.1774 10.7459 13.1774 10.5575V1.32512C13.1774 1.13677 13.1026 0.956128 12.9694 0.822943C12.8362 0.689757 12.6556 0.614935 12.4673 0.614935H3.23486C3.04651 0.614935 2.86587 0.689757 2.73269 0.822942C2.5995 0.956128 2.52468 1.13677 2.52468 1.32512C2.52468 1.51347 2.5995 1.69411 2.73269 1.82729C2.86587 1.96048 3.04651 2.0353 3.23486 2.0353H10.7532L0.602371 12.1861L0.602293 12.186L0.59802 12.1906C0.472574 12.3253 0.404279 12.5033 0.407526 12.6873C0.410772 12.8713 0.485305 13.0468 0.615423 13.1769C0.745541 13.3071 0.921084 13.3816 1.10507 13.3848C1.28906 13.3881 1.46712 13.3198 1.60175 13.1944Z"
-                      fill={themeState ? "#ffff" : "#111214"}
-                      stroke={themeState ? "#ffff" : "#111214"}
-                      stroke-width="0.355092"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          </div>
-          {/* <div className="cta-all-projects">
-            <DefaultButton linkTo="/projects" color="white">
-              See all projects
-            </DefaultButton>
-          </div> */}
-        </div>
-      </section>
-
-      {/* <section className="faq container" id="faq">
-        <div>
-          <h1 className="headings">FAQs</h1>
-        </div>
-        <div className="faq-container">
-          <Faq />
-        </div>
-      </section> */}
-
-      <div className=" container flex flex-col items-center gap-6 h-[30vh]">
-        <Link to="/projects">
-          <h2 className="">Still got questions?</h2>
-        </Link>
-        <DefaultButton color="white" linkTo="/booking">
-          Contact
-        </DefaultButton>
-      </div>
-      {/* {footer} */}
+          </Container>
+        </section>
+        {/* contact us */}
+        <ReachOut />
+      </main>
+      {footer}
     </>
   );
 };

@@ -1,33 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Image, Video } from "cloudinary-react";
-import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useParams } from "react-router-dom";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "swiper/css/effect-cards";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
-// import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import {
-  DefaultButton,
-  DefaultButton2,
-  DefaultButton2Var,
-  DefaultButtonVar,
-} from "../components/Components";
-import Testimonial from "../components/testimonial";
-import { Reveal, Tween, SplitWords, SplitChars } from "react-gsap";
-import { GsapScale } from "../components/Gsaps";
-// import { EffectCards } from "swiper/modules";
+// or only core styles
+import "@splidejs/react-splide/css/core";
 
-const ProjectDetail = ({ projects, themeState, footer }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+import { DefaultButton } from "../components/Components";
+import { TestimonialProj } from "../components/testimonial";
+import { Container } from "../utils/TailwindComps";
+import { SplitWordAnim } from "../components/Interactive";
 
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+const ProjectDetail = ({ projects, footer }) => {
   //   const { projectId } = useParams();
   const parems = useParams();
   const projectId = parems.projectId;
@@ -38,12 +23,13 @@ const ProjectDetail = ({ projects, themeState, footer }) => {
 
   const prevPageIndex =
     projects.findIndex((project) => project.id === parseInt(projectId)) - 1;
+
   const handlePreviousPage = () => {
     if (prevPageIndex >= 0) {
       const prevProjectId = projects[prevPageIndex].id;
-      navigate(`/projects/${prevProjectId}`);
+      window.location.href = `/projects/${prevProjectId}`;
     } else {
-      navigate("/projects");
+      window.location.href = "/projects";
     }
   };
   const nextProjectIndex =
@@ -52,9 +38,9 @@ const ProjectDetail = ({ projects, themeState, footer }) => {
   const handleNextPage = () => {
     if (determineNextPageIndex) {
       const nextProjectId = projects[nextProjectIndex].id;
-      navigate(`/projects/${nextProjectId}`);
+      window.location.href = `/projects/${nextProjectId}`;
     } else {
-      navigate("/projects");
+      window.location.href = "/projects";
     }
   };
 
@@ -64,256 +50,170 @@ const ProjectDetail = ({ projects, themeState, footer }) => {
 
   return (
     <>
-      <div className=" project-details-page py-[10vh]">
-        <div className=" container intro print:py-0 my-[10vh] md:my-[20vh]">
-          <Reveal
-            // repeat
-            trigger={
-              <div
-                className="chars-wrapper"
-                style={{
-                  maxWidth: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "wrap",
-                  gap: "10px",
-                  overflow: "hidden",
-                }}
-              />
-            }
-          >
-            <Tween from={{ y: "200px", opacity: "0" }} stagger={0.1}>
-              <SplitWords wrapper={<h2 className=" py-[20px]" />}>
-                {project.title}
-              </SplitWords>
-            </Tween>
-          </Reveal>
-          <div className="inline-details">
-            <span> Client - {project.owner}</span>
-            <span>Project Type - {project.category}</span>
-            <span> Date -{project.date}</span>
-          </div>
-        </div>
-        {/* <div className="sliderr"> */}
-        <div className=" container mx-auto px-4  print:space-y-5 hidden print:block">
-          {project.images.map((image, index) => (
-            <Image
-              key={index}
-              publicId={image}
-              alt={`Project ${project.title} Image ${index + 1}`}
-              height="contain"
-              quality="50"
-            />
-          ))}
-        </div>
-        <div className="images-container print:hidden">
-          <div className="video-section hidden md:block">
-            <GsapScale value="1.3">
-              <div className="w-full p-2 relative">
-                <Swiper
-                  // key={23669}
-                  style={{
-                    "--swiper-navigation-color": "#fff",
-                    "--swiper-pagination-color": "#fff",
-                  }}
-                  loop={true}
-                  spaceBetween={0}
-                  navigation={true}
-                  thumbs={{ swiper: thumbsSwiper }}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  className="mySwiper2 "
-                >
-                  {project.video ? (
-                    <SwiperSlide>
-                      <Video
-                        publicId={project.video}
-                        controls={false}
-                        autoPlay
-                        muted={true}
-                        // width="640"
-                        // height="360"
-                      />
-                    </SwiperSlide>
-                  ) : (
-                    ""
-                  )}
-                  {project.images.map((image, index) => (
-                    <SwiperSlide>
+      <main className=" py-[10vh]">
+        <Container>
+          {" "}
+          <div className=" project-details-page">
+            <div className=" print:py-0 my-[10vh] space-y-10">
+              <div className="flex justify-between items-center">
+                <div>
+                  <SplitWordAnim tag="h2" text={project.title} />
+                  <p className="text-xl">{project.owner}</p>
+                </div>
+                <div className="no-print">
+                  <DefaultButton
+                    blackBg
+                    color={`white`}
+                    rounded
+                    notShow
+                    flip
+                    customIcon={
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="white"
+                        viewBox="0 0 256 256"
+                      >
+                        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm37.66-85.66a8,8,0,0,1,0,11.32l-32,32a8,8,0,0,1-11.32,0l-32-32a8,8,0,0,1,11.32-11.32L120,148.69V88a8,8,0,0,1,16,0v60.69l18.34-18.35A8,8,0,0,1,165.66,130.34Z"></path>
+                      </svg>
+                    }
+                    onClick={() => {
+                      window.print();
+                    }}
+                  >
+                    Download this project as pdf
+                  </DefaultButton>
+                </div>
+              </div>
+              <div className="w-full overflow-hidden">
+                {project.video ? (
+                  <Video
+                    publicId={project.video}
+                    controls={false}
+                    autoPlay
+                    muted={true}
+                    width="640"
+                    height="360"
+                  />
+                ) : (
+                  <Image
+                    className="w-full max-h-[400px] aspect-square object-cover"
+                    publicId={project.images[0]}
+                  />
+                )}
+              </div>
+            </div>
+            {/* <div className="sliderr"> */}
+            <div>
+              <SplitWordAnim tag="h3" text={`Project summary`} />
+              <div className="flex items-center gap-2">
+                {" "}
+                <div className="border border-kaizen-blue text-white bg-kaizen-blue w-fit px-4 rounded-full">
+                  {project.category}
+                </div>
+                <div className="font-medium text-kaizen-blue">
+                  {project.date}
+                </div>
+              </div>
+              <p className=" md:max-w-[70%] pt-5">{project.descriptions}</p>
+            </div>
+
+            <Splide
+              tag="div"
+              className="w-full"
+              hasTrack={false}
+              aria-label="our projects"
+              options={{
+                arrows: true, // Display 2 slides per page
+                perMove: 2, // Move 1 slide at a time
+                gap: "1rem", // Adjust the gap between slides
+                perPage: 3,
+                omitEnd: true,
+                drag: false,
+              }}
+            >
+              <div>
+                <div className="splide__arrows flex justify-end py-10 gap-8">
+                  <button className="splide__arrow splide__arrow--prev">
+                    <img src="../images/button-left.svg" alt="" />
+                  </button>
+                  <button className="splide__arrow splide__arrow--next">
+                    <img src="../images/button-right.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+              <SplideTrack>
+                {project.images.map((image, index) => (
+                  <SplideSlide className="w-fit ">
+                    <div className="relative">
                       <Image
-                        key={index}
+                        key={`gkkj_${index}`}
                         publicId={image}
                         alt={`Project ${project.title} Image ${index + 1}`}
-                        height="contain"
-                        quality="50"
+                        className=" object-cover"
                       />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-                <div
-                  className={`absolute inset-0 ${
-                    themeState ? "bg-white" : "bg-kaizen-blue"
-                  } z-[-2] rounded-[20px] bg-opacity-50`}
-                ></div>
-                <div
-                  className={`absolute inset-0 ${
-                    themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
-                  } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
-                ></div>
+                    </div>
+                  </SplideSlide>
+                ))}
+              </SplideTrack>
+            </Splide>
+
+            <div className="grid grid-cols-2 gap-10 pt-[5rem]">
+              <div>
+                <h4>Challenges</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+                  alias sapiente dignissimos eos iusto, doloribus, voluptatibus
+                  et expedita officiis voluptatum enim provident sunt beatae,
+                  cupiditate quisquam? Deleniti assumenda repellat mollitia.
+                </p>
               </div>
-            </GsapScale>
-          </div>
-          <div className="video-section block md:hidden px-4">
-            <div className="w-full p-2 relative">
-              <Swiper
-                // key={23669}
-                style={{
-                  "--swiper-navigation-color": "#fff",
-                  "--swiper-pagination-color": "#fff",
-                }}
-                loop={true}
-                spaceBetween={0}
-                navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2 "
-              >
-                {project.video ? (
-                  <SwiperSlide>
-                    <Video
-                      publicId={project.video}
-                      controls={false}
-                      autoPlay
-                      muted={true}
-                      // width="640"
-                      // height="360"
+              <div>
+                <h4>Outcome</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Quasi dolor blanditiis recusandae atque nulla error aut iure
+                  laudantium, repellat a.
+                </p>
+              </div>
+            </div>
+
+            {project.testimonialData && (
+              <div className="pt-[5rem] space-y-9">
+                {/* testimonial */}
+                <h4>Testimonial</h4>
+                {project.testimonialData.map(
+                  (projectTestimonial, testIndex) => (
+                    <TestimonialProj
+                      name={projectTestimonial.person}
+                      statement={projectTestimonial.statement}
+                      rating={4.5}
                     />
-                  </SwiperSlide>
-                ) : (
-                  ""
+                  )
                 )}
-                {project.images.map((image, index) => (
-                  <SwiperSlide>
-                    <Image
-                      key={index}
-                      publicId={image}
-                      alt={`Project ${project.title} Image ${index + 1}`}
-                      height="contain"
-                      quality="50"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div
-                className={`absolute inset-0 ${
-                  themeState ? "bg-white" : "bg-kaizen-blue"
-                } z-[-2] rounded-[20px] bg-opacity-50`}
-              ></div>
-              <div
-                className={`absolute inset-0 ${
-                  themeState ? "bg-kaizen-white" : "bg-kaizen-blue"
-                } z-[-2] rounded-[20px] bg-opacity-50 animate-pulse scale-[1.01] scale-y-[1.02]`}
-              ></div>
-            </div>
-          </div>
-          <div className="container thumbnails">
-            <Swiper
-              onSwiper={setThumbsSwiper}
-              loop={true}
-              spaceBetween={10}
-              slidesPerView={5}
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper"
-            >
-              {project.video ? (
-                <SwiperSlide>
-                  <Image publicId={project.images[0]} />
-                </SwiperSlide>
-              ) : (
-                ""
-              )}
-              {project.images.map((image, index) => (
-                <SwiperSlide>
-                  <Image
-                    key={index}
-                    publicId={image}
-                    alt={`Project ${project.title} Image ${index + 1}`}
-                    quality="10"
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-        <div className="container print:pt-40">
-          {project.descriptions ? (
-            <div className="description">
-              {project.descriptions
-                .split("\n\n")
-                .map((paragraph, paragraphIndex) => (
-                  <p key={paragraphIndex}>{paragraph}</p>
-                ))}
-            </div>
-          ) : (
-            ""
-          )}
-
-          {project.testimonialData ? (
-            <div className=" space-y-12 mt-[10vh]">
-              <h3 className="">- What the client said about us</h3>
-              <div className="">
-                {project.testimonialData.map((testimonial, index) => (
-                  <Testimonial
-                    key={testimonial.id}
-                    testImg={testimonial.img}
-                    person={testimonial.person}
-                    statement={() => <p>{testimonial.statement}</p>}
-                  />
-                ))}
               </div>
-            </div>
-          ) : (
-            ""
-          )}
-
-          <div>
-            <div className="btnss">
-              <DefaultButton2Var
-                notShow
-                color="white"
-                onClick={handlePreviousPage}
-              >
+            )}
+          </div>
+          <div className="no-print w-full flex justify-between pt-[5rem]">
+            <div>
+              <DefaultButton notShow color="white" onClick={handlePreviousPage}>
                 Previous Project
-              </DefaultButton2Var>
-              {determineNextPageIndex ? (
-                <DefaultButtonVar
-                  notShow
-                  color="white"
-                  onClick={handleNextPage}
-                >
-                  Next Project
-                </DefaultButtonVar>
-              ) : (
-                ""
-              )}
-            </div>
-            <div className="btn-d-p ">
-              <DefaultButton
-                notShow
-                color={themeState ? "#f2edf4" : "#000796"}
-                bColor={themeState ? "#f2edf4" : "#000796"}
-                outlined
-                onClick={() => {
-                  window.print();
-                }}
-              >
-                Download page
               </DefaultButton>
             </div>
+            {determineNextPageIndex ? (
+              <div>
+                <DefaultButton notShow color="white" onClick={handleNextPage}>
+                  Next Project
+                </DefaultButton>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-        </div>
-      </div>
+        </Container>
+      </main>
+      {footer}
     </>
   );
 };
