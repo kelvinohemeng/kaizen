@@ -47,7 +47,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   // useEffect(() => {}, []);
   return (
     <nav
-      className={` fixed top-0 w-full ${navClasses} no-print pointer-events-auto z-[999] transition-all duration-300`}
+      className={` fixed top-0 w-full ${navClasses} no-print pointer-events-auto z-[999] transition-all duration-300 shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]`}
     >
       <div
         className="bg-black bg-opcaity-50"
