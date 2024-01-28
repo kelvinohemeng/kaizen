@@ -12,27 +12,27 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   const [hideNav, setHideNav] = useState(false);
 
   // nav scroll functionality
-  // const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollY = window.scrollY;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
 
-  //     if (scrollY > lastScrollY) {
-  //       setHideNav(true);
-  //     } else {
-  //       setHideNav(false);
-  //     }
+      if (scrollY > lastScrollY) {
+        setHideNav(true);
+      } else {
+        setHideNav(false);
+      }
 
-  //     setLastScrollY(scrollY);
-  //   };
+      setLastScrollY(scrollY);
+    };
 
-  //   window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [lastScrollY]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   const toggleNav = () => {
     setNavState(!navState);
@@ -41,11 +41,13 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   const deactivateNav = () => {
     navState ? setNavState(!navState) : setNavState(navState);
   };
-  const navClasses = ` ${hideNav ? `hide-nav` : ""}`;
+  const navClasses = ` ${
+    hideNav ? ` translate-y-[0%]` : "translate-y-[-100%]"
+  }`;
   // useEffect(() => {}, []);
   return (
     <nav
-      className={` sticky top-0 w-full ${navClasses} no-print pointer-events-auto z-[999]`}
+      className={` fixed top-0 w-full ${navClasses} no-print pointer-events-auto z-[999] transition-all duration-300`}
     >
       <div
         className="bg-black bg-opcaity-50"
