@@ -1,8 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Image, Video } from "cloudinary-react";
-import { Reveal, Tween } from "react-gsap";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 import { Link } from "react-router-dom";
-// import "./App.scss";
 import { DefaultButton } from "../components/Components";
 import { Container } from "../utils/TailwindComps";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
@@ -14,6 +17,8 @@ import "@splidejs/react-splide/css/core";
 import { Service } from "../sections/Service";
 import { Testimonial } from "../components/testimonial";
 import { SplitWordAnim } from "../components/Interactive";
+import HeroSection from "../sections/HeroSection";
+import useInteractive from "../utils/Interractive";
 
 const testimonials = [
   {
@@ -105,48 +110,25 @@ const testimonials2 = [
 ];
 
 const Home = ({ projects, footer }) => {
-  const [display, setDisplay] = useState(false);
-  function toggleDisplay() {
-    setDisplay(!display);
-  }
-
-  // create a ref to the video element
-  const videoRef = useRef(null);
-  // create a state to store the video status
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  // define a function to toggle the video play/pause
-  const toggleVideo = () => {
-    // check if the video is playing
-    if (isPlaying) {
-      // pause the video
-      videoRef.current.pause();
-      // update the state
-      setIsPlaying(false);
-    } else {
-      // play the video
-      videoRef.current.play();
-      // update the state
-      setIsPlaying(true);
-    }
-  };
+  const fadeIn = useRef();
+  useInteractive({
+    classNames: "fade-in",
+    vertical: true,
+    horizontal: false,
+    opacity: 0,
+  });
+  useInteractive({
+    classNames: "fade-in-horizontal",
+    vertical: false,
+    horizontal: true,
+    opacity: 0,
+  });
 
   return (
     <>
       <main className="">
         {" "}
-        <header className="no-mb">
-          <Container outerDivColor="kaizen-black" className="">
-            <div className="flex items-center justify-center w-full text-center min-h-[40rem] 2xl:min-h-[55rem]">
-              <SplitWordAnim
-                duration={2}
-                textColor={`text-white`}
-                tag={`h1`}
-                text={`Be heard loud and clear`}
-              />
-            </div>
-          </Container>
-        </header>
+        <HeroSection />
         {/* intro 2 */}
         <section className="grid md:grid-cols-2 bg-kaizen-black bg-opacity-75 gap-12">
           <div className=" px-5 py-8 md:ml-[123px] 2xl:ml-[500px] flex items-center ">
@@ -155,15 +137,17 @@ const Home = ({ projects, footer }) => {
                 tag={`h3`}
                 text={`Bring your vision to life with kaizen`}
               />
-              <p className="text-white max-w-[500px]">
-                Experience the future of audio visual with kaizen AV Projects.
-                Book a service with us today and take your business to the next
-                level.
-              </p>
-              <div>
-                <DefaultButton blackBg notShow color={`white`}>
-                  Get started on your project
-                </DefaultButton>
+              <div className={` fade-in space-y-4`}>
+                <p className="text-white max-w-[500px]">
+                  Experience the future of audio visual with kaizen AV Projects.
+                  Book a service with us today and take your business to the
+                  next level.
+                </p>
+                <div>
+                  <DefaultButton blackBg notShow color={`white`}>
+                    Get started on your project
+                  </DefaultButton>
+                </div>
               </div>
             </div>
           </div>
@@ -195,7 +179,7 @@ const Home = ({ projects, footer }) => {
                   </DefaultButton>
                 </div>
               </div>
-              <div className=" md:max-w-[55%]">
+              <div className=" fade-in md:max-w-[55%]">
                 <p>
                   Experience the future of audio visual with kaizen AV Projects.
                   Book a service with us today and take your business to the
@@ -356,7 +340,7 @@ const Home = ({ projects, footer }) => {
                 from={`bottom`}
                 text={`What people say about kaizen`}
               />
-              <p className="md:max-w-[60%]">
+              <p className="fade-in-horizontal md:max-w-[60%]">
                 Experience the future of audio visual with kaizen AV Projects.
                 Book a service with us today and take your business to the next
                 level.
@@ -410,15 +394,17 @@ const Home = ({ projects, footer }) => {
                 from={`bottom`}
                 text={`What we have done`}
               />
-              <p>
-                Experience the future of audio visual with kaizen AV Projects.
-                Book a service with us today and take your business to the next
-                level.
-              </p>
-              <div>
-                <DefaultButton notShow color={`white`} linkTo="/projects">
-                  Explore all projects
-                </DefaultButton>
+              <div className="fade-in-horizontal space-y-4">
+                <p>
+                  Experience the future of audio visual with kaizen AV Projects.
+                  Book a service with us today and take your business to the
+                  next level.
+                </p>
+                <div>
+                  <DefaultButton notShow color={`white`} linkTo="/projects">
+                    Explore all projects
+                  </DefaultButton>
+                </div>
               </div>
             </div>
             <div className="hidden md:block">

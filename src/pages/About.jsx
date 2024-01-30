@@ -3,6 +3,7 @@ import { Container } from "../utils/TailwindComps";
 import { Service } from "../sections/Service";
 import { ReachOut } from "../sections/Contact";
 import { SplitWordAnim } from "../components/Interactive";
+import { Image } from "cloudinary-react";
 
 const About = ({ footer }) => {
   return (
@@ -33,7 +34,12 @@ const About = ({ footer }) => {
                 </div>
               </div>
             </div>
-            <div className="w-full aspect-[1/0.5] bg-gray-500"></div>
+            <div>
+              <Image
+                className="w-full aspect-[1/0.5] bg-gray-500 object-cover"
+                publicId="https://res.cloudinary.com/kaizen-img/image/upload/v1692526135/kaizen/projects/nfl/07.jpg"
+              />
+            </div>
           </Container>
         </section>
 
@@ -47,7 +53,12 @@ const About = ({ footer }) => {
                   Tempore sequi cum iusto esse cupiditate ab maiores quia
                   quisquam inventore aspernatur?
                 </p>
-                <div className="w-full aspect-[1.2/0.5] bg-gray-500"></div>
+                <div className="w-full aspect-[1.2/0.5] bg-gray-500">
+                  <Image
+                    className="w-full aspect-[1.2/0.5] bg-gray-500 object-cover"
+                    publicId="kaizen/projects/joynews/03.jpg"
+                  />
+                </div>
               </div>
               <div className=" space-y-8">
                 <p className="max-w-lg">
@@ -55,7 +66,12 @@ const About = ({ footer }) => {
                   Tempore sequi cum iusto esse cupiditate ab maiores quia
                   quisquam inventore aspernatur?
                 </p>
-                <div className="w-full aspect-[1.2/0.5] bg-gray-500"></div>
+                <div className="w-full aspect-[1.2/0.5] bg-gray-500">
+                  <Image
+                    className="w-full aspect-[1.2/0.5] bg-gray-500 object-cover"
+                    publicId="https://res.cloudinary.com/kaizen-img/image/upload/v1692526022/kaizen/projects/gys/04.jpg"
+                  />
+                </div>
               </div>
             </div>
           </Container>

@@ -3,6 +3,7 @@ import { Container } from "../utils/TailwindComps";
 import { SplitWordAnim } from "../components/Interactive";
 import { DefaultButton } from "../components/Components";
 import { ReachOut } from "../sections/Contact";
+import { Image } from "cloudinary-react";
 
 const Service = ({ footer }) => {
   const services = [
@@ -55,7 +56,12 @@ const Service = ({ footer }) => {
                   />
                 </div>
               </div>
-              <div className="W-full aspect-square md:aspect-[1/.35] bg-gray-500"></div>
+              <div>
+                <Image
+                  className="W-full aspect-square md:aspect-[1/.35] bg-gray-500 object-cover object-center"
+                  publicId="kaizen/projects/samsung_unpacked/05.jpg"
+                />
+              </div>
             </div>
             <div className="pt-[10rem] space-y-[10rem]">
               {services.map((service, index) => (

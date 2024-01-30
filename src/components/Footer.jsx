@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const Footer = ({}) => {
   useEffect(() => {
-    console.log(gsap);
     gsap.from(".kaizen-slide-infinite", {
       opacity: 0,
       scale: 2,

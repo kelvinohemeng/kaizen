@@ -90,39 +90,41 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
                   </span>
                 </div> */}
             </Link>
-            <div className="desk-links hidden md:flex justify-center gap-6 text-[1.2rem] items-center">
-              <Link to="/about">About</Link>
-              <Link to="/services">Service</Link>
-              <Link to="/projects">Projects</Link>
-            </div>
-            <div className="flex items-center justify-end gap-6 flex-1">
-              <div className="flex md:hidden">
-                <div
-                  className={`w-[50px] grid place-items-center relative aspect-square gap-2 cursor-pointer`}
-                  onClick={toggleNav}
-                >
-                  <span
-                    className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute ${
-                      navState ? "rotate-[30deg]" : "mb-2"
-                    }`}
-                  ></span>
-                  <span
-                    className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute  ${
-                      navState ? "-rotate-[30deg]" : "mt-2"
-                    }`}
-                  ></span>
-                </div>
+            <div className="flex gap-8">
+              <div className="desk-links hidden md:flex justify-center gap-6 text-[1.2rem] items-center">
+                <Link to="/about">About</Link>
+                <Link to="/services">Service</Link>
+                <Link to="/projects">Projects</Link>
               </div>
-              <div className=" hidden md:block">
-                <DefaultButton
-                  linkTo="/booking"
-                  notShow
-                  color="black"
-                  rounded
-                  noFill
-                >
-                  Get started
-                </DefaultButton>
+              <div className="flex items-center justify-end gap-6 flex-1">
+                <div className="flex md:hidden">
+                  <div
+                    className={`w-[50px] grid place-items-center relative aspect-square gap-2 cursor-pointer`}
+                    onClick={toggleNav}
+                  >
+                    <span
+                      className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute ${
+                        navState ? "rotate-[30deg]" : "mb-2"
+                      }`}
+                    ></span>
+                    <span
+                      className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute  ${
+                        navState ? "-rotate-[30deg]" : "mt-2"
+                      }`}
+                    ></span>
+                  </div>
+                </div>
+                <div className=" hidden md:block">
+                  <DefaultButton
+                    linkTo="/booking"
+                    notShow
+                    color="black"
+                    rounded
+                    noFill
+                  >
+                    Get started
+                  </DefaultButton>
+                </div>
               </div>
             </div>
           </div>

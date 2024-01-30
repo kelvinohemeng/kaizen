@@ -14,6 +14,8 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 function App() {
   const [projectData, setProjectData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
