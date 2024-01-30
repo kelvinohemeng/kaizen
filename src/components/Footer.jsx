@@ -1,14 +1,38 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DefaultButton } from "./Components";
 import { Container } from "../utils/TailwindComps";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Footer = ({}) => {
+  useEffect(() => {
+    console.log(gsap);
+    gsap.from(".kaizen-slide-infinite", {
+      opacity: 0,
+      scale: 2,
+      y: 100,
+      stagger: 0.05,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: ".kaizen-slide-infinite",
+        // markers: true,
+        scrub: 1,
+        start: "top center",
+        end: "center center",
+      },
+    });
+  }, []);
+
   return (
     <footer className={`no-print  h-full  w-full bg-kaizen-white `}>
       <div className="w-full flex items-center flex-col justify-between  pt-[4rem]">
-        <Container className={`grid grid-cols-3 justify-between w-full`}>
-          <div className="">
+        <Container
+          className={`grid grid-col-1 md:grid-cols-3 md:justify-between gap-5 w-full`}
+        >
+          <div className="justify-self-center md:justify-self-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="27"
@@ -24,6 +48,7 @@ export const Footer = ({}) => {
               </g>
             </svg>
           </div>
+
           <div className=" flex gap-8 justify-self-center">
             <Link className="text-black" to={`Projects`}>
               Projects
@@ -38,7 +63,8 @@ export const Footer = ({}) => {
               Book a service
             </Link>
           </div>
-          <div className=" flex gap-3 justify-self-end">
+
+          <div className=" flex gap-3 justify-self-center md:justify-self-end">
             {/* facebook */}
             <a href="">
               <svg
@@ -109,17 +135,19 @@ export const Footer = ({}) => {
       <div className="kaizen-slide-infinite flex justify-center">
         <h1>kaizen</h1>
       </div>
-      <div className="text-black py-[4rem] flex gap-3 items-center justify-center">
+      <div className="text-black py-[4rem] text-center flex flex-col md:flex-row gap-3 items-center justify-center">
         <div className="text-black">
           {" "}
           &copy;{new Date().getFullYear()} Kai Zen Design. All rights reserved.
         </div>
-        <Link className="text-black" to={`/`}>
-          Privacy Policy
-        </Link>
-        <Link className="text-black" to={`/`}>
-          Terms of Service
-        </Link>
+        <div className="space-x-4">
+          <Link className="text-black" to={`/`}>
+            Privacy Policy
+          </Link>
+          <Link className="text-black" to={`/`}>
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </footer>
   );

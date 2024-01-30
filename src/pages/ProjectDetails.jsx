@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from "react";
 import { Image, Video } from "cloudinary-react";
 import { useParams } from "react-router-dom";
 
@@ -11,6 +10,8 @@ import { DefaultButton } from "../components/Components";
 import { TestimonialProj } from "../components/testimonial";
 import { Container } from "../utils/TailwindComps";
 import { SplitWordAnim } from "../components/Interactive";
+import Printable from "../components/Printable";
+import { useState } from "react";
 
 const ProjectDetail = ({ projects, footer }) => {
   //   const { projectId } = useParams();
@@ -48,22 +49,28 @@ const ProjectDetail = ({ projects, footer }) => {
     return <div>Project not found.</div>;
   }
 
+  const downloadPage = () => {
+    window.print();
+  };
+
   return (
     <>
-      <main className=" py-[10vh]">
+      <Printable project={project} />
+      <main className="no-print py-[10vh]">
         <Container>
-          {" "}
           <div className=" project-details-page">
             <div className=" print:py-0 my-[10vh] space-y-10">
-              <div className="flex justify-between items-center">
+              <div className=" space-y-4 md:space-y-0 md:flex justify-between items-center">
                 <div>
-                  <SplitWordAnim tag="h2" text={project.title} />
+                  <b>
+                    <SplitWordAnim tag="h2" text={project.title} />
+                  </b>
                   <p className="text-xl">{project.owner}</p>
                 </div>
-                <div className="no-print">
+                <div className="no-print flex justify-start">
                   <DefaultButton
                     blackBg
-                    color={`white`}
+                    color={`white w-full`}
                     rounded
                     notShow
                     flip
@@ -78,9 +85,7 @@ const ProjectDetail = ({ projects, footer }) => {
                         <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm37.66-85.66a8,8,0,0,1,0,11.32l-32,32a8,8,0,0,1-11.32,0l-32-32a8,8,0,0,1,11.32-11.32L120,148.69V88a8,8,0,0,1,16,0v60.69l18.34-18.35A8,8,0,0,1,165.66,130.34Z"></path>
                       </svg>
                     }
-                    onClick={() => {
-                      window.print();
-                    }}
+                    onClick={downloadPage}
                   >
                     Download this project as pdf
                   </DefaultButton>
@@ -107,9 +112,10 @@ const ProjectDetail = ({ projects, footer }) => {
             {/* <div className="sliderr"> */}
             <div>
               <SplitWordAnim tag="h3" text={`Project summary`} />
+
               <div className="flex items-center gap-2">
                 {" "}
-                <div className="border border-kaizen-blue text-white bg-kaizen-blue w-fit px-4 rounded-full">
+                <div className="border text-white bg-kaizen-black w-fit px-4 rounded-full">
                   {project.category}
                 </div>
                 <div className="font-medium text-kaizen-blue">
@@ -119,49 +125,96 @@ const ProjectDetail = ({ projects, footer }) => {
               <p className=" md:max-w-[70%] pt-5">{project.descriptions}</p>
             </div>
 
-            <Splide
-              tag="div"
-              className="w-full"
-              hasTrack={false}
-              aria-label="our projects"
-              options={{
-                arrows: true, // Display 2 slides per page
-                perMove: 2, // Move 1 slide at a time
-                gap: "1rem", // Adjust the gap between slides
-                perPage: 3,
-                omitEnd: true,
-                drag: false,
-              }}
-            >
-              <div>
-                <div className="splide__arrows flex justify-end py-10 gap-8">
-                  <button className="splide__arrow splide__arrow--prev">
-                    <img src="../images/button-left.svg" alt="" />
-                  </button>
-                  <button className="splide__arrow splide__arrow--next">
-                    <img src="../images/button-right.svg" alt="" />
-                  </button>
+            {/* image slider */}
+            <div className="hidden md:block">
+              <Splide
+                tag="div"
+                className="w-full"
+                hasTrack={false}
+                aria-label="our projects"
+                options={{
+                  arrows: true, // Display 2 slides per page
+                  perMove: 2, // Move 1 slide at a time
+                  gap: "1rem", // Adjust the gap between slides
+                  fixedWidth: "30%",
+                  omitEnd: true,
+                  drag: false,
+                }}
+              >
+                <div>
+                  <div className="splide__arrows flex justify-end py-10 gap-8">
+                    <button className="splide__arrow splide__arrow--prev">
+                      <img src="../images/button-left.svg" alt="" />
+                    </button>
+                    <button className="splide__arrow splide__arrow--next">
+                      <img src="../images/button-right.svg" alt="" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <SplideTrack>
-                {project.images.map((image, index) => (
-                  <SplideSlide className="w-fit ">
-                    <div className="relative">
-                      <Image
-                        key={`gkkj_${index}`}
-                        publicId={image}
-                        alt={`Project ${project.title} Image ${index + 1}`}
-                        className=" object-cover"
-                      />
-                    </div>
-                  </SplideSlide>
-                ))}
-              </SplideTrack>
-            </Splide>
+                <SplideTrack>
+                  {project.images.map((image, index) => (
+                    <SplideSlide className="w-fit ">
+                      <div className="relative">
+                        <Image
+                          key={`gkkj_${index}`}
+                          publicId={image}
+                          alt={`Project ${project.title} Image ${index + 1}`}
+                          className=" object-cover"
+                        />
+                      </div>
+                    </SplideSlide>
+                  ))}
+                </SplideTrack>
+              </Splide>
+            </div>
 
-            <div className="grid grid-cols-2 gap-10 pt-[5rem]">
+            <div className="block md:hidden">
+              <Splide
+                tag="div"
+                className="w-full"
+                hasTrack={false}
+                aria-label="our projects"
+                options={{
+                  arrows: true, // Display 2 slides per page
+                  perMove: 2, // Move 1 slide at a time
+                  gap: "1rem", // Adjust the gap between slides
+                  fixedWidth: "75%",
+                  omitEnd: true,
+                  drag: false,
+                }}
+              >
+                <div>
+                  <div className="splide__arrows flex justify-end py-10 gap-8">
+                    <button className="splide__arrow splide__arrow--prev">
+                      <img src="../images/button-left.svg" alt="" />
+                    </button>
+                    <button className="splide__arrow splide__arrow--next">
+                      <img src="../images/button-right.svg" alt="" />
+                    </button>
+                  </div>
+                </div>
+                <SplideTrack>
+                  {project.images.map((image, index) => (
+                    <SplideSlide className="w-fit ">
+                      <div className="relative">
+                        <Image
+                          key={`gkkj_${index}`}
+                          publicId={image}
+                          alt={`Project ${project.title} Image ${index + 1}`}
+                          className=" object-cover"
+                        />
+                      </div>
+                    </SplideSlide>
+                  ))}
+                </SplideTrack>
+              </Splide>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-[5rem]">
               <div>
-                <h4>Challenges</h4>
+                <h4>
+                  <b>Challenges</b>
+                </h4>
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
                   alias sapiente dignissimos eos iusto, doloribus, voluptatibus
@@ -170,7 +223,9 @@ const ProjectDetail = ({ projects, footer }) => {
                 </p>
               </div>
               <div>
-                <h4>Outcome</h4>
+                <h4>
+                  <b>Outcome</b>
+                </h4>
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Quasi dolor blanditiis recusandae atque nulla error aut iure
@@ -182,7 +237,9 @@ const ProjectDetail = ({ projects, footer }) => {
             {project.testimonialData && (
               <div className="pt-[5rem] space-y-9">
                 {/* testimonial */}
-                <h4>Testimonial</h4>
+                <h4>
+                  <b>Testimonial</b>
+                </h4>
                 {project.testimonialData.map(
                   (projectTestimonial, testIndex) => (
                     <TestimonialProj
@@ -195,7 +252,7 @@ const ProjectDetail = ({ projects, footer }) => {
               </div>
             )}
           </div>
-          <div className="no-print w-full flex justify-between pt-[5rem]">
+          <div className="no-print w-full flex justify-between pt-[5rem] flex-wrap">
             <div>
               <DefaultButton notShow color="white" onClick={handlePreviousPage}>
                 Previous Project
@@ -213,7 +270,6 @@ const ProjectDetail = ({ projects, footer }) => {
           </div>
         </Container>
       </main>
-      {footer}
     </>
   );
 };

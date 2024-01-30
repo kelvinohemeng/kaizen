@@ -10,7 +10,7 @@ const About = ({ footer }) => {
       <main className="  min-h-screen pt-[30vh]">
         <section className="mb-[10rem]">
           <Container className={`space-y-10`}>
-            <div className="flex justify-between">
+            <div className="md:flex justify-between space-y-5">
               <div className="max-w-[400px]">
                 {" "}
                 <SplitWordAnim
@@ -19,7 +19,7 @@ const About = ({ footer }) => {
                   text={`We deliver with unmatched professionalism`}
                 />
               </div>
-              <div className="max-w-[50%] space-y-10">
+              <div className="md:max-w-[50%] space-y-10">
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Voluptates similique, voluptatibus animi itaque minus pariatur
@@ -33,14 +33,14 @@ const About = ({ footer }) => {
                 </div>
               </div>
             </div>
-            <div className="w-full aspect-[1.2/0.5] bg-gray-500"></div>
+            <div className="w-full aspect-[1/0.5] bg-gray-500"></div>
           </Container>
         </section>
 
         <section className="mb-[10rem]">
           <Container className={`space-y-10`}>
-            <h3>How we work</h3>
-            <div className="grid grid-cols-2 gap-8">
+            <SplitWordAnim tag={`h3`} from={`bottom`} text={`How we work`} />
+            <div className="grid md:grid-cols-2 gap-8">
               <div className=" space-y-8">
                 <p className="max-w-lg">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.

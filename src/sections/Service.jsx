@@ -32,7 +32,7 @@ export const Service = () => {
   ];
   return (
     <section className=" mb-[10rem]">
-      <Container className="grid grid-cols-2  gap-12">
+      <Container className="grid md:grid-cols-2  gap-12">
         <div className=" flex flex-col justify-start gap-10 items-start relative">
           <div className="sticky top-[5rem] space-y-4">
             <div className="wck space-y-5 ">
@@ -47,7 +47,7 @@ export const Service = () => {
               </div>
             </div>
 
-            <div className=" flex gap-4">
+            <div className=" flex gap-4 flex-wrap">
               <DefaultButton notShow color={`white`}>
                 Learn more
               </DefaultButton>
@@ -62,6 +62,7 @@ export const Service = () => {
           <div className="flex-1  grid relative gap-4">
             {services.map((service, index) => (
               <div
+                key={"cac__" + index}
                 className={` p-2 max-w-[350px] sticky top-[5rem] rounded-md bg-kaizen-blue bg-opacity-40 text-white`}
                 style={{
                   transform: `rotate(${

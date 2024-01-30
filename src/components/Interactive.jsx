@@ -1,5 +1,8 @@
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const SplitTextAnim = ({ text, className }) => {
   const charRefs = useRef([]);
@@ -83,12 +86,12 @@ export const SplitWordAnim = ({
       });
 
       return () => {
-        gsap.killTweensOf(wordRef.current);
+        // gsap.killTweensOf(wordRef.current);
         ScrollTrigger.clearTrigger(wordRef.current);
       };
     };
     animateWords();
-  }, [text, fontSize, tag, duration, from, textColor]); // Add 'text' as a dependency to re-run the effect when the text changes
+  }, [text]); // Add 'text' as a dependency to re-run the effect when the text changes
 
   return (
     <span className={`${fontSize} `}>

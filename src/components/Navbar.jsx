@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { DefaultButton } from "./Components";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { gsap } from "gsap";
 
 export const Navbar = ({ toggleDarkMode, themeState }) => {
   const animateElementRef = useRef(null);
@@ -22,6 +21,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
         setHideNav(true);
       } else {
         setHideNav(false);
+        deactivateNav();
       }
 
       setLastScrollY(scrollY);
@@ -56,7 +56,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
       ></div>
       <div className="">
         <div className=" flex flex-col items-center bg-white">
-          <div className=" flex justify-between items-center w-full py-2 px-10 rounded-full">
+          <div className=" flex justify-between items-center w-full py-2 px-4 md:px-10 rounded-full">
             <Link
               to="/"
               onClick={deactivateNav}
@@ -98,11 +98,19 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
             <div className="flex items-center justify-end gap-6 flex-1">
               <div className="flex md:hidden">
                 <div
-                  className={navState ? `nav-toggler-off ` : `nav-toggler `}
+                  className={`w-[50px] grid place-items-center relative aspect-square gap-2 cursor-pointer`}
                   onClick={toggleNav}
                 >
-                  <span></span>
-                  <span></span>
+                  <span
+                    className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute ${
+                      navState ? "rotate-[30deg]" : "mb-2"
+                    }`}
+                  ></span>
+                  <span
+                    className={`w-[35px] h-[2px] rounded-full bg-black transition-all duration-300 absolute  ${
+                      navState ? "-rotate-[30deg]" : "mt-2"
+                    }`}
+                  ></span>
                 </div>
               </div>
               <div className=" hidden md:block">
@@ -120,40 +128,41 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
           </div>
         </div>
         <div
-          className={navState ? `row mt-10` : `hidden`}
+          className={`bg-white flex flex-col w-fit absolute right-0 mr-5 mt-5 rounded-md overflow-hidden transition-all duration-300 ${
+            navState
+              ? `translate-y-[0%] opacity-100 pointer-events-auto`
+              : `translate-y-[-100%] pointer-events-none opacity-0`
+          }`}
           ref={animateElementRef}
         >
           <Link
             to="/about"
-            className="nav-btn-container"
+            className=" px-4 py-3 font-regular text-[18px]"
             onClick={deactivateNav}
           >
             About us
           </Link>
           <Link
             to="/services"
-            className="nav-btn-container"
+            className=" px-4 py-3 font-regular text-[18px]"
             onClick={deactivateNav}
           >
             Service
           </Link>
           <Link
             to="/projects"
-            className="nav-btn-container"
+            className=" px-4 py-3 font-regular text-[18px]"
             onClick={deactivateNav}
           >
             Projects
           </Link>
-          <div className=" w-full p-3">
-            <DefaultButton
-              // notShow
-              color="white"
-              background="#111214"
-              onClick={deactivateNav}
-            >
-              Get started
-            </DefaultButton>
-          </div>
+          <Link
+            to="/projects"
+            className=" bg-kaizen-blue bg-opacity-70 px-4 py-3 font-regular text-[18px] text-white"
+            onClick={deactivateNav}
+          >
+            Start a project
+          </Link>
         </div>
       </div>
     </nav>

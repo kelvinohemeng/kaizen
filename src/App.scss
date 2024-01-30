@@ -81,7 +81,7 @@
   height: 100%;
   // overflow: hidden;
   position: relative;
-  width: 960px;
+  max-width: 960px;
 
   &::before,
   &::after {
@@ -155,5 +155,12 @@
   }
   to {
     transform: translateY(-50%);
+  }
+}
+
+section {
+  margin-bottom: 10rem;
+  @media screen and (max-width: 450px) {
+    margin-bottom: 5rem;
   }
 }

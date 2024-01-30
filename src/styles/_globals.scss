@@ -76,7 +76,8 @@ small,
 
 @media print {
   @page {
-    size: landscape;
+    size: auto;
+    margin: 0;
   }
 
   .no-print {
