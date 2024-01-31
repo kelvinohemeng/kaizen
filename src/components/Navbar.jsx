@@ -130,7 +130,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
           </div>
         </div>
         <div
-          className={`bg-white flex flex-col w-fit absolute right-0 mr-5 mt-5 rounded-md overflow-hidden transition-all duration-300 ${
+          className={`bg-white flex flex-col absolute right-0 left-0 mx-auto  w-[90%] mt-5 rounded-md overflow-hidden transition-all duration-300 shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${
             navState
               ? `translate-y-[0%] opacity-100 pointer-events-auto`
               : `translate-y-[-100%] pointer-events-none opacity-0`

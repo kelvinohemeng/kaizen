@@ -18,7 +18,7 @@ import { Service } from "../sections/Service";
 import { Testimonial } from "../components/testimonial";
 import { SplitWordAnim } from "../components/Interactive";
 import HeroSection from "../sections/HeroSection";
-import useInteractive from "../utils/Interractive";
+import { useInteractive, useBoxOverlay } from "../utils/Interractive";
 
 const testimonials = [
   {
@@ -110,7 +110,6 @@ const testimonials2 = [
 ];
 
 const Home = ({ projects, footer }) => {
-  const fadeIn = useRef();
   useInteractive({
     classNames: "fade-in",
     vertical: true,
@@ -124,13 +123,17 @@ const Home = ({ projects, footer }) => {
     opacity: 0,
   });
 
+  useBoxOverlay({
+    classNames: "box-overlay",
+  });
+
   return (
     <>
       <main className="">
         {" "}
         <HeroSection />
         {/* intro 2 */}
-        <section className="grid md:grid-cols-2 bg-kaizen-black bg-opacity-75 gap-12">
+        {/* <section className="grid md:grid-cols-2 bg-kaizen-black bg-opacity-75 gap-12">
           <div className=" px-5 py-8 md:ml-[123px] 2xl:ml-[500px] flex items-center ">
             <div className="left space-y-4 text-white">
               <SplitWordAnim
@@ -152,7 +155,7 @@ const Home = ({ projects, footer }) => {
             </div>
           </div>
           <div className="right   h-[500px] bg-gray-400"></div>
-        </section>
+        </section> */}
         {/* cta-read */}
         <section className="">
           <Container className="py-[136px]">
@@ -191,7 +194,12 @@ const Home = ({ projects, footer }) => {
                 </p>
               </div>
             </div>
-            <div className="w-full bg-gray-400 h-[25rem]"></div>
+            <div className="w-full box-overlay bg-gray-400 ">
+              <Image
+                className="w-full h-[25rem] aspect-[1.2/0.5] bg-gray-500 object-cover"
+                publicId="https://res.cloudinary.com/kaizen-img/image/upload/v1692530427/kaizen/projects/k_and_a/03.jpg"
+              />
+            </div>
           </Container>
         </section>
         <section className=" relative w-full bg-white py-[5rem]">

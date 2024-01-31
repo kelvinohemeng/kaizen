@@ -4,6 +4,7 @@ import { SplitWordAnim } from "../components/Interactive";
 import { DefaultButton } from "../components/Components";
 import { ReachOut } from "../sections/Contact";
 import { Image } from "cloudinary-react";
+import { useBoxOverlay } from "../utils/Interractive";
 
 const Service = ({ footer }) => {
   const services = [
@@ -32,6 +33,10 @@ const Service = ({ footer }) => {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam aspernatur quam repudiandae ut sapiente accusamus laborum esse quisquam, nisi iusto, omnis, quo fugit sit. Laborum eius atque sunt a?",
     },
   ];
+
+  useBoxOverlay({
+    classNames: "box-overlay",
+  });
   return (
     <>
       <main className="  min-h-screen pt-[30vh]">
@@ -56,7 +61,7 @@ const Service = ({ footer }) => {
                   />
                 </div>
               </div>
-              <div>
+              <div className="box-overlay">
                 <Image
                   className="W-full aspect-square md:aspect-[1/.35] bg-gray-500 object-cover object-center"
                   publicId="kaizen/projects/samsung_unpacked/05.jpg"
@@ -79,15 +84,19 @@ const Service = ({ footer }) => {
                           text={service.title}
                         />
                       </div>
-                      <div>
-                        <SplitWordAnim from={`bottom`} text={service.context} />
-                      </div>
-                      <div>
-                        <DefaultButton noFill>Book this service</DefaultButton>
+                      <div className="fade-in space-y-4">
+                        <div>
+                          <p>{service.context} </p>
+                        </div>
+                        <div>
+                          <DefaultButton noFill>
+                            Book this service
+                          </DefaultButton>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="W-full aspect-[1/1.1] bg-gray-500"></div>
+                  <div className="box-overlay W-full aspect-[1/1.1] bg-gray-500"></div>
                 </div>
               ))}
             </div>

@@ -64,6 +64,13 @@
     left: 0;
     top: 0;
   }
+
+  @media screen and (max-width: "450px") {
+    &::before,
+    &::after {
+      background: none !important;
+    }
+  }
 }
 .track {
   animation: scroll 40s linear infinite;
@@ -162,5 +169,19 @@ section {
   margin-bottom: 10rem;
   @media screen and (max-width: 450px) {
     margin-bottom: 5rem;
+  }
+}
+
+.box-overlay {
+  position: relative;
+  z-index: 1;
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    width: var(--overlayWidth);
+    height: var(--overlayHeight);
+    background: #f2edf4;
+    z-index: 999999;
   }
 }

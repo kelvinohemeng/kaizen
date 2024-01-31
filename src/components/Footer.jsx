@@ -131,7 +131,7 @@ export const Footer = ({}) => {
           </div>
         </Container>
       </div>
-      <div className="kaizen-slide-infinite flex justify-center">
+      <div className="hidden kaizen-slide-infinite md:flex justify-center">
         <h1>kaizen</h1>
       </div>
       <div className="text-black py-[4rem] text-center flex flex-col md:flex-row gap-3 items-center justify-center">

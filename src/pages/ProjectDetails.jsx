@@ -11,7 +11,7 @@ import { TestimonialProj } from "../components/testimonial";
 import { Container } from "../utils/TailwindComps";
 import { SplitWordAnim } from "../components/Interactive";
 import Printable from "../components/Printable";
-import { useState } from "react";
+import { useBoxOverlay } from "../utils/Interractive";
 
 const ProjectDetail = ({ projects, footer }) => {
   //   const { projectId } = useParams();
@@ -53,6 +53,10 @@ const ProjectDetail = ({ projects, footer }) => {
     window.print();
   };
 
+  useBoxOverlay({
+    classNames: "box-overlay",
+  });
+
   return (
     <>
       <Printable project={project} />
@@ -91,7 +95,7 @@ const ProjectDetail = ({ projects, footer }) => {
                   </DefaultButton>
                 </div>
               </div>
-              <div className="w-full overflow-hidden">
+              <div className="box-overlay w-full overflow-hidden">
                 {project.video ? (
                   <Video
                     publicId={project.video}
@@ -153,7 +157,7 @@ const ProjectDetail = ({ projects, footer }) => {
                 </div>
                 <SplideTrack>
                   {project.images.map((image, index) => (
-                    <SplideSlide className="w-fit ">
+                    <SplideSlide className="box-overlay w-fit ">
                       <div className="relative">
                         <Image
                           key={`gkkj_${index}`}
