@@ -59,7 +59,9 @@ const ProjectDetail = ({ projects, footer }) => {
 
   return (
     <>
-      <Printable project={project} />
+      <div>
+        <Printable project={project} />
+      </div>
       <main className="no-print py-[10vh]">
         <Container>
           <div className=" project-details-page">
@@ -157,10 +159,12 @@ const ProjectDetail = ({ projects, footer }) => {
                 </div>
                 <SplideTrack>
                   {project.images.map((image, index) => (
-                    <SplideSlide className="box-overlay w-fit ">
+                    <SplideSlide
+                      key={`slider_${index}`}
+                      className="box-overlay w-fit "
+                    >
                       <div className="relative">
                         <Image
-                          key={`gkkj_${index}`}
                           publicId={image}
                           alt={`Project ${project.title} Image ${index + 1}`}
                           className=" object-cover"
@@ -199,10 +203,12 @@ const ProjectDetail = ({ projects, footer }) => {
                 </div>
                 <SplideTrack>
                   {project.images.map((image, index) => (
-                    <SplideSlide className="w-fit ">
+                    <SplideSlide
+                      key={`mobile_slider_${index}`}
+                      className="w-fit "
+                    >
                       <div className="relative">
                         <Image
-                          key={`gkkj_${index}`}
                           publicId={image}
                           alt={`Project ${project.title} Image ${index + 1}`}
                           className=" object-cover"
@@ -246,11 +252,13 @@ const ProjectDetail = ({ projects, footer }) => {
                 </h4>
                 {project.testimonialData.map(
                   (projectTestimonial, testIndex) => (
-                    <TestimonialProj
-                      name={projectTestimonial.person}
-                      statement={projectTestimonial.statement}
-                      rating={4.5}
-                    />
+                    <div key={`testimonial_${testIndex}`}>
+                      <TestimonialProj
+                        name={projectTestimonial.person}
+                        statement={projectTestimonial.statement}
+                        rating={4.5}
+                      />
+                    </div>
                   )
                 )}
               </div>

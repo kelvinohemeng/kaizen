@@ -137,7 +137,7 @@ export const Footer = ({}) => {
       <div className="text-black py-[4rem] text-center flex flex-col md:flex-row gap-3 items-center justify-center">
         <div className="text-black">
           {" "}
-          &copy;{new Date().getFullYear()} Kai Zen Design. All rights reserved.
+          &copy;{new Date().getFullYear()} kaizn. All rights reserved.
         </div>
         <div className="space-x-4">
           <Link className="text-black" to={`/`}>

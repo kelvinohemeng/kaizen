@@ -35,16 +35,11 @@ export const useBoxOverlay = ({ classNames }) => {
     const targets = document.querySelectorAll(`.${classNames}`);
 
     targets.forEach((target) => {
-      console.log(target.offsetWidth);
-      console.log(target.offsetHeight);
-
       const width = target.offsetWidth;
       const height = target.offsetHeight;
 
       target.style.setProperty("--overlayWidth", `${width}px`);
       target.style.setProperty("--overlayHeight", `${height}px`);
-
-      console.log(width);
 
       gsap.to(target, {
         "--overlayHeight": 0,

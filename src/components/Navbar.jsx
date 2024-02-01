@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { DefaultButton } from "./Components";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = ({ toggleDarkMode, themeState }) => {
   const animateElementRef = useRef(null);
@@ -13,6 +13,7 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   // nav scroll functionality
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const isAtHome = location.pathname === "/";
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -26,8 +27,11 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
 
       setLastScrollY(scrollY);
     };
-
-    window.addEventListener("scroll", handleScroll);
+    if (isAtHome) {
+      window.addEventListener("scroll", handleScroll);
+    } else {
+      window.removeEventListener("scroll", handleScroll);
+    }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -47,7 +51,9 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
   // useEffect(() => {}, []);
   return (
     <nav
-      className={` fixed top-0 w-full ${navClasses} no-print pointer-events-auto z-[999] transition-all duration-300 shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]`}
+      className={` fixed top-0 w-full ${
+        isAtHome ? navClasses : ""
+      } no-print pointer-events-auto z-[999] transition-all duration-300 shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]`}
     >
       <div
         className="bg-black bg-opcaity-50"
@@ -170,3 +176,5 @@ export const Navbar = ({ toggleDarkMode, themeState }) => {
     </nav>
   );
 };
+
+// make the navbar only disappear when it is on the home page but leave it visible for the rest of the pages
